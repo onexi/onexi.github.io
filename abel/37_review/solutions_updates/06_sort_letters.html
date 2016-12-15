@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+/*
+The logic of the compare function is as follows
+
+if (compareFunction(a,b) < 0) a comes first, a lower index
+if (compareFunction(a,b) > 0) b comes first, b lower index
+if (compareFunction(a,b) === 0) leave a and b unchanged
+
+*/
+
+function compareChar(value1, value2) {
+	if (value1.charCodeAt(0) < value2.charCodeAt(0))   return -1;
+	if (value1.charCodeAt(0) > value2.charCodeAt(0))   return 1;
+	if (value1.charCodeAt(0) === value2.charCodeAt(0)) return 0;	
+}
+
+function compare(value1, value2) {
+	if (value1 < value2)   return -1;
+	if (value1 > value2)   return 1;
+	if (value1 === value2) return 0;	
+}
+
+var letters = ['p','s','o','b','y','i'];
+
+//letters.sort(compare);
+letters.sort(compareChar);
+console.log(JSON.stringify(letters));
+
+</script>
+</html>

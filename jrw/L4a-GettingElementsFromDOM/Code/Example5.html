@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Getting Objects from DOM</title>
+<!--  utilities and styles -->
+<link rel="stylesheet" href="../../template/css/codestyles.css">
+<script src="../../template/js/codeeditor.js"></script>
+
+</head>
+
+<body>
+<textarea id="code" name="code" style="height:400; width:700;">
+<html>
+<head>
+<script>
+function Run(){
+	var e1 = document.getElementById("dt");
+	console.log(e1.value);
+	e1.value = 22;
+}
+</script>
+</head>
+<body>
+dt = <input type="text" id="dt" value='10'/>
+<input type="button" value="Change" 
+onclick= "Run()" /> 
+</body>
+</html>
+</textarea>
+</html>

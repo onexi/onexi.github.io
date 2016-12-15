@@ -1,0 +1,35 @@
+<html>
+<head>
+	<SCRIPT>
+		flag = 1;
+		pos = 10;
+		function Run(){
+		img1 = document.getElementById("PacMan");
+		pos += 10;
+		if (pos >= 600)
+		{
+			pos = 0;
+		}
+		img1.style.left = pos+"px";
+
+		if(flag ==1){
+			img1.src = "PacMan2.png";
+			flag=0;
+		}
+		else {
+			img1.src = "PacMan1.png";
+			flag=1;
+		}
+		
+		}
+		// setInterval starts a timer
+		// the first arg is the function called
+		// the second arg is the time interval in millesecs
+		setInterval(Run, 300);
+	</SCRIPT>
+</head>
+<body>
+	<img id="PacMan" width="200" height="200"
+	style="position:absolute" />
+</body>
+</html>

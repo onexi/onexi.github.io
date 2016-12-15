@@ -1,0 +1,21 @@
+<html>
+<head>
+	<script type="text/javascript">
+//  pass callback as an argument
+		window.onload=Run;
+		var callMe = CatchResult;
+        function Run(){
+			for(var i=0;i<5;i++){
+				console.log('working');
+			}
+			if(callMe !== null) callMe(i); // pass a result back
+		}
+		function CatchResult(result){
+			console.log("result = "+result);
+        }
+      
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+
+    var getInstagramImages = function(callback){
+
+        var getJSON = function (url) {            
+            // create new script
+            var script = document.createElement("script");
+            script.setAttribute("src", url);
+            script.setAttribute("id", 'instagram');            
+            script.setAttribute("type", "text/javascript");
+
+            // append script to runtime
+            var body = document.getElementsByTagName("body");
+            document.body.appendChild(script);
+        };
+
+        var url = 'https://api.instagram.com/v1/tags/labrador/media/recent?';
+        var tags = 'callback=dataHandler&count=5&_=1393362945388';
+        tags += '&access_token=&client_id=b52e2e91dd7f467bbba605cbec6a88f7';
+        getJSON(url + tags);
+
+    };
+
+    var dataHandler = function(data){
+        console.log(data);
+    };
+
+    var run = function(){
+        getInstagramImages(dataHandler);
+    };
+
+
+</script>
+</head>
+<body>
+    
+    <input type="button" onclick="run()" value="Make JSONP call by hand" />
+    <div id="target"></div>
+
+</body>
+</html>

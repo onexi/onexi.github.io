@@ -1,0 +1,140 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+
+				<section>
+					<h1>Visualizing Data</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Chart - Hello World</h2>
+					<iframe src="code/graph_hello_display.html" width="850" height="500" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Output</h2>
+					<img src="media/images/graph_hello.png" height="400">
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Replace the data in the previous graph with the one on this slide. Submit screen shot.</p>
+					<iframe src="code/graph_data_display.html" width="700" height="350" ></iframe>
+				</section>
+
+
+
+				<section>
+					<h2>Graph Trinomial</h2>
+					<iframe src="code/graph_trinomial_display.html" width="850" height="500" ></iframe>
+				</section>
+
+				<section>
+					<h2>Trinomial Output</h2>
+					<a href="media/images/trinomial.png"><img src="media/images/trinomial.png" height="450"></a>
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Modify code to graph</p>					
+					\[y = -(x)^2 + x + 6 \]
+				</section>
+
+
+				<section>
+					<h2>Audio Event</h2>
+					<p><input type="button" value="Danger" onclick="playAudio('media/audio/danger.mp3')" style="font-size:1.5em;">
+					<input type="button" value="Siren" onclick="playAudio('media/audio/siren.mp3')" style="font-size:1.5em;"></p>
+					<iframe src="code/audio_display.html" width="850" height="350" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Dynamic Graph + Audio Events</h2>
+					<iframe src="code/graph_gage_display.html" width="800" height="500" ></iframe>
+				</section>
+
+
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex',
+				
+				dependencies: [
+					// MathJax
+					{ src: '../template/plugin/math/math.js', async: true }				
+				]
+			});
+
+		</script>
+
+		<script>
+
+			function playAudio(file){
+				var audio = document.createElement("audio");
+				if (audio != null && audio.canPlayType && audio.canPlayType("audio/mp3")) {
+					audio.src = file;
+					audio.play();
+				}        
+			}
+
+		</script>
+
+
+	</body>
+</html>

@@ -1,0 +1,1 @@
+The code inside index.html must be added into a lecture webpage (i.e. http://doval.scripts.mit.edu/abel/01_introduction/slides.html), if not the script will not be able to link to the lectures URLs.

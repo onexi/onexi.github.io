@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+var lookup = [ 
+	[ 16, '0', '1'],
+	[  8, '0', '1'],
+	[  4, '0', '1'],
+	[  2, '0', '1'],	
+	[  1, '0', '1']
+];
+
+
+function convertToBinary(num) {
+
+	var binary = '';
+	var length = lookup.length;
+
+	for (var i=0; i<length; i++) {
+	
+		if ( num >= lookup[i][0] ) {
+			binary += lookup[i][2];
+			num -= lookup[i][0];
+		}
+		else{
+			binary += lookup[i][1];			
+		}
+	}
+	return binary;
+}	
+
+/*
+	[ 'M' ,1000], 
+	[ 'CM', 900],
+	[ 'D' , 500],		
+	[ 'CD', 400],
+	[ 'C' , 100],
+	[ 'XC',  90],
+	[ 'L' ,  50],
+	[ 'XL',  40],
+	[ 'X' ,  10],
+	[ 'IX',   9],
+	[ 'V' ,   5],
+	[ 'IV',   4],
+	[ 'I' ,   1]
+*/
+
+</script>
+</html>

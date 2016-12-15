@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src = 'Vector2D.js'></script>
+<script>
+/*
+Code to catch mouse down and mouse up events
+*/
+var canvas;
+var context;
+var pickedParticle=null;
+var operationContext=0;
+var particles = [];
+
+window.onload=getCanvas;
+function getCanvas(){
+  canvas = document.getElementById("myCanvas");
+  context =  canvas.getContext ('2d');
+  // Deal with Mouse Events 
+
+}
+function Particle(center,radius){
+  return {center:center, radius:radius};
+}
+// on mouse up call this
+function drawAll(){
+  var n = particles.length;
+  for(i=0;i<n;i++){
+    DrawCircle(particles[i].center,particles[i].radius);
+  }
+}
+function makeParticle(e){
+  var radius = 10;
+  particles.push(Particle(Vector(e.pageX,e.pageY),radius));
+}
+function pickParticle(e){
+  pickedParticle = null;
+  var a = Vector(e.pageX,e.pageY);
+  var target;
+  var p;
+  for(var i=0;i<particles.length;i++){
+    target = particles[i];
+    p = target.center;
+    var d = Math.sqrt(p.distance2(a));
+    if(d < 20)pickedParticle = target;
+  }
+}
+// on mouse move call this
+function updatePosition(e){
+  if(pickedParticle!=null){
+    pickedParticle.center.x = e.pageX;
+    pickedParticle.center.y = e.pageY;
+    drawAll();
+  }
+}
+function letGo(){
+  pickedParticle = null;
+  drawAll();
+}
+function DrawCircle(p, radius){
+  context.fillStyle = "rgba(255, 0, 0, 1)";
+  context.beginPath();
+  context.arc(p.x, p.y, radius, 0, Math.PI*2, true);
+  context.closePath();
+  context.fill();
+}
+function SetDragParticle(){
+  document.onmousedown = pickParticle;
+  document.onmousemove = updatePosition;
+  document.onmouseup   = letGo;
+}
+function SetCreateParticle(){
+  document.onmousedown = makeParticle;
+  document.onmouseup   = letGo;
+}
+   </script>
+</head>
+<body>
+<canvas id="myCanvas" width="600" height="400" ></canvas>
+<div>
+<input type='button' value='make Particle' onclick='SetCreateParticle()'/>
+<input type='button' value='drag Particle' onclick='SetDragParticle()'/>
+</div>
+</div>
+</body>
+</html>

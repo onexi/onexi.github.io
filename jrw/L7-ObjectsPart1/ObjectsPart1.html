@@ -1,0 +1,175 @@
+<!doctype html>  
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Objects Part 1</title>
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../template/css/print/pdf.css' : '../template/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+
+	</head>
+	
+	
+	
+	<body>
+		
+	<div class="reveal">
+
+		<!-- Used to fade in a background when a specific slide state is reached -->
+		<div class="state-background"></div>
+		
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+<section>
+	<h1>Objects in Javascript</h1>
+	<h3 class="inverted"> Referencing Objects </h3>
+	<p>
+		<i><small><a href="http://www.mit.edu">John R. Williams</a> and <a href="http://www.mit.edu">Abel Sanchez</a></small></i>
+	</p>
+</section>
+			
+<section>
+	<h2>Object Layout Video</h2>
+	<iframe src="http://player.vimeo.com/video/87270695" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+</section>
+				
+<section>
+<section>
+<h2>Creating Objects </h2>
+We can create an object as shown below. 
+<iframe src="Code/PointObject0.html" width="900" height="400" ></iframe><br>
+<br>
+This object created this way is called a 'literal' object.  Here 'p' is the name of the object and 'x' and 'y' are called 'properties'. We also say 'p' is a reference to the object. 
+</section>
+<section>
+Copy the code into your Chrome Console and edit the values of the properties of 'p' and 'q'. Change the value of p.x and write out the values of p.x and p.y and q.x and q.y to convince yourself that p and q reference the same object.<br>
+Create another literal object with properties 'name' and 'age' where name is your first name and age is your age. Write out these properties then change your age to something different. 
+<iframe src="Code/PointObject0.html" width="900"
+height="400" ></iframe><br>
+</section>
+<section>
+<img src="Media/apx0.png" width = "400" height = "400"> </img>
+</section>
+<section>
+Using the 'dot' notation we can reference the x and y 'properties' of the object and we can 'get' or 'set' those variables.   <br>
+<iframe src="Code/PointObject2.html" width="900" height="500" ></iframe><br>
+</section>
+<section>
+Lets convince ourselves that 'a' has its own memory slot and is independent of p.x.  Can you draw out the layout in memory? <br>
+<iframe src="Code/PointObject2a.html" width="1100" height="600" ></iframe><br>
+
+</section>
+<section>
+Here is the memory layout.<br>
+<img src="Media/apx.png" width = "500" height = "500"> </img>
+</section>
+<section>
+Now lets create a variable 'q' and assign 'p' to it. Why does q.x change value
+<iframe src="Code/PointObject3a.html" width="900" height="600" ></iframe><br>
+</section>
+<section>
+Here is the memory layout. We call 'q' a reference to the object. Indeed, both 'p' and 'q' reference the same object. <br>
+<img src="Media/apx2.png" width = "500" height = "500"> </img><br>
+We can have many references to the same object. 
+</section>
+<section>
+Suppose we want to create several Point objects. One way is shown below. Can you create your own object? Can you imagine the memory layout diagram?<br>
+<iframe src="Code/PointObject3b.html" width="730" height="400" ></iframe><br>
+
+</section>
+<section>
+<img src="Media/apx6.png" width = "400" height = "400"> </img>
+</section>
+<section>
+Here we have seen that when we create a new 'name', such as 'var a' and follow it by an 'assignment' such as 'var a = p;', the result in Javascript depends on whether 'p' is a value, such as 5, or an object such as {x:4, y:5}. When an object is passed as an argument into a function it is the "reference" to the object that is being passed. Even though the function makes a "copy" of the reference, it still points to the same memory (the same object). This means that if we modify the contents of the object in the function we are "operating" on the actual object. There can be many "references" pointing to the same object.
+</section>
+</section>
+<section>
+	<h2>Point Object Creation</h2>
+	<iframe src="http://player.vimeo.com/video/87270697" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+</section>
+<section>
+<section>
+<h2>Creating Objects </h2>
+We can also create an object by creating it within a function and then returning the reference to it.<br>
+<iframe src="Code/PointCreate1a.html" width="900" height="500" ></iframe><br>
+</section>
+<section>
+Notice that the reference p created in the Point function disappears once we return from the function. However, p1 references the object and so the object continues to exist and we have a reference to it. ie p1<br>
+<img src="Media/apx4.png" width = "400" height = "400"> </img>
+</section>
+<section>
+We can make the Point function more compact by having the object created in the return statement. This avoids having to create the temporary variable 'p'. Notice also that in {x:x, y:y} the first x is the <b>name</b> of the property and the second x is the <b>argument</b> that has been passed in. ie 3 
+<br>
+<iframe src="Code/PointCreate1.html" width="730" height="400" ></iframe><br>
+
+</section>
+<section>
+<img src="Media/apx4a.png" width = "400" height = "400"> </img>
+</section>
+<section>
+Now we can create multiple Point objects. Our function Point acts like a little "factory" that can make Point objects. Why don't you make one with the coordinates (7,9). <br>
+<iframe src="Code/PointCreate2.html" width="900" height="500" ></iframe><br>
+<br>
+</section>
+<section>
+<img src="Media/apx5.png" width = "400" height = "500"> </img>
+</section>
+</section>
+<section>
+<section>
+<img src="./Media/YourTurn.jpg" width="600" height="400"><br>
+</section>
+</section>
+<section>
+<section>
+Change the values of the properties of p1 and convince yourself that the properties of p1 are independent of the properties of p2. This means that p1 and p2 reference different Point objects. <br>
+<iframe src="Code/PointCreate2.html" width="730" height="600" ></iframe><br>
+<br>
+</section>
+<section> <h2>Try this</h2>
+Type this code into your Chrome Console. What is the value of 'a' and 'p1.x' after Calc() has been executed.<br>
+<iframe src="Code/PassByRef.html" width="730" height="600" ></iframe><br>
+<br>
+</section>
+</section>	
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+	</body>
+</html>

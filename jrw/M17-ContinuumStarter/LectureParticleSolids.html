@@ -1,0 +1,129 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Solids Composed of Particles</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation content">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.min.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- css below only used for printing  -->	
+		<!--<link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+	</head>
+	
+	
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Making Solids From Particles</h1>
+		
+
+
+					<p>
+						<i><small><a href="http://www.mit.edu">John R. Williams</a> and <a href="http://www.mit.edu">Abel Sanchez</a></small></i>
+					</p>
+
+<img src='Media/Bridge1.png' width="300" height="350"><br>
+				</section>
+				
+				<section>
+			<iframe src="http://player.vimeo.com/video/89530168" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+				</section>
+				
+				
+<section>
+<section>
+The goal this lesson is to make an approximate continuum out of our particles. To do this we need to connect a particle to all other particle within a given "search radius". Below is such a system. <br>
+<img src="Media/Bridge1.png" width="600" height="600" /><br>
+</section>
+
+<section>
+Our algorithm is to visit each particle in turn (call this the target particle) and search all other particles to see if they are within the search distance. In they are we connect a spring between those two particles. The image below shows two typical clusters of particles that result from this strategy. <br>
+<img src="Media/Cluster1.png" width="600" height="600" /><br>
+
+</section>
+</section>
+<section>
+<section>
+<img src="./Media/YourTurn.jpg" width="600" height="400"><br>
+</section>
+</section>
+<section>
+<section>
+Assignment 1. I've started to change the starter code to make it more modular and better structured. As a first step I've included all the "global" variables in an object called 'sim' along with the 'canvas' and 'context' initialization. This is just a first step. However, I had to change the code then to address the globals via the 'sim' object ie 'sim.deltaT' and 'sim.context' etc.  I left a couple of errors for you to correct. Find them and make the code run again. 
+
+</section>
+<section>
+Assignment 2.  Write a function called detectNeighbors() to do this search. Call it every time step. Set the search radius to 'sim.interactionDistance=50'.<br>
+<textarea id="code" name="code" style="height:300; width:900;font-size: 12pt; ">
+function detectNeighbors(){
+  var n = sim.particles.length;
+  for(var i=0;i<n;i++){
+    for(var j=i+1;j<n;j++){
+      if(sim.particles[i].center.distance(sim.particles[j].center) < sim.interactionDistance){
+      		// create a spring between these particles if needed. Watch out because
+      		// there may already be a spring there and we don't want two springs. 
+
+        }
+      }
+    }
+  }
+}
+</textarea>
+</section>
+
+<section>
+Assignment 3. We already saw that we can break springs. I have put in a function to do this if the tensile force in the spring exceeds 'yieldForce'. With the following parameters I want you to construct as piece of material with as large a hole as possible in it. The code must be running and stable. You can use damping but you can't use any fixed particles. The solid must rest on the bottom. <br>
+<img src="Media/Bridge1.png" width="300" height="300" /><br>
+</section>
+</section>
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.min.js"></script>
+		<script src="../template/js/analytics.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'linear',
+
+				math: {
+					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				dependencies: [
+					{ src: '../template/lib/js/classList.js' },
+					{ src: '../template/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

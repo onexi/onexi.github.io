@@ -1,0 +1,21 @@
+
+.sign{
+  border: 10px solid gray;
+  padding: 4px;
+  margin: 5px;
+  background: #000 url(farmstand.png) 4.5em 0;  
+}
+
+.sign .name{
+  color: white;
+  font-family: 'Shadows Into Light', cursive; 
+  font-weight: bolder;
+  font-size: 15em;
+  padding: 20px;
+
+  /* text-shadow: h-shadow v-shadow blur color */
+  text-shadow: -6px 6px 0 #b06955;
+  -webkit-transform: rotate(-12deg);
+  -webkit-mask: url(farmstand.png) 4.5em 0;  
+  text-align: center;  
+}

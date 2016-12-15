@@ -1,0 +1,41 @@
+<!doctype html>
+<head>
+  <title>properties with arrays</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1.1em;}
+    .CodeMirror { height: auto; border: 1.2px solid #ddd; }
+    .CodeMirror-scroll { max-height: 350px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+// create a Light
+var light = new THREE.SpotLight();
+light.position.set( 170, 330, -160 );
+scene.add(light);
+
+// light your cube
+var litCube = new THREE.Mesh(
+  new THREE.CubeGeometry(50, 50, 50),
+  new THREE.MeshLambertMaterial({color: 0xFFFFFF}));
+litCube.position.y = 50;
+scene.add(litCube);</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+

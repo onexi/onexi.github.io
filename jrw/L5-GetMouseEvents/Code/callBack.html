@@ -1,0 +1,25 @@
+<html>
+<head>
+	<script type="text/javascript">
+//  pass callback as an argument
+		window.onload=Run;
+		
+        function Run(){
+			doSomething(CatchResult);
+		}
+		function CatchResult(result){
+			console.log("result = "+result);
+        }
+        function doSomething(callMe){ 
+			for(var i=0;i<10;i++){
+				console.log('working');
+			}
+			callMe(i);
+        }
+    </script>
+</head>
+<body>
+		<canvas id="myCanvas" width="900" height="300" >
+        </canvas>
+</body>
+</html>

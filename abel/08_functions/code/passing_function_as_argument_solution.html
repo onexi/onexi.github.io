@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<body>
+
+<script>
+
+	/* -----------------------------------------------------------
+		Note: the "speak" function takes an unspecified function. 
+		When called, the speak function passes the arguments 
+		"firstName" and "lastName" to the unspecified function.	
+	----------------------------------------------------------- */
+
+	function speak(greeting, firstName, lastName){
+		greeting(firstName, lastName);
+	}
+
+	speak(function(firstName, lastName){ 
+			console.log("Hello: " + firstName + ", " + lastName);
+		  }, 
+		  "peter", 
+		  "parker");
+
+	speak(function(){console.log("Hello and nothing else!");});
+
+	speak(function(){});	
+
+
+	// pause execution
+	console.log("live debugging");
+
+</script>
+
+</body>
+</html>

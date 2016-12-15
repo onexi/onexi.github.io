@@ -1,0 +1,4 @@
+// CLI command to put all HTML content in one line
+// uses "html_minifier", NPM package
+
+html-minifier mitcourses.html --collapse-whitespace --minify-js --minify-css -o output.html

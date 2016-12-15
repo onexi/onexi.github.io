@@ -1,0 +1,14 @@
+video {
+	width: 200px;
+	height: 112px;
+	border: 1px solid black;
+	display: table;
+    margin: 0 auto;
+}
+      
+.video-container {
+	display: inline-block;
+	text-align: center;
+	vertical-align:top;
+	text-align:top;
+}

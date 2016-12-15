@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title>Coin Toss</title>
+<!--  utilities and styles -->
+<link rel="stylesheet" href="../../template/css/codestyles.css">
+<script src="../../template/js/codeeditor.js"></script>
+</head>
+<body>
+<textarea id="code" name="code" height='1800' width='1600'>
+	function getRandomLetter(bag){ 
+		for(var k=0;k<1000;k++){
+			var index = Math.floor(Math.random()*N);
+			if(bag[index] !== null)return index;
+		}
+	}
+	function removeFromBag(bag, index){
+		bag[index] = null;
+	}
+	function checkSolution(aTarget,aTrial){  
+		var ncorrect = 0;
+		if(aTarget.length === aTrial.length){
+			for(var i = 0;i<aTarget.length; i++){
+				if(aTarget[i]===aTrial[i]) ncorrect++;
+			}
+			if(ncorrect === aTarget.length){ return true;}
+			else return false;
+		}
+		else console.log("Error! - arrays are different lengths");
+	}
+	function proclaimSuccess(trial,n){
+		textBox.value = trial.toString();
+		console.log(trial.toString()+' in '+n+' trials');
+	}
+</script>
+<body>
+<input type='text' id='T1'>
+<input type='button' value = 'Run' onclick='Run()' >
+</body>
+</html>
+</textarea>
+  </body>
+</html>

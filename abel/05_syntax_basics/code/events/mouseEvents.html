@@ -1,0 +1,43 @@
+<html>
+<head>
+<script>
+
+var mouseOffset;
+
+window.onload = function(){
+    var smiley = document.getElementById("PacMan");
+    smiley.addEventListener('mousedown',startDrag,false);
+    document.body.addEventListener('mousemove',drag,false);
+    document.body.addEventListener('mouseup',stopDrag,false);
+};
+
+function startDrag(e) {
+    if(!mouseOffset) {
+        mouseOffset={
+            x : e.clientX - e.target.offsetLeft,
+            y : e.clientY - e.target.offsetTop
+        };
+    }
+}
+
+function drag(e) {
+    if(mouseOffset) {    
+        e.target.style.left = (e.clientX - mouseOffset.x) + "px";
+        e.target.style.top  = (e.clientY - mouseOffset.y) + "px";
+        e.preventDefault();
+    }
+}
+
+function stopDrag(e) {
+    if(mouseOffset) {    
+        e.target.style.left = (e.clientX - mouseOffset.x) + "px";
+        e.target.style.top  = (e.clientY - mouseOffset.y) + "px";
+        mouseOffset=null;
+    }
+}
+
+</script>
+
+<img id="PacMan" src="smiley.png" style="position:absolute; top:100px; left:100px" /> 
+
+</html>

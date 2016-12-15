@@ -1,0 +1,144 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../template/lib/css/github.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../template/css/print/pdf.css' : '../template/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+				<section>
+					<h1>Machine Learning</h1><br>
+					<h3>K-Nearest Neighbors</h3>
+					<img src="media/images/robot.png" width="128" style="border:0;box-shadow:none;">
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+					
+				</section>
+
+				<section>
+					<h2>Distance Between Two Points</h2>
+					<img src="media/images/distance.png" height="500">
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Calculate distance between two points ...</p>
+				</section>
+
+
+				<section>
+					<h2>Centroid</h2>
+					<img src="media/images/centroid.png" height="500">
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Calculate centroid ...</p>
+				</section>
+
+
+
+				<section>
+					<h2>K-Nearest Neighbors</h2>
+					<img src="media/images/knn.jpg" height="400">
+				</section>
+
+				<section>
+					<h2>K-Nearest Neighbors Sample</h2>
+					<img src="media/images/knn_02.jpg" height="400" style="border:0;box-shadow:none;">
+				</section>
+
+				<section>
+					<h2>K-Nearest Neighbors Algorithm</h2>
+					<ol>
+						<li> Graph training data<br><br></li>
+						<li> Calculate distance between new point<br> and every other point<br><br></li>
+						<li> Select closest k points<br><br></li>
+						<li> Vote, select the majority of the <br>k closest points.</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Distance Between Two Points</h2>
+					<img src="media/images/distance.png" height="500">
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<img src="media/images/knn_exercise.png" height="500">
+				</section>
+
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+			Reveal.initialize({
+			    dependencies: [
+
+			        // Syntax highlight for <code> elements
+			        { src: '../template/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+			        // MathJax
+			        { src: '../template/plugin/math/math.js', async: true }
+			    ]
+			});
+
+		</script>
+
+
+	</body>
+</html>

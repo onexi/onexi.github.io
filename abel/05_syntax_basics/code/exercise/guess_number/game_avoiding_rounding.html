@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<body>
+
+<script>
+
+	// --------------------------------------------
+	//   avoids rounding by using power of 2
+	// --------------------------------------------
+
+	// the secret position
+	var position = 2;
+
+	// start parameters
+	var guess = 1024;
+	var oldGuess;
+
+	// initial bounds
+	var high = 2048;
+	var low = 0;
+	var counter = 0;
+	var found = false;
+
+
+	while (!found){
+
+		// remember previous guess
+		oldGuess = guess;		
+
+		if (guess < position){			
+			guess = guess + Math.ceil((guess-low)/2);
+			low = oldGuess;
+			console.log("guess: LOW");
+		}
+		else if (guess > position) {
+			guess = guess - Math.floor((high-guess)/2);
+			high = oldGuess;
+			console.log("guess: HIGH");			
+		}
+
+		if( guess === position){
+			found = true;
+		}
+
+		console.log("guess: " + oldGuess + ", iteration: " + counter++);
+		if (counter>50){found = true;}
+	}
+
+	console.log("found: " + guess);
+
+</script>
+
+</body>
+</html>

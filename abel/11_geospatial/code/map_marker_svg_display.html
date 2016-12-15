@@ -1,0 +1,62 @@
+<!doctype html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/xml.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+  <script src="../../codemirror/css.js"></script>
+  <script src="../../codemirror/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+<!DOCTYPE html><html>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<div id="map" style="width:1024px; height:768px"></div>
+<script>
+function init() {    
+
+    var myLatLng = new google.maps.LatLng( 42.357261, -71.092626 );
+    var options = {
+            zoom: 16,
+            center: myLatLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map( document.getElementById('map'), options );
+    var marker = new google.maps.Marker( {
+            position: myLatLng, 
+            icon: bus,
+            map: map
+    });
+}
+
+var bus = {
+    path: 'M255,0C114.75,0,0,114.75,0,255s114.75,255,255,255s255-114.75,255-255S395.25,0,255,0z',
+    fillColor: '#D80027',
+    fillOpacity: 0.6,
+    scale: 0.08,
+    strokeColor: '#8B0000',
+    strokeWeight: 0.5
+};
+window.onload = init;
+</script></html></textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>

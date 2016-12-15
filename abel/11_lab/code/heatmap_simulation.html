@@ -1,0 +1,57 @@
+<!doctype html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror_new/docs.css">
+  <link rel="stylesheet" href="../../codemirror_new/codemirror.css">
+  <script src="../../codemirror_new/codemirror.js"></script>
+  <script src="../../codemirror_new/xml.js"></script>
+  <script src="../../codemirror_new/javascript.js"></script>
+  <script src="../../codemirror_new/css.js"></script>
+  <script src="../../codemirror_new/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1.0em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 850px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+function simulation(){
+    heatmapData = new google.maps.MVCArray;
+
+    heatmap = new google.maps.visualization.HeatmapLayer({
+        data: heatmapData,
+        radius: 24,
+        map: map        
+    });
+
+    timer();
+}
+
+function timer(){
+    if (counter < taxiData.length){
+        timeStep();
+        setTimeout(timer,2000);
+    }
+    console.log(counter);    
+    counter++;    
+}
+
+function timeStep(){
+    heatmapData.push(taxiData[counter]);
+}</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+var counter = 0;
+var timerID = 0;
+
+function timer(counter){
+	console.log(counter++);
+
+	// call timer again in specified millesecs
+	timerID = setTimeout(timer,1000);
+}
+
+function stop(){ 
+	clearTimeout(timerID);
+}
+
+</script>
+
+</html>

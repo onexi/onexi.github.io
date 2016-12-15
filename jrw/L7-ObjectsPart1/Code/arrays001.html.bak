@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>HTML5 Presentation</title>
+
+	<!--  utilities and styles -->
+	<script src="js/utilities.js"></script>
+	<link rel="stylesheet" href="js/styles.css">
+
+  </head>
+
+  <body>
+
+
+			<textarea id="code" name="code" style="height:300; width:300;">
+// Example - array of values
+var a ={x:5};  // create an object with one name value pair
+a.y = 6;
+a['z'] = 7;
+console.log(a.x+', '+a.y+', '+a.z);
+console.log(a['x']+', '+a['y']+', '+a['z']);
+
+</textarea>
+
+
+	<div>
+		<input type="submit" value="run code" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="reload original code" id="reloadCode" onclick="location.reload();"/>
+		<input type="submit" value="when finished press this button to return to slides" id="closeWindow" onclick="self.close()"/>
+	</div>
+
+	<br/>
+	<div id="output" style="width:100%; border:1px solid black;background-color:#FFFFB4;"> Output:</div>
+
+	<br/>
+	<div id="exceptions" style="width:100%; border:1px solid black;background-color:#FFFFB4;"> Exceptions:</div>
+
+	<br/>
+	<div id="container">
+		<canvas id="canvas" ></canvas>	
+	</div>
+
+	<script type="text/javascript">
+
+		var slide;				
+		window.onload = function(){
+				slide = editorBuilder('code', 'canvas');
+				slide.loadCode();				
+			};
+
+	</script>
+
+  </body>
+</html>

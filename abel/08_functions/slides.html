@@ -1,0 +1,328 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../template/css/print/pdf.css' : '../template/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+				<section>
+					<h1>Functions</h1>
+					<img src="media/images/function.png" height="300" style="border:0;box-shadow:none;">
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+					
+				</section>
+
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li>Why do we care?</li>
+						<li>Functions Basics</li>
+						<li>Functions are objects</li>
+						<li>Functions Provide Scope</li>
+						<li>Value and Reference</li>
+						<li><a href="code/exercises.zip">Exercises</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Why do we care?</h2>
+					<ul>
+					<li>
+						We want to bring together data and functionaly into units that make sense to us.
+					</li>
+					<li>
+						We want to want minimize complexity by creating layers of abstraction and hiding the details.
+					</li>
+					<li>
+						We want to organize and share our work.
+					</li>
+					<li>
+						Using objects and functions we can also extend the language. We can create our own types and methods.
+					</li>
+					</ul>  
+				</section>
+
+
+				<section>
+					<h2>How does reverse work?</h2>
+					<img src="media/images/reverse.png" height="400" >
+					<p>Do we care?</p>
+
+				</section>
+
+
+				<section>
+					<h2>Functions Basics</h2>
+				</section>
+
+
+
+				<section>
+					<h2>Components of a Function</h2>
+					<p>A function is composed of four parts:</p>
+					<ul>
+						<li>The keyword <b><i><code>function</code></i></b></li>
+						<li>The function name</li>
+						<li>The function parameters</li>
+						<li>The function body</li>
+					</ul>
+					<img src="media/images/functionComponents_02.png" height="200"/>
+				</section>
+
+
+				<section>
+					<h2>Function Expression</h2>
+					<p>There are two types of functions:
+						<ul>
+							<li>Expressions</li>
+							<li>Statements</li>
+						</ul>
+					</p>
+					<iframe src="code/expression.html" width="700" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>Function Statement</h2>
+					<p>A function statement is short-hand for a function expression</p>
+					<iframe src="code/statement.html" width="750" height="400" ></iframe>					
+				</section>	
+
+				<section>
+					<h2>Expression vs Statement - Simple Rule</h2>
+					<p>If the first token is <b><i><code>function</code></i></b>, you have a function statement</p>
+				</section>	
+
+
+				<section>
+					<h2>Your Turn ...</h2>				
+					<iframe src="code/functionStatement.html" width="750" height="500" ></iframe><br>
+				</section>
+
+
+				<section>
+					<h2>Video: Function Basics</h2>
+					<iframe src="http://player.vimeo.com/video/87397114" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h2>Functions are objects</h2>
+				</section>
+
+
+				<section>
+					<h2>Functions Are Objects I</h2>
+					<p  style="text-align:left">Functions are collections of name/value pairs. Just like objects, functions can be:</p>				
+					<ul>
+						<li>Assigned to a variable</li>
+						<li>Assigned to an object</li>
+						<li>Passed as arguments to a function</li>
+						<li>Returned from a function</li>
+						<li>Can have methods and properties</li>
+						<li>Can be created dynamically</li>
+					</ul>		
+				</section>
+
+				<section>
+					<h2>Functions Are Objects II</h2>
+					<p>Assigning a function to a variable.	</p>
+					<iframe src="code/functionToVariable.html" width="750" height="500" ></iframe>
+				</section>
+
+				<section>
+					<h2>Your Turn ...</h2>				
+					<iframe src="code/assigning_to_variable_exercise.html" width="750" height="600" ></iframe><br>
+				</section>
+
+				<section>
+					<h2>Your Turn ...</h2>								
+					<iframe src="code/passing_function_as_argument_exercise.html" width="750" height="600" ></iframe><br>
+				</section>
+
+				<section>
+					<h2>Video: Functions Are Objects</h2>
+					<iframe src="http://player.vimeo.com/video/87399738" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h2>Functions Provide Scope</h2>
+				</section>
+
+
+				<section>
+					<h2>Functions Provide Scope</h2>
+					<p>Any variable declaration with a <code>var</code> inside the function is invisible outside the function.</p>
+					<iframe src="code/scope_01.html" width="700" height="400" ></iframe>
+
+				</section>
+
+				<section>
+					<h2>Scope within a Function</h2>
+					<p>NOTE: child functions have access to parent functions variables and parameters</p>
+					<img src="media/images/following_example.jpg" width="360">
+
+				</section>
+
+				<section>
+					<h2>Example</h2>
+					<iframe src="code/scope_02.html" width="700" height="500" ></iframe>
+
+				</section>
+
+
+				<section>
+					<h2>Your Turn ...</h2>
+					<p>	In the following exercise, your task is to output two different messages by adding one keyword.</p>
+					<img src="media/images/exercise.jpg" width="360">							
+					
+				</section>
+
+				<section>
+					<h2>Your Turn ...</h2>				
+					<iframe src="code/scope_exercise.html" width="750" height="600" ></iframe><br>
+				</section>
+
+				<section>
+					<h2>Video: Functions Provide Scope</h2>
+					<iframe src="http://player.vimeo.com/video/87400167" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+				<section>
+					<h2>Value and Reference</h2>
+				</section>
+
+
+				<section>
+					<h2>Video: Value and reference</h2>
+					<iframe src="http://player.vimeo.com/video/87391140" width="700" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+
+				<section>
+					<h2>Primitive Value Types</h2>
+					<iframe src="code/primitive_value_types.html" width="750" height="600" ></iframe><br>					
+				</section>
+
+
+				<section>
+					<h2>Passing Primitive to Function</h2>
+					<p>Function calls also pass primitive types by value.</p>
+					<iframe src="code/primitive_value_passing_function.html" width="750" height="600" ></iframe>		
+				</section>
+
+				<section>
+					<h2>Your Turn ...</h2>
+					<iframe src="code/value_and_reference_02_exercise.html" width="750" height="600" ></iframe>										
+				</section>
+
+
+				<section>
+					<h2>Objects are Passed by Reference</h2>
+					<p>Objects are never copied.</p>
+					<iframe src="code/objects_passed_by_reference.html" width="850" height="600" ></iframe>
+					
+				</section>
+
+				<section>
+					<h2>Object Inspection</h2>
+					<p>Objects are never copied.</p>
+					<img src="media/images/value_and_reference.png" height="300">				
+				</section>	
+
+
+				<section>
+					<h2>Your Turn ...</h2>
+					<iframe src="code/value_and_reference_03_exercise.html" width="750" height="600" ></iframe>
+				</section>	
+
+
+				<section>
+					<h2>Within the Object</h2>
+					<p>Primitive and object behavior holds.</p>
+					<iframe src="code/value_and_reference_04_display.html" width="850" height="600" ></iframe>
+				</section>	
+
+				<section>
+					<h2>Keeping the Object Reference</h2>
+					<p>You can keep an object reference even while you reassign the variable - example below</p>
+					<iframe src="code/value_and_reference_05_display.html" width="850" height="600" ></iframe>
+				</section>
+
+				<section>
+					<h2>Your Turn ...</h2>
+					<iframe src="code/value_and_reference_04_exercise.html" width="750" height="600" ></iframe>
+				</section>	
+
+				<section>
+					<h2>Your Turn ...</h2>				
+					<iframe src="code/value_and_reference_05_exercise.html" width="900" height="600" ></iframe>
+				</section>	
+
+
+				<section>
+					<h2>Video: Value and reference</h2>
+					<iframe src="http://player.vimeo.com/video/87400316" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+	</body>
+</html>

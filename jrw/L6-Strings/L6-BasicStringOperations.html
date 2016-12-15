@@ -1,0 +1,164 @@
+<!doctype html>  
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Strings</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation content">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.min.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- css below only used for printing  -->	
+		<!--<link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+	</head>
+	
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Strings and Arrays in Javascript</h1>
+					<iframe src="Code/splashScreenPage.html" width="800"
+height="350" ></iframe><br>
+
+					<p>
+						<i><small><a href="http://www.mit.edu">John R. Williams</a> and <a href="http://www.mit.edu">Abel Sanchez</a></small></i>
+					</p>
+
+
+				</section>
+<section>
+	<h2>Strings and Arrays</h2>
+	<iframe src="http://player.vimeo.com/video/86780945" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+</section>
+				
+<section>
+<section>
+<h2>Strings  </h2>
+
+We declare strings by using either single or double quotes. 
+<iframe src="Code/string01.html" width="900" height="800" ></iframe><br> 
+
+</section>
+<section>
+Suppose we need to write a quote as part of our string. We can use either the other kind of quote or we can use the backslash '\'. When we use the backslash its called "escaping" the symbol. It tells the computer that the next character should be treated as a character and not as a quote of any kind. Its used in many other situations.
+<iframe src="Code/string02.html" width="900" height="800" ></iframe><br> 
+</section>
+<section>
+Here is a list of the special characters that can be added using the backslash.
+<iframe src="Code/string03.html" width="800" height="800" ></iframe><br> 
+</section>
+<section>
+Suppose we want to know the length of the strings in the previous examples.
+<iframe src="Code/string04.html" width="900" height="600" ></iframe><br>
+Notice that the operator '+' concatenates strings. 	
+</p>
+</section>
+
+<section>
+Here are the commands you can use with strings
+<iframe src="Code/string06.html" width="1200" height="800" ></iframe><br>
+
+</section>
+<section>
+A very useful function is indexOf which returns the position of the charcter in the  string. You can specify several and it gives the postion of the first one.
+<iframe src="Code/string07.html" width="900"
+height="400" ></iframe><br>
+
+What do you think lastIndexOf returns? Try it in the code below. 
+<br>
+</section>
+<section>
+<iframe src="Code/string08.html" width="900"
+height="700" ></iframe><br>				
+<br>
+</section>
+<section>
+The command 'split' can also divide the string at a given letter.
+<iframe src="Media/split2.png" width="900"
+height="700" ></iframe><br>				
+<br>
+</section>
+<section>
+Another useful function is split which takes a string and breaks it into an array. So now we see that arrays in Javascript can hold any kind of type. Arrays are one of the basic storage types in Javascript and we will make much use of them. 
+<iframe src="Media/split1.png" width="900"
+height="700" ></iframe><br>				
+<br>
+</section>
+
+</section>
+<section>
+<section>
+<img src="./Media/YourTurn.jpg" width="600" height="400"><br>
+</section>
+</section>
+<section>
+<section>
+Active Learning - Hand this in.<br>
+It is said that a monkey, given a typewriter and enough time, will eventually type out the works of William Shakespeare. We are going to simulate that monkey. Since our monkey can't yet type we will give it a bag of letters to pick from. The monkey reaches into the bag and picks out letters one by one.<br>
+The 'target' is the phrase we want the monkey to type. The 'start' is the string of letters in the bag - from this we create the array 'bag' full of the letters. Once a letter is picked we remove it by making it 'null' in the array.<br>
+Change the code in 'removeFromBag(bag, index)' so you actually remove the letter from the array 'bag' so that the length of 'bag' is now smaller.. You will also have to change 'getRandomLetter(bag)' since the size of the array 'bag' has now changed. Once you have it working see how long it takes the monkey to produce the phrase 'to be or not'. What is the increased complexity of the problem for the monkey to produce the phrase 'to be or not to be'? <br>
+
+</section>
+<section>
+<iframe src="Code/monkeyInClassOnPage1.html" width="1600"
+height="1200" ></iframe><br>
+</section>
+<section>
+<iframe src="Code/monkeyInClassOnPage2.html" width="1600"
+height="1200" ></iframe><br>
+</section>
+</section>
+
+				
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+			
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.min.js"></script>
+		<script src="../template/js/analytics.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'linear',
+
+				math: {
+					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				dependencies: [
+					{ src: '../template/lib/js/classList.js' },
+					{ src: '../template/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+
+	</body>
+</html>

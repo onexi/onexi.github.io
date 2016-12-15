@@ -1,0 +1,118 @@
+<!doctype html>
+
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/xml.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+  <script src="../../codemirror/css.js"></script>
+  <script src="../../codemirror/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 300px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+<!DOCTYPE html>
+<html>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+
+      //  the range of x values to plot
+      // -------------------------------------
+      var xMin = -5;
+      var xMax = 5; 
+
+
+      //  for trinomial y = ax^2 + bx + c
+      // -------------------------------------      
+      var a = 1;
+      var b = 5;
+      var c = 6;
+
+
+      //  used to generate graph coordinates
+      // -------------------------------------      
+      function equation(x){
+        var y = a*Math.pow(x,2) + b*x + c;
+
+        // third position is used for labeling (annotation) points
+        // the return array format is [x, y, 'x,y']
+        return [x, y, '"' + x + ',' + y + '"'];
+      }
+
+
+      //  dataset is a two dimensional array 
+      //  the inner format is [x, y, 'x,y']
+      //  the first position is used for  
+      //  for column names and point labels
+      // -------------------------------------
+      var dataset = [['x', 'y', { role: 'annotation' }]];
+
+
+      //  build dataset
+      // -------------------------------------
+      var datapoint = [];      
+      var index = 1;
+      for(var i=xMin; i<xMax; i++){
+          datapoint = equation(i);
+          dataset[index]=datapoint;
+          index++;
+      }
+
+
+      //  draw graph
+      // -------------------------------------
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(dataset);
+
+        var options = {
+          title: 'Trinomial',
+           pointSize: 10,
+           curveType: 'function',
+           vAxis: {gridlines:{count:20}}
+        };
+
+        var chart = new google.visualization.LineChart(
+                          document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+
+      //  call from console if you need points
+      // -------------------------------------
+      function dataPoints(){
+        var length = dataset.length;
+        for (var i=1; i<length; i++){
+          console.log(dataset[i][2]);
+        }
+      }
+
+    </script>
+
+    <div id="chart_div" style="width: 1200px; height: 2000px;"></div>
+
+</html></textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>

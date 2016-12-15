@@ -1,0 +1,52 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../../../codemirror_new/docs.css">
+  <link rel="stylesheet" href="../../../../codemirror_new/codemirror.css">
+  <script src="../../../../codemirror_new/codemirror.js"></script>
+  <script src="../../../../codemirror_new/xml.js"></script>
+  <script src="../../../../codemirror_new/javascript.js"></script>
+  <script src="../../../../codemirror_new/css.js"></script>
+  <script src="../../../../codemirror_new/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1.3em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 550px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+<!-- 
+    Use loops to write the multiplication tables
+    from 1 - to - 10
+
+    Use "console.log()" to write our your results
+
+    Sample output
+    1  2  3  4  5  6  7  8  9 10
+    2  4  6  8 10 12 14 16 18 20
+    3  6  9 12 15 18 21 24 27 30
+    4  8 12 16 20 24 28 32 36 40
+    5 10 15 20 25 30 35 40 45 50
+    6 12 18 24 30 36 42 48 54 60
+    7 14 21 28 35 42 49 56 63 70
+    8 16 24 32 40 48 56 64 72 80
+    9 18 27 36 45 54 63 72 81 90
+   10 20 30 40 50 60 70 80 90 100
+
+    Submit your code and a screenshot of your output
+--></textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>
+

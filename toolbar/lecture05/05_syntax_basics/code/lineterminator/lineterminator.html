@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+	<!--  utilities and styles -->
+	<script src="../../../codemirror/utilities.js"></script>
+	<link rel="stylesheet" href="../../../codemirror/styles.css">
+
+  </head>
+
+  <body>
+
+
+			<textarea id="code" name="code" style="height:300; width:300;">
+/* -----------------------------------------------
+    On their own, the following are are valid
+
+    a = b + c
+
+    (b + c).toString()
+
+    However, without a semicolon, JavaScript
+    tries to evaluate a = b + c(b + c).toString()
+   ----------------------------------------------- */
+a = 1;
+b = 2;
+c = 3
+a = b + c
+(b + c).toString()  // TypeError: number is not a function
+</textarea>
+
+
+	<div>
+		<input type="submit" value="run" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="clear" id="clearOutput" onclick="clearOutputBox();"/>
+		<input type="submit" value="reload" id="reloadCode" onclick="location.reload();"/>
+	</div>
+
+	<br/>
+	<div id="output" style="width:100%; border:1px solid black;background-color:#fffff0;font-family:monospace;font-size:1.2em"> Output:</div>
+
+	<script type="text/javascript">
+
+		var slide;				
+		window.onload = function(){
+				slide = editorBuilder('code', 'canvas');
+				slide.loadCode();				
+			};
+
+	</script>
+
+  </body>
+</html>

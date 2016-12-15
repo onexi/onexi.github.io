@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1.4em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto}
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+// function statement
+function add(a, b) { return a + b;};
+
+// same as ...
+var add = function add(a, b) { return a + b;};
+
+// same as ...
+var add = undefined;
+add = function add(a, b) { return a + b;};
+</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>
+

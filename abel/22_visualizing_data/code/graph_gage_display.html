@@ -1,0 +1,97 @@
+<!doctype html>
+
+
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/xml.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+  <script src="../../codemirror/css.js"></script>
+  <script src="../../codemirror/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 300px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+
+<textarea id="code" name="code">
+<!DOCTYPE html><!-- Active Learning -->
+<html>
+<script src='https://www.google.com/jsapi'></script>
+<script>
+var data;
+var options;
+var chart;
+
+google.load('visualization', '1', {packages:['gauge']});
+google.setOnLoadCallback(init);
+
+function drawChart() {
+
+  data = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Memory', 80],
+    ['CPU', 55],
+    ['Network', 68]
+  ]);
+
+  options = {
+    width: 400, height: 120,
+    redFrom: 90, redTo: 100,
+    yellowFrom:75, yellowTo: 90,
+    minorTicks: 5
+  };
+
+  chart = new google.visualization.Gauge(
+              document.getElementById('chart_div'));
+  chart.draw(data, options);
+
+}
+
+function init(){
+  drawChart();
+  timer();
+}
+
+function timer(){
+  updateData();
+  setTimeout(timer,2000);
+}
+
+function updateData(){
+  // active learning
+  // write the function to update the graph
+}
+
+function playAudio(file){
+  var audio = document.createElement("audio");
+  if (audio != null && 
+      audio.canPlayType && audio.canPlayType("audio/mp3")) {
+    audio.src = file;
+    audio.play();
+  }        
+}
+
+</script>
+
+<div id='chart_div'></div>
+
+</html></textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>

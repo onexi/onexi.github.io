@@ -1,0 +1,68 @@
+<html>
+	<script src='hash.js'> </script>
+<script>
+	var target = 0;
+	var Nloop = 200000;
+	var T1 = null;
+	var N1 = null;
+	var B1 = null;
+	var G1 = null;
+	block = 'albert sells eva 6';  // this is previous transaction block
+	var nonce = -1;
+	var nTries = 0;
+	window.onload = function(){
+		T1 = document.getElementById('T1');
+		T2 = document.getElementById('T2');
+		N1 = document.getElementById('N1');
+		B1 = document.getElementById('B1');
+		G1 = document.getElementById('G1');
+		D1 = document.getElementById('D1');
+		C1 = document.getElementById('C1');
+		T1.value = block.toString();
+	};
+	function Run(){
+		var newTrans = (T1.value).hashCode();
+		block = ((1407204486 + newTrans).toString()).hashCode(); // hash it so its sealed.
+		T2.value = block;
+		var newBlock ='';
+		for(var i = 0;i<1000;i++){
+			nonce++;
+			newBlock = (Number(block) + nonce).toString();
+			var hash = newBlock.hashCode();
+			if(hash%10000 === 0){
+				proclaimSuccess(hash,nTries);
+				console.log('Success !!!');
+				break;
+			}
+
+			nTries++;
+		}
+	}
+	function proclaimSuccess(hash,n){
+
+		G1.value = hash.toString();
+		N1.value = nonce;
+		B1.value = block + nonce;
+		console.log(hash.toString()+' in '+n+' trials');
+	}
+	function hashCheck(){
+		C1.value = (D1.value).hashCode();
+	}
+		
+</script>
+<body>
+<h2> Simple Bitcoin Miner</h2>
+Previous signed hash of all Bitcoin transactions ( john to anne 2 + fred to anne 7 ) is published eg. Hash(Given Block) = 1407204486. Now enter new transactions.
+Enter transactions in the form 'albert sells eva 6'.  To encapsulate the new transactions we hash (Hash(Given Block) + Hash('albert sells eva 6') to form new Hash<br>
+New transactions<input type='text' size='50' id='T1' value='david sells eva 3'><br>
+Bash = Hash (Hash(Given Block)+ Hash(New Transactions)) <input type='text' size='30' id='T2'><br>
+Final Block   <input type='text' size='30' id='B1'><br>
+Nonce (Golden Ticket)           <input type='text' size='30' id='N1'> random number to test<br>
+Golden Hash     <input type='text' width='30' id='G1'> Ends in zeros<br>
+<input type='button' value = 'Run' onclick='Run()' > You might have to click many times - Bitcoins are not easy to produce<br>
+<h2> Community Checks you Have Mined a True Bitcoin</h2>
+You publish Nonce. Community checks that Hash(Bash+Nonce) generates Golden Hash <input type='text' width='300' id='D1'><br>
+<input type='button' value = 'Hash' onclick='hashCheck()' > <br>
+Hash value    <input type='text' width='300' id='C1'><br>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<html>
+<head>
+<script src="Vector2D.js" type="text/javascript" charset="utf-8"></script>
+<script src="modelParams.js" type="text/javascript" charset="utf-8"></script>
+<script src="SalariesChicagoSmallData.js" type="text/javascript" charset="utf-8"></script>
+<script src="SalaryRipDataLayerSolution.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+function GenerateNodesFromJSON(){
+	initDataParse();
+	plotAll();
+}
+function BreadthFirstSearch(){
+  window.alert('Next');
+  var root = null;
+	if(sim.pickedNode === null) root = sim.nodes[0];
+	else root = sim.pickedNode;
+  var queue = [];
+  queue.push(root);
+  printArray(queue);
+  root.color = 'Red';
+  console.log(root.id+' degree k= '+root.children.length);
+  plotAll();
+  while(queue.length>0){
+    var node = queue.shift();  // Visit children of this node
+    printArray(queue);
+    while((child=getUnvisitedChildNode(node)) !== null){
+      window.alert('NEXT NODE');
+      child.color = 'Red'; // visited
+      console.log(child.id+' degree k= '+child.children.length);
+      plotAll();
+      queue.push(child);
+      printArray(queue);
+    }
+  }
+}
+function getUnvisitedChildNode(obj){
+  if(obj !== null && obj.children.length > 0){
+    for(var i=0;i<obj.children.length;i++){
+      if(obj.children[i].color == 'Green'||obj.children[i].color == 'Blue')return obj.children[i];
+    }
+  }
+  return null;
+}
+
+//====================Exercise 3 =================
+// Depth First BreadthFirstSearch
+function DepthFirstSearch(){
+  var root=null;
+	if(sim.pickedNode === null) root = sim.nodes[0];
+	else root = sim.pickedNode;
+  window.alert('Next');
+  var stack = [];
+  stack.push(root);
+  root.color = 'Red';
+  plotAll();
+  while(stack.length>0){
+    var node = stack[stack.length-1];  // equivalent of stack.peek();
+    var child=getUnvisitedChildNode(node);
+    if(child !== null){
+      window.alert('NEXT NODE');
+      child.color = 'Red'; // flag as visited
+      plotAll();
+      stack.push(child);
+      printArray(stack);
+    }
+    else{
+      stack.pop();
+      printArray(stack);
+    }
+  }
+}
+
+function printArray(a){
+  var s='Array=';
+  for(var i=0;i<a.length;i++) {
+    s+=a[i].id; s+=', ';
+  }
+  console.log(s);
+}
+function plotAll(){
+  sim.context.clearRect(0, 0, sim.WIDTH, sim.HEIGHT);
+  var p;
+  for(var i=0;i<sim.nodes.length;i++) {
+    p = sim.nodes[i];
+    if(p.visible === true)
+      DrawCircle(p.center,p.radius,p.color);
+      if(p.id !== null)DrawCharAt(p.id, p.center.x+10,p.center.y);
+  }
+  var n = sim.links.length;
+  var s;
+  for(i=0;i<n;i++){
+    s = sim.links[i];
+    if (s.visible === true)
+     DrawLine(s.nodes[0].center,s.nodes[1].center,s.color);
+  }
+}
+
+function Node(center,radius){
+	var id = null;
+	var children = [];
+	var color = 'Green';
+	var visible = true;
+	var data = null;
+	return { center:center, 
+		id:id,radius:radius,
+		color:color,
+		children:children,
+		visible:visible,
+		data:data
+	};
+}
+//   springs or links between particles or nodes
+function Link(p0,p1){
+var nodes = [p0,p1]; // these are the particles
+var originalLength = 20;
+var color = 'Red';
+var visible = true;
+
+return {nodes:nodes, color:color, visible:visible,
+	originalLength:originalLength
+};
+}
+
+function DrawCircle(p,r,col){
+  switch(col){
+    case 'Red':
+    sim.context.fillStyle = "rgba(255, 0, 0, .5)"; break;
+    case 'Blue':
+    sim.context.fillStyle = "rgba(0, 0, 255, .5)"; break;
+    case 'Green':
+    sim.context.fillStyle = "rgba(0, 255, 0, .5)"; break;
+  }
+  sim.context.beginPath();
+  sim.context.arc(p.x,p.y,r, 0, Math.PI*2, true);
+  sim.context.closePath();
+  sim.context.fill();
+}
+function DrawLine(c0,c1,color){
+  if(color==='blue')sim.context.strokeStyle = '#00f'; // blue
+  else sim.context.strokeStyle = '#f00'; // red
+  sim.context.fillStyle   = '#00f'; // blue
+  sim.context.lineWidth   = 1;
+  sim.context.beginPath();
+  sim.context.moveTo(c0.x,c0.y);
+  sim.context.lineTo(c1.x,c1.y);
+  sim.context.stroke();
+  sim.context.closePath();
+}
+function DrawCharAt(c,x,y){
+  var text = c.toString();
+  sim.context.beginPath();
+  sim.context.font = "10pt Calibri";
+  sim.context.fillStyle = "blue";
+  sim.context.fillText(text,x,y);
+  sim.context.closePath();
+  sim.context.fill();
+}
+function ResetColor(){
+  for(var i=0;i<sim.nodes.length;i++) {
+    sim.nodes[i].color = 'Green';
+  }
+  plotAll();
+}
+
+function writeJSON(){
+	console.log(JSON.stringify(sim.nodes[0]));
+}
+</script>
+</head>
+<body>
+	<div id="holder">
+		<canvas id="myCanvas" width="600" height="400" >
+		</canvas>
+	</div>
+	<div>
+		<input type="button" value="WriteJSON" onclick= "writeJSON()" />
+		<input type="button" value="ReadJSON" onclick= "GenerateNodesFromJSON()" />
+		<input type="button" value="BWalkTree" onclick= "BreadthFirstSearch()" />
+		<input type="button" value="DWalkTree" onclick= "DepthFirstSearch()" />
+		<input type="button" value="Reset Color" onclick= "ResetColor()" />
+	</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<pre>
+
+r = new webkitSpeechRecognition;
+r.continuous = true; 
+r.interimResults = true;
+r.onresult = function(ev) {
+    console.log(ev.results[ev.results.length-1][0].transcript);
+};
+r.start();
+
+	
+</pre>
+</html>
+

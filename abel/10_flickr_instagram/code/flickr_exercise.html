@@ -1,0 +1,56 @@
+<!doctype html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/xml.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+  <script src="../../codemirror/css.js"></script>
+  <script src="../../codemirror/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:0.9em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+<!DOCTYPE html><!-- FLICKR EXERCISE -->
+<html>
+<script>
+
+function loadScript(url, callback){
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    document.getElementsByTagName('body')[0].appendChild(script);
+}
+
+var run = function(){
+  var url = 'http://api.flickr.com/services/feeds/photos_public.gne?';
+  var tags = 'jsoncallback=dataHandler&tags=dog&tagmode=any&format=json';
+  loadScript(url + tags);
+};
+
+function dataHandler(data) {
+    console.log(data);
+}
+</script>
+<button onclick="run()"> Call run function </button>
+<div id="target"></div>
+</html></textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>

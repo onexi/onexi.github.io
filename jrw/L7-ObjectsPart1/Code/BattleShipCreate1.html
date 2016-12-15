@@ -1,0 +1,45 @@
+<html>
+  <head>
+		<link rel="stylesheet" href="../../template/css/codestyles.css">
+		<script src="../../template/js/codeeditor.js"></script>
+  </head>
+  <body>
+<textarea id="code" name="code" style="height:800; width:900;">
+<html>
+<head>
+	<SCRIPT>
+		function Point(x,y){
+			return {x:x, y:y};
+		}
+		function GetRandomPoint(){
+			var x = Math.floor(Math.random()*400);
+			var y = Math.floor(Math.random()*400);
+			return Point(x,y);
+		}
+		var timer = 0;
+		function Show(){
+			img1 = document.getElementById("BattleShip");
+			var p = GetRandomPoint();
+			img1.style.left = p.x+"px";
+			img1.style.top  = p.y+"px";
+		}
+		function Start(){
+			if (timer == 0){
+				timer = setInterval(Show, 500);
+			}
+			else {
+				clearInterval(timer);
+				timer = 0;
+			}
+		}
+	</SCRIPT>
+</head>
+<body>
+	<img id="BattleShip" src="Ship.png" 
+	style="position:absolute" onclick="Start()" >
+</body>
+</html>
+</textarea>
+
+</body>
+</html>

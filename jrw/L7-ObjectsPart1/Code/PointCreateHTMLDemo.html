@@ -1,0 +1,18 @@
+<html>
+<head>
+<SCRIPT>
+	function Point(x,y){
+		return {x:x, y:y, getPixel:function(){
+			return {xp:(x+'px'),yp:(y+'px')};}
+		}
+	}
+	var p1 = Point(3,4);
+	var p2 = Point(5,6);
+	var pi2 = p2.getPixel();
+	alert(pi2.xp+' ,'+pi2.yp);
+</SCRIPT>
+</head>
+<body>
+	<h1>Create Points Demo </h1>
+</body>
+</html>

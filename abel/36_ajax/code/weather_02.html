@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<h1>Sensor Data</h1>
+</center>
+<table>
+<tr>
+	<td>Temperature: </td>
+	<td><div id="temperature"></div></td>
+</tr>					
+<tr>
+	<td>Precipitation: </td>
+	<td><div id="precipitation"></div></td>
+</tr>					
+<tr>
+	<td>Humidity: </td>
+	<td><div id="humidity"></div></td>
+</tr>					
+
+<tr>
+	<td>Wind: </td>
+	<td><div id="wind"></div></td>
+</tr>					
+
+<tr>
+	<td></td>
+	<td>
+	<button id="save" onclick="saveWeather()">Generate & Save</button>
+	<button id="clear" onclick="clearForm()">Clear Storage</button>
+	<button id="read" onclick="readWeather()">Read</button>
+	</td>
+</tr>					
+</table>
+</center>
+
+<div id="status"></div>
+
+<script>
+var saveWeather = function(){
+
+	var temperature = Math.round(Math.random()*120);
+	var precipitation = Math.round(Math.random()*100);
+	var humidity = Math.round(Math.random()*120);
+	var wind = Math.round(Math.random()*150);
+
+	document.getElementById('temperature').innerHTML = temperature;
+	document.getElementById('precipitation').innerHTML = precipitation;
+	document.getElementById('humidity').innerHTML = humidity;
+	document.getElementById('wind').innerHTML = wind;
+	document.getElementById('status').innerHTML = 'saved';	
+
+	var weather = {
+		temperature  : temperature,
+		precipitation: precipitation,
+		humidity     : humidity,
+		wind         : wind
+	};
+	weather = JSON.stringify(weather);
+	var history = window.localStorage.getItem('weather');
+	if (history) weather = history + ',' + weather;	
+	window.localStorage.setItem('weather', weather);
+};
+
+var readWeather = function(){	
+
+	var weather = window.localStorage.getItem('weather');
+	document.getElementById('status').innerHTML = weather;	
+};
+
+var clearForm = function(){	
+	window.localStorage.setItem('weather', '');
+	document.getElementById('status').innerHTML = '';	
+};
+
+</script>
+
+</html>

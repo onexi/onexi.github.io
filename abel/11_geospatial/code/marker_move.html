@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<button onclick="moveMarker(42.360139, -71.094900)">Test Move</button>
+<button onclick="timer()">Start Timer</button>
+<div id="map" style="width:1024px; height:768px"></div>
+<script>
+
+var map;
+var marker;
+
+function initialize() {    
+
+    var myLatLng = new google.maps.LatLng( 42.357261, -71.092626 );
+    var myOptions = {
+            zoom: 16,
+            center: myLatLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map( document.getElementById('map'), myOptions );
+    marker = new google.maps.Marker( {
+            position: myLatLng, 
+            icon: { 
+                path:google.maps.SymbolPath.CIRCLE,
+                fillColor: 'red',
+                fillOpacity: 0.5,
+                scale:10,
+                strokeWeight:0
+            },
+            map: map
+    });
+    // for more shapes see:
+    // https://developers.google.com/maps/documentation/javascript/symbols#predefined
+    marker.setMap( map );
+}
+
+
+function moveMarker(lat,lng) { 
+    var newLatlng = new google.maps.LatLng(lat,lng);
+    marker.setPosition( newLatlng );
+};
+
+var locations = [
+[42.357599, -71.092793],
+[42.357829, -71.092917],
+[42.358251, -71.093129],
+[42.358689, -71.093367],
+[42.359044, -71.093590],
+[42.359490, -71.093987],
+[42.359716, -71.094266],
+[42.360039, -71.094738],
+[42.360231, -71.095020],
+[42.360477, -71.095430],
+[42.360677, -71.095776],
+[42.360843, -71.096044],
+[42.361119, -71.096519],
+[42.361337, -71.096919],
+[42.361616, -71.097353],
+[42.361846, -71.097745],
+[42.361912, -71.097820],
+[42.362074, -71.098093],
+[42.362318, -71.098498],
+[42.362550, -71.098890],
+[42.362744, -71.099220],
+[42.362958, -71.099577],
+[42.363168, -71.099933],
+];
+
+var length = locations.length;
+var counter = 0;
+function timer(){
+    if(counter<length){
+        moveMarker(locations[counter][0], locations[counter][1]);
+        setTimeout(timer, 1000);
+        counter++;
+    }
+};
+
+window.onload = initialize;
+
+</script>
+</html>

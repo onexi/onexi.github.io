@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>HTML5 Presentation</title>
+
+	
+	<!--  utilities and styles -->
+	<link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+
+
+  </head>
+
+  <body>
+
+
+			<textarea id="code" name="code" style="height:300; width:300;">
+// Example - Modify Variables
+var b = {
+name: 'fred',
+age: 22,
+};
+b.surname='smith';  // add a surname property
+b.getName=function(){return this.surname;};
+console.log(b.getName());
+// can you think how we might return the full name
+
+</textarea>
+
+	<div>
+		<input type="submit" value="run code" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="reload original code" id="reloadCode" onclick="location.reload();"/>
+	</div>
+
+	<br/>
+	<div id="output" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Output:</div>
+
+	<br/>
+	<div id="exceptions" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Exceptions:</div>
+
+	<br/>
+	
+	</script>
+
+  </body>
+</html>

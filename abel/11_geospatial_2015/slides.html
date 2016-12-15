@@ -1,0 +1,261 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Geospatial</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../template/lib/css/github.css">
+
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+				<section>
+					<h1>Geospatial</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Commercial Platforms</h2>
+					<img src="media/images/esri.jpg" height="400">
+				</section>
+
+				<section>
+					<h2>Internet Mapping</h2>
+					<img src="media/images/map_graph.png" height="400">	
+				</section>
+
+				<section>
+					<h2>Web Model</h2>
+					<img src="media/images/html_globe.jpg" height="400">
+
+				</section>
+
+
+				<section>
+					<h2>Browser Maps</h2>
+					<img src="media/images/map_html.png" height="500">	
+				</section>
+
+				<section>
+					<h2>Geospatial Web Innovation</h2>
+					<ul>
+						<li>A new model</li>
+						<li>An HTML Page</li>
+						<li>An image in a DIV</li>
+						<li>JavaScript manipulating image</li>
+						<li>Dynamic image loading</li>
+						<li>Image stitching</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Maps Layers</h2>
+					<img src="media/images/map_layers.png" height="450">	
+				</section>
+
+
+				<section>
+					<h2>Phone</h2>
+					<img src="media/images/phone.png" height="450">	
+				</section>
+
+				<section>
+					<h2>Google Maps JavaScript API v3</h2>
+					<a href="https://developers.google.com/maps/documentation/javascript/">https://developers.google.com/maps/documentation/javascript/</a>
+					<img src="media/images/api.jpg" height="250"><br>
+					<a href="https://developers.google.com/maps/documentation/javascript/reference">API v3 Reference</a>
+				</section>
+
+				<section>
+					<h2>Latitude and Longitude</h2>
+					<img src="media/images/latlng.jpg" height="500">
+
+				</section>
+
+				<section>
+					<h2>Latitude and Longitude</h2>
+					<img src="media/images/latitude_longitude.png" height="500">
+
+				</section>
+
+
+				<section>
+					<h2>Map Hello World!</h2>
+					<iframe src="code/map_hello_display.html" width="850" height="500" ></iframe>
+				</section>
+
+				<section>
+					<h2>Rich API</h2>
+					<p><a href="https://developers.google.com/maps/documentation/javascript/reference">Google Maps JavaScript Reference</a></p>
+					<table>
+						<tr>
+							<td>
+								Maps
+								Controls
+								Data
+								Overlays
+								Services
+								Geocoder
+								Save to Google Maps
+							</td>
+							<td>
+								Map Types
+								Layers
+								Street View
+								Events
+								Base
+								MVC
+								Geometry Library
+							</td>
+							<td>
+								COM Library
+								Panoramio Library
+								Places Library
+								Drawing Library
+								Weather Library
+								Visualization Library
+						</tr>
+					</table>							
+				</section>
+
+				<section>
+					<h2>Basic Map Types</h2>
+					<ul>
+						<li>MapTypeId.ROADMAP</li>
+						<li>MapTypeId.SATELLITE</li>
+						<li>MapTypeId.HYBRID</li>
+						<li>MapTypeId.TERRAIN</li>
+					</ul>
+					<br><br>
+					<iframe src="code/mapType.html" width="700" height="100" ></iframe>					
+				</section>
+
+
+				<section>
+					<h2>Active Learning</h2>
+					<ul>
+						<li>Create Map: <br>
+						Latitude: 38.889153<br>
+						Longitude: -77.050123<br>
+						Map type: hybrid<br>
+						Zoom: 18<br>
+						Where are you?
+						</li>					
+					</ul>
+				</section>
+
+				<section>
+					<h2>Map Markers</h2>
+					<iframe src="code/map_marker_display.html" width="850" height="500" ></iframe>
+
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Add markers at:</p>
+					<iframe src="code/coordinates.html" width="700" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>Info Window</h2>
+					<iframe src="code/map_marker_infoWindow_display.html" width="850" height="500" ></iframe>
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<h3>Add InfoWindows to your markers ...</h3>					
+					</ul>
+				</section>
+
+				<section>
+					<h2>Map Overlays</h2>
+					<iframe src="code/overlay.html" width="800" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>Add Canvas to Overlay</h2>
+					<iframe src="code/canvas.html" width="800" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>Add Circle Function</h2>
+					<iframe src="code/addCircle.html" width="800" height="400" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Active Learning</h2>
+					<iframe src="code/overlay_exercise.html" width="700" height="500" ></iframe>
+				</section>
+
+				<section>
+						<h2>Active Learning: Simulation</h2>
+						<a href="code/class_exercise.zip">
+						<img src="media/images/zip_download.png" style="border:0;box-shadow:none;"></a><br>
+						<p>click on zip image above</p>
+						
+				</section>
+
+
+				<section>
+					<iframe src="http://player.vimeo.com/video/87965564" width="800" height="600" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+	</body>
+</html>

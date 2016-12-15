@@ -1,0 +1,61 @@
+<html>
+<script>
+	var target = 'to be';
+	var start =  'be to';
+	var N = target.length;
+	var Nloop = 200000;
+	var textBox = null;
+	window.onload = function(){
+		textBox = document.getElementById('T1');
+		textBox.value = start;
+	};
+	function Run(){
+		var nTries = 0;
+		var theTarget = target.split(''); 
+		for (var j = 0;j<Nloop;j++){
+			var bag = start.split(''); //put letters in bag
+			var trial = [];     // new trial
+			for(var i = 0;i<N;i++){    // get random letter
+				var index = getRandomLetter(bag);
+				trial.push(bag[index]); 
+				removeFromBag(bag, index);
+				if(trial.length === N)break;// all slots full
+			}
+			nTries++;
+			if(checkSolution(theTarget, trial)){
+				proclaimSuccess(trial, nTries);
+				break;
+			}
+		}
+		console.log('Finished '+Nloop+' trials');
+	}
+	function getRandomLetter(bag){ 
+		for(var k=0;k<1000;k++){
+			var index = Math.floor(Math.random()*N);
+			if(bag[index] !== null)return index;
+		}
+	}
+	function removeFromBag(bag, index){
+		bag[index] = null;
+	}
+	function checkSolution(aTarget,aTrial){  
+		var ncorrect = 0;
+		if(aTarget.length === aTrial.length){
+			for(var i = 0;i<aTarget.length; i++){
+				if(aTarget[i]===aTrial[i]) ncorrect++;
+			}
+			if(ncorrect === aTarget.length){ return true;}
+			else return false;
+		}
+		else console.log("Error! - arrays are different lengths");
+	}
+	function proclaimSuccess(trial,n){
+		textBox.value = trial.toString();
+		console.log(trial.toString()+' in '+n+' trials');
+	}
+</script>
+<body>
+<input type='text' id='T1'>
+<input type='button' value = 'Run' onclick='Run()' >
+</body>
+</html>

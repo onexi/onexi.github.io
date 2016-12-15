@@ -1,0 +1,162 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+
+				<section>
+					<h1>Working with Data</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Cascading Style Sheets</h2>
+					<ul>
+						<li>Style Sheet Language</li>
+						<li>Look and format</li>
+						<li>Separation of content and presentation</li>
+						<li><a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets">http://en.wikipedia.org/wiki/Cascading_Style_Sheets</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Active Learning 1 - Style Div</h2>
+					<iframe src="code/css_hello_world.html" width="700" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Output</h2>
+					<img src="media/images/css_hello_world.png" height="400">
+				</section>
+
+				<section>
+					<h2>Active Learning 2</h2>
+					<p>Make a map for chicago. Use: 41.886903, -87.722740</p>
+					<iframe src="code/css.html" width="700" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Add a toolbar</h2>
+					<iframe src="code/toolbar.html" width="700" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Toolbar</h2>
+					<img src="media/images/toolbar.png" height="300">
+				</section>
+
+				<section>
+					<h2>Map Styles</h2>
+					<iframe src="code/map_styles.html" width="700" height="450" ></iframe>
+
+				</section>
+
+				<section>
+					<h2>Styled Map</h2>
+					<img src="media/images/map_styled.png" height="450">
+				</section>
+
+				<section>
+					<h2>Heatmap</h2>
+					<iframe src="code/heatmap_3_points.html" width="750" height="450" ></iframe>
+
+				</section>
+
+				<section>
+					<h2>Active Learning - Add 3 More Points</h2>
+					<p>You can use <a href="http://itouchmap.com/latlong.html">iTouchMap</a>. You can also center the map, go to console, enter map.getCenter()</p>
+
+				</section>
+
+				<section>
+					<h2>Heatmap - Time Steps</h2>
+					<iframe src="code/heatmap_simulation.html" width="750" height="550" ></iframe>
+				</section>
+
+				<section>
+					<h2>Filtering Objects</h2>
+					<iframe src="code/filter_hello_world.html" width="750" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Write a filter to return all the <i>'NARCOTICS'</i> crimes from your December 2012 dataset</p>
+				</section>
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex',
+				
+				dependencies: [
+					// MathJax
+					{ src: '../template/plugin/math/math.js', async: true }				
+				]
+			});
+
+		</script>
+
+		<script>
+
+			function playAudio(file){
+				var audio = document.createElement("audio");
+				if (audio != null && audio.canPlayType && audio.canPlayType("audio/mp3")) {
+					audio.src = file;
+					audio.play();
+				}        
+			}
+
+		</script>
+
+
+	</body>
+</html>

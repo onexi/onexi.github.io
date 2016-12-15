@@ -1,0 +1,55 @@
+<!doctype html>
+<head>
+  <title>Coordinates</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror_new/docs.css">
+  <link rel="stylesheet" href="../../codemirror_new/codemirror.css">
+  <script src="../../codemirror_new/codemirror.js"></script>
+  <script src="../../codemirror_new/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 600px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+function createPersons(){
+  var start = {
+    x : Math.floor(Math.random()*640),
+    y : Math.floor(Math.random()*480)
+  };
+  var end = {
+    x : Math.floor(Math.random()*640),
+    y : Math.floor(Math.random()*480)
+  };
+
+  var fillStyle = 'rgba(' + Math.floor(Math.random()*255) + ',' +
+              Math.floor(Math.random()*255) + ',' +
+              Math.floor(Math.random()*255) + ', .4)';
+
+  var currentPosition = function(percent){
+    // Your Code - Active Learning
+  };
+
+  return {
+    start          : start,
+    end            : end,
+    fillStyle      : fillStyle,
+    currentPosition: currentPosition
+  };
+}</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+

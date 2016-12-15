@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src = 'Vector2D.js'></script>
+
+	<script type="text/javascript">
+
+var context;
+var particles =[];
+var WIDTH = 800;
+var HEIGHT = 600;
+var nstep = 0;
+var timer = 0;
+var center = Vector(0.5 *WIDTH-100,0.5 *HEIGHT-100);
+window.onload=init;
+function init(){
+	var canvas = document.getElementById("myCanvas");
+	context =  canvas.getContext ('2d');
+	makeParticles(2);
+}
+function makeParticles(n){
+// build particles	
+	var col = ['Red','Green','Blue','Black','Yellow']		
+	for (var i = 0; i < n; i++) {
+		var x = center.x;
+		var y = center.y;	
+		var pick = Math.floor(Math.random()*3);
+		var p = Particle(Vector(x,y),5, col[pick]);
+		particles[i]=p;
+	}
+	timer = setInterval(updateAll, 100);
+}
+
+function updateAll() {
+	//context.clearRect(0, 0, WIDTH, HEIGHT);
+	var length = particles.length;
+	var p;
+	nstep++;
+	var startPos;
+	for (var i=0; i<length; i++) {
+		p = particles[i];
+		startPos = Vector(p.position.x,p.position.y);
+		DrawCircle(p.position, 5, p.color);
+		if(i!== 0) particles[i].update();
+		DrawLine(startPos,particles[i].position);
+	}		
+	if(nstep >= 100){   
+
+	// stop the code and print out distance
+
+	}
+}
+
+function Particle(position,radius,color){
+	var update=function(){
+		var p = this;
+
+		dx = Math.round(Math.random())*20;  // Exercise 1  
+		dy = Math.round(Math.random())*20;  // 
+
+		p.position.x += dx;
+		p.position.y += dy;
+	}
+	return {position:position, radius:radius, color:color, update:update};
+}
+function DrawCircle(p, radius, color){
+	context.fillStyle = "rgba(255, 0, 0, 0.4)";
+	if(color === 'Red'   )context.fillStyle = "rgba(255, 0, 0, 0.4)";
+	if(color === 'Green' )context.fillStyle = "rgba(0, 255, 0, 0.4)";
+	if(color === 'Blue'  )context.fillStyle = "rgba(0, 0, 255, 0.4)";
+	if(color === 'Black' )context.fillStyle = "rgba(0, 0, 0, 0.4)";
+	if(color === 'Yellow')context.fillStyle = "rgba(200, 160, 0, 0.4)";
+	context.beginPath();
+	context.arc(p.x, p.y, radius, 0, Math.PI*2, true);
+	context.closePath();
+	context.fill();
+}
+function DrawLine(c0,c1){
+  context.strokeStyle = '#f00'; // red
+  context.fillStyle   = '#00f'; // blue
+  context.lineWidth   = 2;
+  context.beginPath();
+  context.moveTo(c0.x,c0.y);
+  context.lineTo(c1.x,c1.y);
+  context.stroke();
+  context.closePath();
+}
+</script>
+</head>
+<body>
+
+	<input type="button" value="Start" onclick="init()" />
+	<div>
+    <canvas id="myCanvas" width="600" height="600" ></canvas>
+  </div>
+</body>
+</html>

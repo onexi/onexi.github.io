@@ -1,0 +1,34 @@
+<html>
+<head>
+	<SCRIPT>
+		function Pixel(x,y){
+			return {x:x, y:y};
+		}
+		function GetRandomPixel(){
+			var x = Math.floor(Math.random()*400);
+			var y = Math.floor(Math.random()*400);
+			return Pixel(x+'px',y+'py');
+		}
+		var timer = 0;
+		function Show(){
+			img1 = document.getElementById("BattleShip");
+			var p = GetRandomPoint();
+			img1.style.left = p.x;
+			img1.style.top  = p.y;
+		}
+		function Start(){
+			if (timer == 0){
+				timer = setInterval(Show, 500);
+			}
+			else {
+				clearInterval(timer);
+				timer = 0;
+			}
+		}
+	</SCRIPT>
+</head>
+<body>
+	<img id="BattleShip" src="Ship.png" 
+	style="position:absolute" onclick="Start()" >
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<body>
+
+	<img id="base"
+		style="z-index: 1;
+		position:absolute;
+		left:0px;
+		top:0px;"
+		src="field.png">
+
+	<img id="ball"
+		style="z-index: 2;
+		position:absolute;
+		left:0px;
+		top:0px;"
+		src="ball.png"
+		onclick="moveBall()">
+
+	<script>
+		function moveBall(){
+			var ball = document.getElementById("ball");
+			ball.style.left = Math.floor(Math.random()*775)+"px";
+			ball.style.top = Math.floor(Math.random()*470)+"px";
+		}
+	</script>
+
+</body>
+</html>

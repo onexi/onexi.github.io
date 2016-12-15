@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<h1>Sensor Data</h1>
+</center>
+<table>
+<tr>
+<td>Temperature</td>
+<td>
+<input id="temperature" type="text" value="">
+</td>
+</tr>					
+<tr>
+<td>Precipitation</td>
+<td>
+<input id="precipitation" type="text" value="">
+</td>
+</tr>					
+<tr>
+<td>Humidity</td>
+<td>
+<input id="humidity" type="text" value="">
+</td>
+</tr>					
+
+<tr>
+<td>Wind</td>
+<td>
+<input id="wind" type="text" value="">
+</td>
+</tr>					
+
+<tr>
+<td></td>
+<td>
+<button id="save" onclick="saveWeather()">Save</button>
+<button id="clear" onclick="clearForm()">Clear</button>
+<button id="read" onclick="readWeather()">Read</button>
+</td>
+</tr>					
+</table>
+</center>
+
+<script>
+var saveWeather = function(){
+
+	var temperature = document.getElementById('temperature').value;
+	var precipitation = document.getElementById('precipitation').value;
+	var humidity = document.getElementById('humidity').value;
+	var wind = document.getElementById('wind').value;
+	
+	console.log(temperature);
+	console.log(precipitation);
+	console.log(humidity);
+	console.log(wind);
+
+	window.localStorage.setItem('temperature', temperature);
+	window.localStorage.setItem('precipitation', precipitation);
+	window.localStorage.setItem('humidity', humidity);
+	window.localStorage.setItem('wind', wind);		
+};
+
+var readWeather = function(){	
+
+	var temperature = window.localStorage.getItem('temperature');
+	var precipitation = window.localStorage.getItem('precipitation');
+	var humidity = window.localStorage.getItem('humidity');
+	var wind = window.localStorage.getItem('wind');
+
+	document.getElementById('temperature').value = temperature;
+	document.getElementById('precipitation').value = precipitation;
+	document.getElementById('humidity').value = humidity;
+	document.getElementById('wind').value = wind;
+};
+
+var clearForm = function(){	
+
+	document.getElementById('temperature').value = '';
+	document.getElementById('precipitation').value = '';
+	document.getElementById('humidity').value = '';
+	document.getElementById('wind').value = '';
+};
+
+</script>
+
+</html>

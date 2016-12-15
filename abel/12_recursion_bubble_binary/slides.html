@@ -1,0 +1,138 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+				<section>
+					<h1>Computational Techniques</h1>
+					<h3>Object Creation Patterns, Recursion, Bubble</h3>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Object Creation Patterns</h2>
+					<iframe src="code/objectCreationPatterns.html" width="800" height="600" ></iframe>
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Write the functions below.</p>
+					<iframe src="code/objectCreationPatterns_activeLearning.html" width="800" height="400" ></iframe>
+				</section>
+
+
+
+				<section>
+					<h2>Recursion</h2>
+					<p>A way to break problems down into simpler problems so they can be solved</p>
+	
+				</section>
+
+				<section>
+					<h2>Palindrome</h2>
+					<p>a word that is the same forwards and backwards; reads the same left­-to­-right as right­-to­-left</p>
+					<ul>
+					<li>if the string has no elements, it’s a palindrome</li>
+					<li>if the string has one element, it’s a palindrome</li>
+					<li>if the string is longer than one, <br>
+						check if the endpoints are equal<br>
+						if true(check if the string in <br>
+						the middle is a palindrome</li>
+					</ul>
+				</section>
+
+				<section>
+					<iframe src="code/palindrome_verbose.html" width="800" height="600" ></iframe>
+				</section>
+
+				<section>
+					<h2>Palindrome</h2>
+					<p>Same code as in last slide without comments and console logs.</p>
+					<iframe src="code/palindrome_trim.html" width="800" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>racecar</h2>
+					<img src="media/images/palindrome.jpg" height="450">
+				</section>
+
+				<section>
+					<h2>Fibonacci numbers</h2>
+					<p>Fibonacci Numbers: The first two numbers are 0 and 1, and each subsequent number is the sum of the previous two.</p><p><i>Note: code below does not use recursion.</i></p>
+					<iframe src="code/fibonacci_looping.html" width="800" height="400" ></iframe>	
+				</section>
+
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Write a program for Fibonacci numbers using recursion.</p>
+					<iframe src="code/fibonacci_numbers.html" width="800" height="400" ></iframe>					
+				</section>
+
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Write a bubble sort program</p>
+					<iframe src="code/bubble.html" width="800" height="400" ></iframe>
+	
+				</section>
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+	</body>
+</html>

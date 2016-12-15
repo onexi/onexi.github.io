@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Function Statement</title>
+
+	<!--  utilities and styles -->
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+<style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1.2em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+  </head>
+
+  <body>
+<textarea id="code" name="code">
+var result = {add:0, subtract:0, multiply:0,divide:0};
+
+function math(a,b) {
+  add(a,b);
+  subtract(a,b);
+  multiply(a,b);
+  divide(a,b);
+}
+
+/* -----------------------------------------
+	EXERCISE: 
+   1) Write add, subtract, multiply, divide 
+   2) Assign responses to results obj
+   3) Call math(a,b)
+   4) Output your results
+  ------------------------------------------ */</textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<head>
+  <title>palindrome</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror_new/docs.css">
+  <link rel="stylesheet" href="../../codemirror_new/codemirror.css">
+  <script src="../../codemirror_new/codemirror.js"></script>
+  <script src="../../codemirror_new/xml.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 600px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+<!doctype html>  
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> 
+		<title>Hello World</title>
+</head>
+<body> 
+<h2>Hello Mobile World</h2>
+</body>
+</html>
+
+
+</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+	
+</script>
+

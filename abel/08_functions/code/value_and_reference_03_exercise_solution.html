@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<body>
+
+<script>
+
+	var student = {school:"MIT",
+			  	   city:"cambridge",
+			  	   state:"masschusetts"};
+
+	// declare 3 students
+	var student01;
+	var student02;
+	var student03;		
+
+	// in one statement, set all references to student
+	student01 = student02 = student03 = student;
+
+	// add a "country" property to student 
+	student.country = "usa";
+
+	// same reference, same output
+	console.log("student.country: " + student.country);
+	console.log("student01.country: " + student01.country);	
+	console.log("student02.country: " + student02.country);	
+	console.log("student03.country: " + student03.country);			
+
+</script>
+
+</body>
+</html>

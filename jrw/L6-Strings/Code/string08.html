@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Literal Object</title>
+
+	<!--  utilities and styles -->
+	<link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+  </head>
+  <body>
+<textarea id="code" name="code" style="height:700; width:900;">
+var a = 'earthling';
+
+console.log(a.indexOf('t')); // 'zero' based
+// what's the indexOf('in') ?
+console.log(a.charAt(4)); // what's at 4
+var b = 'goodbye earthling';
+var c = b.split(' ');// split returns an array 
+console.log(c[0]);
+console.log(c[1]);
+var c = b.split('g'); 
+console.log(c[0]);// notice that c[0] is blank
+console.log(c[1]);
+console.log(c[2]);            
+</textarea>
+	<div>
+		<input type="submit" value="run code" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="reload original code" id="reloadCode" onclick="location.reload();"/>
+	</div>
+	<br/>
+	<div id="output" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Output:</div>
+  </body>
+</html>

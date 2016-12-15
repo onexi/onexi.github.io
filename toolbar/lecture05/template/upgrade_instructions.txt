@@ -1,0 +1,26 @@
+Take a sample presentation from the new version. The barebones samples is a good one. Use it as a template for your slides.
+
+Changes are limited to the head, eg
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - Barebones</title>
+
+		<link rel="stylesheet" href="../../css/reveal.min.css">
+	</head>
+
+
+and the script at the bottom
+
+		<script src="../../js/reveal.min.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+The only package we are adding is "analytics.js"
+
+		<script src="../template/js/analytics.js"></script>

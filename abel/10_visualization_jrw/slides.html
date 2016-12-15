@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Data Visualization</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../template/lib/css/github.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../template/css/print/pdf.css' : '../template/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+	</head>
+
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>SVG</h1><br>
+					<img src="media/images/image3.png" height="200">
+				</section>
+
+				<section>
+					<h1>SVG</h1><br>
+					<img src="media/images/image4.png" width="400">
+				</section>
+
+				<section>
+					<h2>Google Charts</h2>
+					<p>
+						<ul>
+							<li>Contains various charts ranging from the simplest line graph to a complex hierarchical treemap.</li>
+							<li>Ready-to-use examples for all the charts and easy-to-implement features like embedding and exporting charts as pngs.</li>
+						</ul>
+						<img src="media/images/image5.png" width="400">
+					</p>
+				</section>
+
+				<section>
+					<h2>D3</h2>
+					<p>
+						<ul>
+							<li>As Kyrre Wahl Kongsgård said, D3.js is not a core charting tool.</li>
+							<li>It’s a library used to manipulate DOM objects using data.</li>
+							<li>D3.js offers extraordinary flexibility as it doesn’t tie you to a strict framework, letting you implement your creative thoughts on data visualization, however complex the thought may be.</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Advantages of Google Charts over D3.js:</h2>
+					<p>
+						<ul>
+							<li>Google Charts can’t create many variety of graphs when compared to d3.js, but what it can, it does it perfectly.</li>
+							<li>It has a very easy-to-use API, compared to d3.js where you have to build every axes, line, and bar from scratch.</li>
+							<li>Google Charts can be picked up by a non-tech person as well but the same can not be said for d3.js, where at least some basic knowledge of JavaScript is required to start making graphs.</li>
+							<li>Despite the basics, learning d3.js will a take lot of time.</li>
+							<li>Even with the general graphs, you can add many other DOM functions in d3.js like zoom, click function for any graph you want which is not quite possible for all the Google Charts.</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Advantages of Google Charts over D3.js:</h2>
+					<p>
+						<ul>
+							<li>One of the major points in favor of D3.js is that you can make your visualizations the way you want. This is not possible in Google Charts where you can only create some frequently used charts like bar, line, column, etc.</li>
+							<li>Google Charts have a big plus point as they can easily export their charts to pngs, in case the user wants the .png format of the chart. We can achieve the same effect in d3.js with some tweaks, but there is no direct and easy support from d3.js.</li>
+							<li>While some of the Google Charts do not support large amount of data and have some limit, d3.js can be worked with data, ranging from bits to gigabits and it will still go strong.</li>
+
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Google Charts Video</h2>
+
+					<iframe src="https://player.vimeo.com/video/158866832" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+				</section>
+
+				<section>
+					<h2>Loading Google Charts</h2>
+					<iframe src="code/google_charts_method_1.html" width="100%" height="100%" style="margin-bottom:20px" ></iframe>
+					<iframe src="code/google_charts_method_2.html" width="100%" height="100%" ></iframe>
+				</section>
+
+				<section>
+					<h2>Create a Google Data Table</h2>
+					<iframe src="code/create_google_data_table.html" width="100%" height="440px" ></iframe>
+				</section>
+
+				<section>
+					<h2>Google Pie Chart</h2>
+					<image src="media/images/image8.png" width="100%" height="100%" ></iframe>
+				</section>
+
+				<section>
+					<h2>In Class Exercise 1</h2>
+					<iframe src="code/instructions1.html" width="100%" height="440px" ></iframe>
+				</section>
+
+				<section>
+					<h2>In Class Exercise 2</h2>
+					<iframe src="code/instructions2.html" width="100%" height="440px" ></iframe>
+				</section>
+
+				<section>
+					<h2>In Class Exercise 3</h2>
+					<iframe src="code/instructions3.html" width="100%" height="440px" ></iframe>
+				</section>
+
+				<section>
+					<h2>Active Learning Files</h2>
+					<a href="media/files/L10_D3Intro.zip" >Download</a>
+				</section>
+
+				<section>
+					<h2>Loading D3.JS</h2>
+					<iframe src="code/load_d3_js.html" width="100%" height="100%" ></iframe>
+				</section>
+
+				<section>
+					<h2>D3 Bar Chart</h2>
+
+					<iframe src="https://player.vimeo.com/video/158866833" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+				</section>
+
+				<section>
+					<h2>D3 Drawing an Axis</h2>
+
+					<iframe src="https://player.vimeo.com/video/158866834" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+				</section>
+
+				<section>
+					<h2>D3 Scaling Axes</h2>
+
+
+					<iframe src="https://player.vimeo.com/video/158866835" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+				</section>
+
+				<section>
+					<h2>D3 Graph</h2>
+
+					<iframe src="https://player.vimeo.com/video/158866836" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+			Reveal.initialize({
+			    dependencies: [
+			        // Syntax highlight for <code> elements
+			        { src: '../template/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+			        // MathJax
+			        { src: '../template/plugin/math/math.js', async: true }
+			    ]
+			});
+
+		</script>
+
+
+	</body>
+</html>

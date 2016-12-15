@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src = 'Vector2D.js'></script>
+<script src = 'modelParams.js'></script>
+<script>
+
+function Run(){
+  setInterval(UpdateAll, 10);
+}
+function UpdateAll(){
+  // zero all the forces on the masses
+  var n = sim.particles.length;
+  for(var i=0;i<n;i++){
+    sim.particles[i].force = Vector(0,0);
+  }
+
+  // detect all neighbors of particles
+  detectNeighbors();
+
+  // update forces due to springs and apply to particels
+  n = sim.springs.length;
+  for(i=0;i<n;i++){  
+    sim.springs[i].updateSpringForces();
+  }
+
+  // remove all springs where yield has occured
+  n = sim.deleteThisSpring.length;
+  var k;
+  if(n > 0){
+    for(i=0;i<n;i++){
+      k = sim.springs.indexOf(sim.deleteThisSpring[i]);
+      sim.springs.splice(k,1);
+    }
+    deleteThisSpring = [];
+  }
+
+
+  // update displacements
+  n = sim.particles.length;
+  for(i=0;i<n;i++){
+    if(!sim.particles[i].isFixed()){
+      sim.particles[i].updateDisplacements();
+    }
+  }
+  plotAll();
+}
+
+// -------------------  Particle ---------------------------
+function Particle(center,radius){
+	var velocity = Vector(0,0);
+	var force = Vector(0,0);
+	var mass = 1;
+	var updateDisplacements = function updateDisplacements(){
+		var p = this;
+		p.velocity.x = sim.R2/sim.R1*p.velocity.x + (deltaT/sim.R1)* p.force.x/(p.mass);
+		p.velocity.y = sim.R2/sim.R1*p.velocity.y + (sim.deltaT/sim.R1)*(p.force.y - sim.gravity*mass)/(p.mass);
+		//console.log('fx,fy ='+m.force.x+', '+m.force.y +' v ='+m.velocity.x+', '+m.velocity.y);
+
+		// check if either mass will hit the wall
+		checkWallCollision(p);
+
+		// update the position of the masses and draw
+		p.center.x += p.velocity.x *sim.deltaT;
+		p.center.y += p.velocity.y *deltaT;
+		DrawCircle(p.center,5);
+	};
+	var isFixed = function isFixed(){
+		var n = sim.fixedParticles.length;
+		for(var i=0;i<n;i++){
+			if(this === sim.fixedParticles[i]) return true;
+		}
+		return false;
+	};
+	return {center:center, 
+		radius:radius,
+		mass:mass,
+		velocity:velocity,
+		force:force,
+		updateDisplacements: updateDisplacements,
+		isFixed:isFixed
+	};
+}
+// -------------------Springs --------------------------------
+function Spring(p0,p1){
+  var masses = [p0,p1];
+  var originalLength = p1.center.minus(p0.center).abs();
+
+  var updateSpringForces = function updateSpringForces(){
+    var c0 = masses[0].center;
+    var c1 = masses[1].center;
+    var len1 = c1.minus(c0).abs();
+    var forcemag = (len1 - originalLength)*sim.stiffness;
+    var unitVec = c1.minus(c0).unit();
+    if (forcemag > sim.yieldForce ) {  // if yieldForce > 0 then
+      forcemag = 0;  // this throws away a little energy and damps the system
+      sim.deleteThisSpring.push(this);
+    }
+    var f = unitVec.scale(forcemag);
+
+    masses[0].force = masses[0].force.plus(f);
+    masses[1].force = masses[1].force.minus(f);
+  };
+
+  return {masses:masses, 
+    originalLength:originalLength,
+    updateSpringForces:updateSpringForces};
+}
+// ----------------------Spatial Functions -----------------------------
+function detectNeighbors(){
+  var n = sim.particles.length;
+  for(var i=0;i<n;i++){
+    for(var j=i+1;j<n;j++){
+      if(sim.particles[i].center.distance(sim.particles[j].center) < sim.interactionDistance){
+      //    YOUR CODE HERE   
+
+          console.log('spring made between '+i+', '+j);
+      
+      }
+    }
+  }
+}
+function noSpring(p0,p1){
+  var n = sim.springs.length;
+  for(var i=0;i<n;i++){ // check spring p0 to p1 or p1 to p0
+    if(sim.springs[i].masses[0]===p0 && sim.springs[i].masses[1]===p1) return false;
+    if(sim.springs[i].masses[0]===p1 && sim.springs[i].masses[1]===p0) return false;
+  }
+  return true;
+}
+function checkWallCollision(){
+  var n = sim.particles.length;
+    for(var i=0;i<n;i++){
+      var m = sim.particles[i];
+      var v = m.velocity.x;
+      var dx = m.velocity.x * sim.deltaT;
+      var dy = m.velocity.y * sim.deltaT;
+
+      if (m.center.x + dx > sim.canvas.width || m.center.x + dx < 0){
+        m.velocity.x = -m.velocity.x;
+      }
+      if (m.center.y + dy >= sim.canvas.height || m.center.y + dy <= 0){
+        m.velocity.y = -m.velocity.y;
+      }
+    }
+  }
+
+
+// ------------------- Mouse and Drawing Stuff----------------------------
+
+function plotAll(){
+  var n = sim.springs.length;
+  if(!sim.trackerFlag){
+   sim.context.clearRect(0, 0, 600, 600);
+   var s;
+   for(var i=0;i<n;i++){
+    s = sim.springs[i];
+    DrawLine(s.masses[0].center,s.masses[1].center);
+  }
+}
+var radius = sim.mass * 10;
+n = sim.particles.length;
+for(var k=0;k<n;k++)DrawCircle(sim.particles[k].center,radius);
+}
+// on mouse up call this
+function makeParticle(e){
+  var radius = 10;
+  if(e.pageX < sim.canvas.width && e.pageY < sim.canvas.height){
+   sim.particles.push(Particle(Vector(e.pageX,e.pageY),radius));
+   console.log("particle created at "+e.pageX,', '+e.pageY);
+   plotAll();
+  //  if(particles.length%2 ===0){
+  //   var n = particles.length;
+  //   springs.push(Spring(particles[n-2],particles[n-1],stiffness,Vector(10,0)));
+  //   plotAll();
+  // }
+}
+}
+function pickParticle(e){
+  sim.pickedParticle = null;
+  var a = Vector(e.pageX,e.pageY);
+  if(e.pageX < sim.canvas.width && e.pageY < sim.canvas.height){
+   var target;
+   var p;
+   var n = sim.particles.length;
+   for(var i=0;i<n;i++){
+     target = sim.particles[i];
+     p = target.center;
+     var d = p.distance(a);
+     if(d < 20)sim.pickedParticle = target;
+   }
+ }
+}
+
+function updatePosition(e){
+  if(sim.pickedParticle!==null){
+    sim.pickedParticle.center.x = e.pageX;
+    sim.pickedParticle.center.y = e.pageY;
+    plotAll();
+  }
+}
+function letGo(){
+  sim.pickedParticle = null;
+  plotAll();
+}
+function fixParticle(){
+  sim.fixedParticles.push(sim.pickedParticle);
+  sim.pickedParticle = null;
+  plotAll();
+}
+function SetDragParticle(){
+  document.onmousedown = pickParticle;
+  document.onmousemove = updatePosition;
+  document.onmouseup   = letGo;
+}
+function SetFixParticle(){
+  document.onmousedown = pickParticle;
+  document.onmouseup   = fixParticle;
+}
+function SetCreateParticle(){
+  document.onmousedown = makeParticle;
+  document.onmouseup   = letGo;
+}
+function DrawLine(c0,c1){
+  sim.context.strokeStyle = '#f00'; // red
+  sim.context.fillStyle   = '#00f'; // blue
+  sim.context.lineWidth   = 4;
+  sim.context.beginPath();
+  sim.context.moveTo(c0.x,c0.y);
+  sim.context.lineTo(c1.x,c1.y);
+  sim.context.stroke();
+  sim.context.closePath();
+}
+function DrawCircle(p, radius){
+  sim.context.fillStyle = "rgba(255, 0, 0, 1)";
+  sim.context.beginPath();
+  sim.context.arc(p.x, p.y, radius, 0, Math.PI*2, true);
+  sim.context.closePath();
+  sim.context.fill();
+}
+function TrackerOn(){
+  if(sim.trackerFlag===0)
+    sim.trackerFlag = 1;  // don't draw the line but track the circle path
+  else {
+    sim.trackerFlag = 0;
+  }
+}
+</script>
+</head>
+<body>
+  <div>
+    <canvas id="myCanvas" width="600" height="600" ></canvas>
+  </div>
+  <input type='button' value='Run' onclick='Run()' />
+  <input type='button' value="Tracker On" onclick="TrackerOn()" /><br>
+  <input type='button' value='make Particle' onclick='SetCreateParticle()'/>
+  <input type='button' value='drag Particle' onclick='SetDragParticle()'/>
+  <input type='button' value='fix Particle' onclick='SetFixParticle()'/>
+
+</body>
+</html>

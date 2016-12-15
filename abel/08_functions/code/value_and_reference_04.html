@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<body>
+
+<script>
+
+	var city = {name:"boston",
+			  	  state:"massachusetts",
+			  	  governor:{ name:"Deval Patrick",
+			  	  		     party: "democrat"
+			  	  		   }
+			  	  };
+
+	// get city name
+	var name = city.name;
+	name = "cambridge";
+
+	// get governor
+	var governor = city.governor;
+	governor.name = "peter parker";
+
+	// city name remains the same but governor name has changed
+	console.log("city.name: " + city.name);
+	console.log("city.governor.name: " + city.governor.name);	
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+   <body>
+
+   	<script>
+
+// create an object container
+var container = {placeholder : null};
+
+// assign a function to a variable
+var greeting = function(){console.log("Hello!");};
+
+// assign greeting function to container placeholder
+container.placeholder = greeting;
+
+// call greeting through container object
+container.placeholder();
+
+// function loads another function and executes it  
+function loader(func){
+	func();
+}
+
+// execute greeting function through loader function 
+loader(greeting);
+
+	</script>
+
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+
+				<section>
+					<h1>Computational Geometry</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Three.js</h2>
+					<p>Three.js is a lightweight library/API used to create and display 3D computer graphics - <a href="code/Three.js"> library</a></p>
+					<img src="media/images/webgl.jpg" height="200">
+				</section>
+
+
+				<section>
+					<h2>Renderer</h2>
+					<iframe src="code/cube_01.html" width="600" height="350" ></iframe>					
+				</section>
+
+				<section>
+					<h2>Camera + Cube</h2>
+					<iframe src="code/cube_02.html" width="750" height="350" ></iframe>					
+				</section>
+
+				<section>
+					<h2>Hello World</h2>
+					<iframe src="code/cube_03.html" width="750" height="450" ></iframe>					
+				</section>
+
+				<section>
+					<h2>You should see</h2>
+					<img src="media/images/cube.png" height="350">
+				</section>
+
+
+				<section>
+					<h2>Steps</h2>
+					<ul>
+						<li>Create a renderer 
+						<div style="font-size:0.7em; font-family: 'courier new'">new THREE.WebGLRenderer()</div>
+						</li>
+						<li>Create a camera 
+						<div style="font-size:0.7em; font-family: 'courier new'">new THREE.PerspectiveCamera(fov, aR, n, f)</div></li>
+						<li>Create a scene 
+						<div style="font-size:0.7em; font-family: 'courier new'">new THREE.Scene()</div>
+						</li>
+						<li>Create a mesh with a geometry and a material<div style="font-size:0.7em; font-family: 'courier new'">new THREE.Mesh(new THREE.CubeGeometry(w,h,d),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new THREE.MeshBasicMaterial({color: 0x000000}))</div>
+						</li>
+						<li>Add the mesh to the scene <div style="font-size:0.7em; font-family: 'courier new'">scene.add(mesh)</div></li>
+						<li>Render the scene <div style="font-size:0.7em; font-family: 'courier new'">renderer.render(scene, camera)</div></li>
+						<li>Add the renderer canvas to the page <div style="font-size:0.7em; font-family: 'courier new'">document.body.appendChild(renderer.domElement)</div></li>
+				</ul>
+				</section>
+
+
+				<section>
+					<h2>Animation</h2>
+					<iframe src="code/animation.html" width="750" height="450" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Animation Example</h2>
+					<iframe src="code/animation_02.html" width="750" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>You should see</h2>
+					<img src="media/images/cube_spinning.png" height="350">
+				</section>
+
+
+				<section>
+					<h2>Lights</h2>
+					<iframe src="code/lights.html" width="750" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Lights Example</h2>
+					<iframe src="code/lights_02.html" width="750" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>You should see</h2>
+					<img src="media/images/lights.png" height="350">
+				</section>
+
+
+				<section>
+					<h2>Shadows</h2>
+					<p>You need to enable them per-light and per-object.</p>
+					<iframe src="code/shadows.html" width="750" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Plane + Spin</h2>
+					<iframe src="code/plane_plus_spin.html" width="750" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Shadows Example</h2>
+					<iframe src="code/shadows_02.html" width="750" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>You should see</h2>
+					<img src="media/images/plane_plus_spin.png" height="350">
+				</section>
+
+
+				<section>
+					<h2>Open Source Globe</h2>
+					<p><a href="https://github.com/dataarts/webgl-globe">https://github.com/dataarts/webgl-globe</a></p>
+					<img src="media/images/globe.png" height="350">
+				</section>
+
+				<section>
+					<h2>Globe on Athena</h2>
+					<p>Upload the globe to your Athena account. You will need to fix the paths. The globe is written to run at "domainName/globe"</p>
+				</section>
+
+
+				<section>
+					<h2>Modify Globe to Display Elavations</h2>
+					<p>Here is the data file, <a href="code/elevations.json">link.</a></p>
+					<img src="media/images/elevations.png" height="350">	
+				</section>
+
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+
+	</body>
+</html>

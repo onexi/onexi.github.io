@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Mouse Events</title>
+
+	<!--  utilities and styles -->
+	<link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+
+  </head>
+
+  <body>
+<textarea id="code" name="code" style="height:700; width:900;">
+var x;
+var y;
+window.onload = Run;
+function Run(){
+	document.onmousedown = trackMouse;
+}
+function trackMouse(e) {
+	x = e.pageX;
+	y = e.pageY;
+	alert('Mouse = ('+x+', '+y+')');
+}
+	</textarea>
+	
+  </body>
+</html>

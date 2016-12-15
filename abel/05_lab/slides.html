@@ -1,0 +1,154 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../template/css/print/pdf.css' : '../template/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+				<section>
+					<h1>Timers</h1>
+					<img src="media/images/clock.png" width="256" style="border:0;box-shadow:none;">
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+					
+				</section>
+
+
+				<section>
+					<h2>Basic Timer</h2>
+					<iframe src="code/timerBasic.html" width="700" height="400" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Repeating Timer - setTimeout</h2>
+					<iframe src="code/timerRepeatingSetTimeout.html" width="700" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>Repeating Timer - setInterval</h2>
+					<iframe src="code/timerRepeatingSetInterval.html" width="700" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>SetTimeout I</h2>
+					<img src="media/images/setTimeout_01.png" with="700">
+				</section>
+
+				<section>
+					<h2>SetTimeout II</h2>
+					<img src="media/images/setTimeout_02.png" with="700">
+				</section>
+
+
+				<section>
+					<h2>SetInterval I</h2>
+					<img src="media/images/setInterval_01.png" with="700">
+				</section>
+
+				<section>
+					<h2>SetInterval II</h2>
+					<img src="media/images/setInterval_02.png" with="700">
+				</section>
+
+				<section>
+					<h2>SetInterval Only</h2>
+					<p>
+					If execution time exceeds delay time, intervals try to catch up. The interval runs, skipping delay time, as soon as previous interval is finished.
+					</p>
+				</section>
+
+
+				<section>
+					<h2>SetInterval III</h2>
+					<img src="media/images/setInterval_03.png" with="700">
+				</section>
+				
+				<section>
+					<h2>Event Time Example</h2>
+					<img src="media/images/event_time.png" with="700">
+				</section>
+
+
+				<section>
+					<h2>Task Time</h2>
+					<iframe src="code/taskTime.html" width="700" height="500" ></iframe>
+				</section>
+
+				<section>
+					<h2>Timer Comparison</h2>
+					<a href="code/timerComparison.zip">
+					<img src="media/images/zip_download.png"  style="border:0;box-shadow:none;">
+					</a>
+				</section>
+
+
+				<section>
+					<h2>Ball Animation Exercise</h2>
+					<a href="code/ball.zip">
+					<img src="media/images/zip_download.png"  style="border:0;box-shadow:none;">
+					</a>
+				</section>
+
+
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+	</body>
+</html>

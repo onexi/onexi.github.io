@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Literal Object</title>
+
+	<!--  utilities and styles -->
+	<link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+  </head>
+  <body>
+<textarea id="code" name="code" style="height:500; width:1200;">
+var a = 'goodbye earthling';
+'good'+'bye';// 'goodbye';   concatenates strings
+a.length;//  17  length NOT a function so no ()
+a.indexOf('a');//   9
+a.lastIndexOf('g'); //   16
+a.charAt(3);  //  'd'
+a.split('t');//c[0] = 'goodbye ear'; c[1]='hling';
+a.split(''); //splits into an array of characters
+a.substring(4,6); //  'by';  substring(from, to) 
+a.substring(4);//'bye earthling';to end of string
+a.substr(5,5);//  'ye ea';   substr(from,N) 
+'ABC'.toLowerCase();//  'abc';
+a.toUpperCase();  //  'GOODBYE EARTHLING'
+</textarea>
+	<div>
+		<input type="submit" value="run code" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="reload original code" id="reloadCode" onclick="location.reload();"/>
+	</div>
+	<br/>
+	<div id="output" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Output:</div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Literal Object</title>
+
+		<!--  utilities and styles -->
+	  <link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+  </head>
+
+  <body>
+<textarea id="code" name="code" style="height:300; width:300;">
+// Example - Literal Objects
+var b = {
+name: 'fred',
+age: 22,
+getName : function(){return this.name;},
+getAge  : function(){return this.age;}
+};
+console.log(b.getName());
+// add code to print out age
+</textarea>
+	<div>
+		<input type="submit" value="run code" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="reload original code" id="reloadCode" onclick="location.reload();"/>
+	</div>
+
+	<br/>
+	<div id="output" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Output:</div>
+
+	<br/>
+	<div id="exceptions" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Exceptions:</div>
+	<br/>
+	
+	</script>
+
+  </body>
+</html>

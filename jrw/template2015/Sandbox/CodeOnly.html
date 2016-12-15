@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Literal Object</title>
+
+	<!--  utilities and styles -->
+	<link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+
+  </head>
+
+  <body>
+
+
+<textarea id="code" name="code" style="height:400; width:700;">
+// Example - references
+person = {
+name: 'fred',
+age: 22,
+};
+c = person.age;
+c.age = 44;         // what is fred's age ?
+console.log('freds age = '+ person.age);
+// now try it with c = person;
+//c = person; c.age=44;  
+//console.log('freds age = '+person.age);
+</textarea>
+	</script>
+
+  </body>
+</html>

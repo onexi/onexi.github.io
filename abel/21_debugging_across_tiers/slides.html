@@ -1,0 +1,199 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+				<section>
+					<h1>Debugging Across Tiers</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Architecture</h2>
+					<a href="media/images/architecture.jpg"><img src="media/images/architecture.jpg" height="400"></a>
+				</section>
+
+
+				<section>
+					<h2>Let's Start at the DB</h2>
+					<a href="media/images/architecture_mongo.jpg"><img src="media/images/architecture_mongo.jpg" height="400"></a>
+				</section>
+
+
+				<section>
+					<h2>Start Mongo Server & Client</h2>
+					<a href="media/images/mongo_start.png"><img src="media/images/mongo_start.png" height="400"></a>
+				</section>
+
+
+				<section>
+					<h2>Access your Data</h2>
+					<a href="media/images/mongo_count.png"><img src="media/images/mongo_count.png" height="400"></a>
+				</section>
+
+				<section>
+					<h2>Access your Data - Windows</h2>
+					<a href="media/images/mongo_count_windows.png"><img src="media/images/mongo_count_windows.png" height="400"></a>
+				</section>
+
+				<section>
+					<h2>Seasons Codes</h2>
+					<a href="media/images/seasons.png"><img src="media/images/seasons.png" height="400"></a>
+				</section>
+
+				<section>
+					<h2>Find Beets 0011</h2>
+					<p>db.farmTest.find({ "inventory.Vegetables.beets": "0011"}).count();</p>
+					<a href="media/images/find_beets_0011.png"><img src="media/images/find_beets_0011.png" height="300"></a>
+				</section>
+
+
+				<section>
+					<h2>Specify Response Fields</h2>
+					<p>db.farmTest.find({ "inventory.Vegetables.beets": "0011"}, {name:1,latitude:1,longitude:1,"inventory.Vegetables.beets":1});</p>
+					<a href="media/images/mongo_limiting_response_fields.png"><img src="media/images/mongo_limiting_response_fields.png" height="300"></a>
+				</section>
+
+				<section>
+					<h2>Matching Season - Regular Expression</h2>
+					<p>db.farmTest.find({ "inventory.Vegetables.beets": { $regex: '^.{3}(1)' }}, {name:1,latitude:1,longitude:1,"inventory.Vegetables.beets":1});</p>
+					<a href="media/images/mongo_find_regex.png"><img src="media/images/mongo_find_regex.png" height="300"></a>
+				</section>
+
+
+				<section>
+					<h2>Let's move to Node.js</h2>
+					<a href="media/images/architecture_node.jpg"><img src="media/images/architecture_node.jpg" height="400"></a>
+				</section>
+
+				<section>
+					<h2>HTTP Server - Hello World</h2>
+					<p>Save to file and load in Node.js</p>
+					<iframe src="code/http_hello_display.html" width="850" height="350" ></iframe>
+				</section>
+
+				<section>
+					<h2>Test Server</h2>
+					<a href="media/images/http_hello.png"><img src="media/images/http_hello.png" height="500"></a>
+				</section>
+
+				<section>
+					<h2>Curl</h2>
+					<a href="media/images/curl.png"><img src="media/images/curl.png" height="450"></a>
+				</section>
+
+				<section>
+					<h2>Picking up request parameters</h2>
+					<iframe src="code/http_parameters_display.html" width="850" height="500" ></iframe>
+				</section>
+
+				<section>
+					<h2>Output</h2>
+					<img src="media/images/parameters_output.png" height="300">	
+				</section>
+				<section>
+					<h2>Access Mongo Through Node</h2>
+					<p><a href="code/http_mongo_find.js">Link to file here</a>. You need <a href="https://github.com/mongodb/node-mongodb-native">the mongo connect package.</a></p>
+					<iframe src="code/http_mongo_find_display.html" width="700" height="500" scrolling="no"></iframe>
+				</section>
+
+
+				<section>
+					<h2>Generalized Approach</h2>
+					<p><a href="code/http_general.js">Link to file here</a>. URL: http://localhost:8000/?inventoryCategory=inventory.Vegetables.beets&season=fall</p>
+					<iframe src="code/http_general_display.html" width="800" height="400" scrolling="no"></iframe>
+				</section>
+
+				<section>
+					<h2>Let's move to the browser</h2>
+					<a href="media/images/architecture_browser.jpg"><img src="media/images/architecture_browser.jpg" height="400"></a>
+				</section>
+
+
+				<section>
+					<h2>XMLHttpRequest Client</h2>
+					<iframe src="code/xhr_client_display.html" width="800" height="400" scrolling="no"></iframe>
+				</section>
+
+				<section>
+					<h2>XMLHttpRequest Server</h2>
+					<iframe src="code/xhr_server_display.html" width="800" height="450"></iframe>
+				</section>
+
+				<section>
+					<h2>Output</h2>
+					<a href="media/images/xhr_output.png"><img src="media/images/xhr_output.png" height="450"></a>
+				</section>
+
+				<section>
+					<h2>Disabling same-origin policy</h2>
+					<iframe src="code/disableSecurity.html" width="800" height="300" ></iframe>
+				</section>
+
+
+
+
+
+
+
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Literal Object</title>
+
+	<!--  utilities and styles -->
+	<link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+
+  </head>
+
+  <body>
+
+
+<textarea id="code" name="code" style="height:500; width:700;">
+<html>
+<head>
+<SCRIPT>
+var flag = 1;
+var img1 = null;
+function Run(){
+	img1 = document.getElementById("PacMan");
+	if(flag === 1){
+		img1.src = "PacMan2.png";
+		flag = 0;
+	}
+	else {
+		img1.src = "PacMan1.png";
+		flag = 1;
+	}
+}
+</SCRIPT>
+</head>
+<body>
+	<img id="PacMan" src = "PacMan1.png"
+	onclick="Run()" > </img>
+</body>
+</html>
+</textarea>
+  </body>
+</html>

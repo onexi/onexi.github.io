@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script src="Three.js"></script>
+  </head>
+
+  <body>
+    <script>
+      var renderer = new THREE.WebGLRenderer({antialias:true});
+      renderer.setSize(document.body.clientWidth, document.body.clientHeight);
+      document.body.appendChild(renderer.domElement);
+      renderer.setClearColorHex(0xEEEEEE, 1.0);
+      renderer.clear();
+      var fov = 45; // camera field-of-view in degrees
+      var width = renderer.domElement.width;
+      var height = renderer.domElement.height;
+      var aspect = width / height; // view aspect ratio
+      var near = 1; // near clip plane
+      var far = 10000; // far clip plane
+      var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+      camera.position.z = 300;
+      var scene = new THREE.Scene();
+      var cube = new THREE.Mesh(
+        new THREE.CubeGeometry(50,50,50),
+        new THREE.MeshBasicMaterial({color: 0x000000, opacity: 1})
+      );
+      scene.add(cube);
+      renderer.render(scene, camera);
+    </script>
+  </body>
+
+</html>

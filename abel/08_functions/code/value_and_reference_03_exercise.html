@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Value Copies</title>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto}
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+  </head>
+
+			<textarea id="code" name="code">
+/* ----------------------------------------------------------------
+	EXERCISE:
+	1) In line 17, in one statement, set all references to student
+	2) In line 20, in one statement, add a country property to student
+   ---------------------------------------------------------------- */
+var student = {school:"MIT",
+		  	   city:"cambridge",
+		  	   state:"masschusetts"};
+
+// declare 3 students
+var student01;
+var student02;
+var student03;		
+
+// in one statement, set all references to student
+// --- your code ---
+
+// in one statement, add a "country" property to all students 
+// --- your code ---
+
+// same reference, same output
+console.log("student.country: " + student.country);
+console.log("student01.country: " + student01.country);	
+console.log("student02.country: " + student02.country);	
+console.log("student03.country: " + student03.country);	</textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>

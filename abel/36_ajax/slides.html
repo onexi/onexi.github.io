@@ -1,0 +1,205 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+
+				<section>
+					<h1>AJAX</h1>
+					<h2>Asynchronous JavaScript and XML</h2>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Fill out form</h2>
+
+					<center>
+					<table>
+					<tr>
+					<td>first name</td>
+					<td>
+					<input id="firstName100" type="text" value="" style="font-size: 1em; margin-top:10px;">
+					</td>
+					</tr>					
+					<tr>
+					<td>last name</td>
+					<td>
+					<input id="lastName100" type="text" value="" style="font-size: 1em; margin-top:10px;">
+					</td>
+					</tr>					
+					<tr>
+					<td>department</td>
+					<td>
+					<input id="department100" type="text" value="" style="font-size: 1em; margin-top:10px;">
+					</td>
+					</tr>					
+
+					<tr>
+					<td>email</td>
+					<td>
+					<input id="email100" type="text" value="" style="font-size: 1em; margin-top:10px;">
+					</td>
+					</tr>					
+					
+					<tr>
+					<td></td>
+					<td>
+					<button id="submit100" onclick="monitor.recordStudentInfo()" style="font-size: 1.2em; margin-top:20px;">Save</button>
+					</td>
+					</tr>					
+
+
+					</table>
+					</center>
+					
+				</section>
+
+
+				<section>
+					<h2>OnClick - Post To Server</h2>
+					<p>
+						<button id="post100" onclick="monitor.postDataExercise()" style="font-size: 1.2em">Post To Server</button>
+					</p>
+										
+				</section>
+
+
+
+
+				<section>
+					<h2>Client Code</h2>
+					<iframe src="code/post_client.html" width="700" height="500" ></iframe>					
+				</section>
+
+
+				<section>
+					<h2>Server Code</h2>
+					<iframe src="code/post_server.html" width="700" height="550" ></iframe>					
+				</section>
+
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Post weather data from last class to your own server. Links to solutions from last class below.</p>
+					<div>
+						<a href="code/weather_01.html"><img src="media/images/ex1.png" style="border:0px"></a>
+						<a href="code/weather_02.html"><img src="media/images/ex2.png" style="border:0px"></a>
+					</div>					
+				</section>
+
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+		<script>
+
+			monitor.recordStudentInfo = function(){
+
+				var firstName = document.getElementById('firstName100').value;
+				var lastName = document.getElementById('lastName100').value;
+				var department = document.getElementById('department100').value;
+				var email = document.getElementById('email100').value;
+
+				window.localStorage.setItem('firstName100', firstName);
+				window.localStorage.setItem('lastName100', lastName);
+				window.localStorage.setItem('department100', department);
+				window.localStorage.setItem('email100', email);		
+
+				monitor.init();
+			};
+
+			monitor.recallStudentInfo = function(){
+				var firstName = window.localStorage.getItem('firstName100');
+				var lastName = window.localStorage.getItem('lastName100');
+				var department = window.localStorage.getItem('department100');
+				var email = window.localStorage.getItem('email100');		
+
+				document.getElementById('recallFirstName').value = firstName;
+				document.getElementById('recallLastName').value = lastName;
+				document.getElementById('recallDepartment').value = department;
+				document.getElementById('recallEmail').value = email;
+			};
+
+			monitor.postDataExercise = function () {
+
+				var firstName = window.localStorage.getItem('firstName100');
+				var lastName = window.localStorage.getItem('lastName100');
+				var department = window.localStorage.getItem('department100');
+				var email = window.localStorage.getItem('email100');		
+
+				var server = 'http://arlington3.mit.edu:8005/';
+
+				var queryString = '?' +
+					'firstName='  + firstName  + '&' +
+					'lastName='   + lastName   + '&' +
+					'department=' + department + '&' +
+					'email='      + email;
+
+				var url = server + queryString;
+
+				// post data using an xhr request
+				var xhReq = new XMLHttpRequest();
+				xhReq.open("GET", url, false);
+				xhReq.send(null);
+				var serverResponse = xhReq.responseText;
+			};
+
+		</script>
+
+	</body>
+</html>

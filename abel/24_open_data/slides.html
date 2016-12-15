@@ -1,0 +1,165 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+
+				<section>
+					<h1>Open Data Platforms</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Cloud Architecture</h2>
+					<img src="media/images/architecture.png" height="400">
+				</section>
+
+
+				<section>
+					<h2>Big clouds?</h2>
+					<img src="media/images/bigcloud.jpg" height="400">
+				</section>
+
+				<section>
+					<h2>City Open Data</h2>
+					<img src="media/images/boston.png" height="400">
+				</section>
+
+				<section>
+					<h2>NYC Open Data</h2>
+					<img src="media/images/nyc.png" height="450">
+				</section>
+
+				<section>
+					<h2>NASA Open Data</h2>
+					<img src="media/images/nasa.png" height="450">
+				</section>
+
+				<section>
+					<h2>U.S. Open Data</h2>
+					<img src="media/images/us.png" height="450">
+				</section>
+
+				<section>
+					<h2>EU Open Data</h2>
+					<img src="media/images/eu.png" height="450">
+				</section>
+
+
+				<section>
+					<h2>PS7 - City of Chicago Open Data</h2>
+					<img src="media/images/chicago.png" height="450">
+				</section>
+
+
+				<section>
+					<h2>Active Learning 1</h2>
+					<ul>
+						<li>Go to, https://data.cityofchicago.org/</li>
+						<li>Locate the 2012 crime dataset.</li>
+						<li>Select the month of December (use filter).</li>
+						<li>Download the data as JSON</li>							
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Active Learning 2</h2>
+					<ul>
+						<li>Clean up file, remove metadata</li>
+						<li>Write code to load file</li>
+						<li>Write array length to console.</li>
+						<li>Write loop through data.</li>
+						<li>Write latitude and longitude to console.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Active Learning 3</h2>
+					<p>Make a map for chicago. Use: 41.886903, -87.722740</p>
+					<iframe src="code/css.html" width="700" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Add a toolbar</h2>
+					<iframe src="code/toolbar.html" width="700" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex',
+				
+				dependencies: [
+					// MathJax
+					{ src: '../template/plugin/math/math.js', async: true }				
+				]
+			});
+
+		</script>
+
+		<script>
+
+			function playAudio(file){
+				var audio = document.createElement("audio");
+				if (audio != null && audio.canPlayType && audio.canPlayType("audio/mp3")) {
+					audio.src = file;
+					audio.play();
+				}        
+			}
+
+		</script>
+
+
+	</body>
+</html>

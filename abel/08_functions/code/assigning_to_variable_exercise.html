@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Function Statement</title>
+
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+  </head>
+
+<textarea id="code" name="code" style="height:300; width:300;">
+/* ----------------------------------------------------------
+	EXERCISE:
+	Replace the "---- Your Code ----" comment with your code.
+	You can use console.log() to write to the output element
+   ---------------------------------------------------------- */
+
+// create an object container
+var container = {placeholder : null};
+
+// assign a function to a variable
+var greeting = function(){console.log("Hello!");};
+
+// assign greeting function to container placeholder
+// ---- Your Code ----
+
+// call greeting through container object
+// ---- Your Code ----
+
+// function loads another function and executes it  
+function loader(func){
+	func();
+}
+
+// execute greeting function through loader function 
+// ---- Your Code ----</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>

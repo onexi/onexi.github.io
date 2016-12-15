@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/starter-template.css" rel="stylesheet">
+    <link href="assets/css/video.css" rel="stylesheet">                   
+
+    <!-- google analytics -->    
+    <script src="assets/js/googleanalytics.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+<script>
+
+  var videoTools = {};
+
+  videoTools.setTitle = function (title) {
+      document.title = title;
+  };
+
+  videoTools.getParameterByName = function (name) {
+      var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  };
+
+  videoTools.addIFrame = function (url){
+      var iframe = document.createElement('iframe');
+      iframe.src = url;
+      iframe.setAttribute('width', '500');
+      iframe.setAttribute('height', '281');
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allowFullScreen', '');
+      iframe.setAttribute('webkitallowfullscreen', '');
+      iframe.setAttribute('mozallowfullscreen', '');
+      document.getElementById("target").appendChild(iframe);
+  };
+
+  window.onload = function(){
+      videoTools.url = videoTools.getParameterByName('url');
+      videoTools.title = videoTools.getParameterByName('title');  
+      videoTools.setTitle(videoTools.title);
+      videoTools.addIFrame(videoTools.url);
+  };
+
+</script>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="javascript:history.back()" >Back</a>
+        </div>
+      </div>
+    </div>
+
+        <div class="flex-video widescreen" id='target'></div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>    
+    <script src="assets/js/bootstrap.min.js"></script>    
+  </body>
+</html>

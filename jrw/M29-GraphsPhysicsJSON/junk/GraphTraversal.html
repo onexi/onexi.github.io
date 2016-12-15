@@ -1,0 +1,578 @@
+<html>
+<head>
+<script src="Vector2D.js" type="text/javascript" charset="utf-8"></script>
+<script src="modelParams.js" type="text/javascript" charset="utf-8"></script>
+<script src="graphDataJSON.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+function GenerateNodesFromJSON(){
+	initDataParse();
+	plotAll();
+}
+function processNode(obj,child,depth){
+	var pos = Vector(300+Math.random()*depth*100-50, 300 + Math.random()*(depth*100)-100);
+  	var nod = Node(pos,5);
+    sim.nodes.push(nod);
+    nod.id = child.name;
+    if(obj != null){
+    	var parent = findNodeName(obj.name);
+    	if(parent !== null)sim.links.push(Link(parent,nod));
+    }
+}
+function findNodeName(name){
+	var n = sim.nodes.length;
+	for(var i=0;i<n;i++){
+		if(sim.nodes[i].id === name)return sim.nodes[i];
+	}
+	return null;
+}
+function RunPhysics(){
+  setInterval(UpdateAll, 10);
+}
+function UpdateAll(){
+  // zero all the forces on the masses
+  var n = sim.nodes.length;
+  for(var i=0;i<n;i++){
+    sim.nodes[i].force = Vector(0,0);
+  }
+
+  // detect all neighbors of particles
+  //detectNeighbors();
+
+  // update forces due to springs and apply to particels
+  n = sim.links.length;
+  for(i=0;i<n;i++){  
+    sim.links[i].updateSpringForces();
+  }
+  // do repulsive force
+  n = sim.nodes.length;
+  for(i=0;i<n;i++){
+    repulsiveForce(sim.nodes[i]);
+  }
+
+  // remove all springs where yield has occured
+  n = sim.deleteThisLink.length;
+  var k;
+  if(n > 0){
+    for(i=0;i<n;i++){
+      k = sim.links.indexOf(sim.deleteThisLink[i]);
+      sim.links.splice(k,1);
+    }
+    sim.deleteThisSpring = [];
+  }
+  // update displacements
+  n = sim.nodes.length;
+  for(i=1;i<n;i++){
+    if(!sim.nodes[i].isFixed()){
+      sim.nodes[i].updateDisplacements();
+    }
+  }
+  plotAll();
+}
+
+function repulsiveForce(p){
+  var n = sim.nodes.length;
+  for (var j = 0; j < n;j++){
+    var target = sim.nodes[j];
+    if (target!= p){
+      var c = p.center;
+      var targetCenter = Vector(target.center.x,target.center.y);
+      var dist =  c.distance(targetCenter);
+      if(dist < 2*sim.nodeRadius){
+        var forcemag = -(2*sim.nodeRadius-dist)*sim.stiffness;
+        var v = c.minus(targetCenter).unit(); // unit vector between centers
+        var deltaF = v.scale(forcemag);
+        p.force =   p.force.minus(deltaF);  // can't do += with vectors
+        target.force = target.force.plus(deltaF); // attractive
+      } 
+    }
+  }
+}
+//===============spatialReasoning==========
+function detectNeighbors(){
+  var n = sim.nodes.length;
+  for(var i=0;i<n;i++){
+    for(var j=i+1;j<n;j++){
+      if(sim.nodes[i].center.distance(sim.nodes[j].center) < sim.interactionDistance){
+        if(findLink(sim.nodes[i],sim.nodes[j])){ // check if spring exists already
+          
+        }
+      }
+    }
+  }
+}
+function deleteLinks(){
+  var k;
+  var n = sim.deleteThisLink.length;
+  if(n > 0){
+    for(i=0;i<n;i++){
+      // get the particles involved and remove the sprink from linkSprings
+      var s = sim.deleteThisLink[i];
+      var p0 = s.nodes[0];
+      var p1 = s.nodes[1];
+      
+      // now delete the spring from global springs
+
+      k = sim.links.indexOf(sim.deleteThisLink[i]);
+      sim.links.splice(k,1);
+    }
+    sim.deleteThisLink = [];
+  }
+}
+function MakeRandomLink(){
+	var n = sim.nodes.length;
+	for(var i=0;i<200;i++){ // try x times 
+		var n1 = Math.floor(Math.random()*n);
+		var n2 = Math.floor(Math.random()*n);
+		if(findLink(n1,n2) === null){
+			// if n1 already has children add n2 or vice versa
+			if(sim.nodes[n1].children.length > 0)sim.nodes[n1].children.push(sim.nodes[n2]);
+			else sim.nodes[n2].children.push(sim.nodes[n1]);
+			var newLink = Link(sim.nodes[n1],sim.nodes[n2]);
+			sim.links.push(newLink);
+			plotAll();
+			return;
+		}
+	}
+}
+function findLink(n1,n2){
+	var n = sim.links.length;
+	var myLink;
+	for(i=0;i<n;i++){
+		myLink = sim.links[i];
+		if(myLink.nodes[0] === n1 && myLink.nodes[1]===n2){
+			return myLink;
+		}
+		if(myLink.nodes[1] === n1 && myLink.nodes[0]===n2){
+			return myLink;
+		}
+    }
+    return null;
+}
+	
+function noLink(p0,p1){
+  var n = sim.links.length;
+  for(var i=0;i<n;i++){ // check spring p0 to p1 or p1 to p0
+    if(sim.links[i].nodes[0]===p0 && sim.links[i].nodes[1]===p1) return false;
+    if(sim.links[i].nodes[0]===p1 && sim.links[i].nodes[1]===p0) return false;
+  }
+  return true;
+}
+function checkWallCollision(){
+  var n = sim.nodes.length;
+    for(var i=0;i<n;i++){
+      var m = sim.nodes[i];
+      var v = m.velocity.x;
+      var dx = m.velocity.x * sim.deltaT;
+      var dy = m.velocity.y * sim.deltaT;
+
+      if (m.center.x + dx > sim.canvas.width || m.center.x + dx < 0){
+        m.velocity.x = -m.velocity.x;
+      }
+      if (m.center.y + dy >= sim.canvas.height || m.center.y + dy <= 0){
+        m.velocity.y = -m.velocity.y;
+      }
+    }
+  }
+
+
+//=============Particle Links============
+//------------- Node 
+function Node(center,radius){
+  var velocity = Vector(0,0);
+  var force = Vector(0,0);
+  var mass = 1;
+  var children = [];
+  var color = 'Red';
+  var visible = true;
+  var id = null;
+  var updateDisplacements = function updateDisplacements(){
+    var p = this;
+    p.velocity.x = sim.R2/sim.R1*p.velocity.x + (sim.deltaT/sim.R1)* p.force.x/(p.mass);
+    p.velocity.y = sim.R2/sim.R1*p.velocity.y + (sim.deltaT/sim.R1)*(p.force.y - sim.gravity*mass)/(p.mass);
+    //console.log('fx,fy ='+m.force.x+', '+m.force.y +' v ='+m.velocity.x+', '+m.velocity.y);
+
+    // check if either mass will hit the wall
+    checkWallCollision(p);
+
+    // update the position of the masses and draw
+    p.center.x += p.velocity.x *sim.deltaT;
+    p.center.y += p.velocity.y *sim.deltaT;
+    DrawCircle(p.center,5);
+  };
+  var isFixed = function isFixed(){
+    var n = sim.fixedParticles.length;
+    for(var i=0;i<n;i++){
+      if(this === sim.fixedParticles[i]) return true;
+    }
+    return false;
+  };
+  return {center:center, 
+    radius:radius,
+    mass:mass,
+    color:color,
+    id:id,
+    children:children,
+    visible:visible,
+    velocity:velocity,
+    force:force,
+    updateDisplacements: updateDisplacements,
+    isFixed:isFixed
+  };
+}
+//   springs or links between particles or nodes
+function Link(p0,p1){
+  var nodes = [p0,p1]; // these are the particles
+  var originalLength = 30;
+  var color = 'Red';
+  var visible = true;
+  
+  var updateSpringForces = function updateSpringForces(){
+    var c0 = nodes[0].center;
+    var c1 = nodes[1].center;
+    var len1 = c1.minus(c0).abs();
+    var forcemag = (len1 - originalLength)*sim.stiffness;
+    color = 'Red';
+    if(forcemag>0)color='Blue';
+
+    var unitVec = c1.minus(c0).unit();
+    if (forcemag > sim.yieldForce ) {  // if yieldForce > 0 then
+      forcemag = 0;  // this throws away a little energy and damps the system
+      sim.deleteThisSpring.push(this);
+    }
+    var f = unitVec.scale(forcemag);
+
+    nodes[0].force = nodes[0].force.plus(f);
+    nodes[1].force = nodes[1].force.minus(f);
+
+
+  };
+
+  return {nodes:nodes, color:color, visible:visible,
+    originalLength:originalLength,
+    updateSpringForces:updateSpringForces
+    };
+  }
+// =================GraphTraversal 
+// Deal with Mouse Events 
+
+
+function expandNode(obj){
+	ResetColor();
+    VisitNodes(obj,true);
+  	plotAll();
+}
+function collapseParent(e){
+  var obj = findPick(e);
+  if (obj.mass > 1)expandNode(obj);
+  else collapseNode(obj); 
+}
+function collapseNode(obj){
+    // now need to do breadthfirst search 
+    ResetColor();
+	VisitNodes(obj,false);
+	plotAll();
+}
+function VisitNodes(root,flip){ // breadthfirst search
+  if(root === null) root = sim.nodes[0];
+
+  var queue = [];
+  queue.push(root);
+  root.color = 'Red';
+  while(queue.length>0){
+    var node = queue.shift();
+    while((child=getUnvisitedChildNode(node)) !== null){
+    	// we know node and child have a link we must delete
+		flipLinkVisibility(node,child);
+      child.color = 'Red'; // visited
+      child.visible = flip;
+      if(flip === false)root.mass++;  // add to mass of parent
+      else root.mass--; // subtract if we are making it visible
+      queue.push(child);
+    }
+  }
+}
+
+function flipLinkVisibility(n1,n2){
+
+	var n = sim.links.length;
+	var myLink;
+	for(i=0;i<n;i++){
+		myLink = sim.links[i];
+		if(myLink.nodes[0] === n1 && myLink.nodes[1]===n2){
+			if(myLink.visible === true)myLink.visible = false;
+			else myLink.visible = true;
+			return;
+		}
+		if(myLink.nodes[1] === n1 && myLink.nodes[0]===n2){
+			if(myLink.visible === true)myLink.visible = false;
+			else myLink.visible = true;
+			return;
+		}
+    }
+}
+
+function ResetColor(){
+  for(var i=0;i<sim.nodes.length;i++) {
+    sim.nodes[i].color = 'Green';
+  }
+  plotAll();
+}
+
+function DepthFirstSearch(){
+	if(sim.pickedNode === null) var root = sim.nodes[0];
+	else root = sim.pickedNode;
+  window.alert('Next');
+  var stack = [];
+  stack.push(root);
+  root.color = 'Red';
+  plotAll();
+  while(stack.length>0){
+    var node = stack[stack.length-1];  // equivalent of stack.peek();
+    var child=getUnvisitedChildNode(node);
+    if(child != null){
+      window.alert('NEXT NODE');
+      child.color = 'Red'; // flag as visited
+      plotAll();
+      stack.push(child);
+      printArray(stack);
+    }
+    else{
+      stack.pop();
+      printArray(stack);
+    }
+  }
+}
+function printArray(a){
+  var s='stack=';
+  for(var i=0;i<a.length;i++) {
+    s+=a[i].id; s+=', ';
+  }
+  console.log(s);
+}
+
+function BreadthFirstSearch(){
+  window.alert('Next');
+	if(sim.pickedNode === null) var root = sim.nodes[0];
+	else root = sim.pickedNode;
+  var queue = [];
+  queue.push(root);
+  root.color = 'Red';
+  plotAll();
+  while(queue.length>0){
+    var node = queue.shift();
+    printArray(queue);
+    while((child=getUnvisitedChildNode(node)) !== null){
+      window.alert('NEXT NODE');
+      child.color = 'Red'; // visited
+      plotAll();
+      queue.push(child);
+      printArray(queue);
+    }
+  }
+  console.log(JSON.stringify(sim.nodes[0]));
+}
+function getUnvisitedChildNode(obj){
+  if(obj != null && obj.children.length > 0){
+    for(var i=0;i<obj.children.length;i++){
+      if(obj.children[i].color == 'Green'||obj.children[i].color == 'Blue')return obj.children[i];
+    }
+  }
+  return null;
+}
+
+//================PickParticles====================
+// on mouse up call this
+function makeNode(e){
+  var radius = 10;
+  if(e.pageX < sim.WIDTH && e.pageY < sim.HEIGHT){
+    var p = Node(Vector(e.pageX,e.pageY),radius);
+    p.id=sim.nextID++;
+    p.color = 'Green';
+    sim.nodes.push(p);
+    console.log("particle created at "+e.pageX,', '+e.pageY);
+    plotAll();
+    return p;
+  }
+  else return null;
+}
+
+function findPick(e){
+  var a = Vector(e.pageX,e.pageY);
+  if(e.pageX < sim.canvas.width && e.pageY < sim.canvas.height){
+   var target;
+   var p;
+   var n = sim.nodes.length;
+   for(var i=0;i<n;i++){
+     target = sim.nodes[i];
+     p = target.center;
+     var d = p.distance(a);
+     if(d < 30){
+      sim.pickedNode = target;
+      return target;
+    }
+   }
+ }
+ return null;
+}
+
+function makeChild(e){
+if(sim.pickedNode === null){
+  sim.pickedNode = findPick(e);
+  if(sim.pickedNode!== null)
+   console.log("node picked "+sim.pickedNode.id);
+}
+  else {   // we have already picked parent so now create child
+    var parent = sim.pickedNode;
+    var child = makeNode(e);
+    console.log('make child from parent '+parent.id+', '+child.id);
+    AttachChild(parent, sim.nodes[sim.nodes.length-1]);
+    parent.color = 'Blue';
+  }
+}
+function AttachChild(parent, child){
+  parent.children.push(child);
+  var myLine = Link(parent, child);
+  sim.links.push(myLine);
+  sim.pickedNode = null;
+  console.log("child attached");
+  plotAll();
+}
+
+// on mouse move call this
+function updatePosition(e){
+  if(sim.pickedNode!==null){
+    sim.pickedNode.center.x = e.pageX;
+    sim.pickedNode.center.y = e.pageY;
+    plotAll();
+  }
+}
+
+//============================
+// contains the Canvas plotting and Mouse Events
+function plotAll(){
+    sim.context.clearRect(0, 0, sim.WIDTH, sim.HEIGHT);
+    var p;
+    for(var i=0;i<sim.nodes.length;i++) {
+      p = sim.nodes[i];
+      if(p.visible === true)
+        DrawCircle(p.center,p.radius,p.color);
+        if(p.id !== null)DrawCharAt(p.id, p.center.x+20,p.center.y);
+    }
+    var n = sim.links.length;
+    var s;
+    for(i=0;i<n;i++){
+      s = sim.links[i];
+      if (s.visible === true)
+       DrawLine(s.nodes[0].center,s.nodes[1].center,s.color);
+    }
+  }
+ 
+  
+function letGo(){
+	if(sim.callBack !== null&& sim.callBack!==undefined)sim.callBack();
+  sim.pickedNode = null;
+  document.onmousemove = null;
+  document.onmouseup = null;
+  sim.callBack = null;
+}
+function letGoAll(){
+	if(sim.callBack !== null&&sim.callBack!==undefined)sim.callBack();
+  sim.pickedNode = null;
+  document.onmousedown = null;
+  document.onmousemove = null;
+  document.onmouseup = null;
+  sim.callBack = null;
+}
+function SetDragParticle(){
+  document.onmousedown = findPick;
+  document.onmousemove = updatePosition;
+  document.onmouseup   = letGoAll;
+}
+function SetCollapseChildren(){
+  document.onmousedown = collapseParent;
+  document.onmouseup   = letGo;
+}
+function SetCreateParticle(){
+  document.onmousedown = makeNode;
+  document.onmousemove = null;
+  document.onmouseup   = letGo;
+}
+
+function SetMakeChild(){
+  document.onmousedown = makeChild;
+  document.onmousemove = null;
+}
+function SetTraverseD(){
+	sim.callBack = DepthFirstSearch
+	document.onmousedown = findPick;	
+	document.onmouseup   = letGoAll;
+}
+function SetTraverseB(){
+	sim.callBack = BreadthFirstSearch;
+	document.onmousedown = findPick;	
+	document.onmouseup   = letGoAll;
+}
+function DrawCircle(p,r,col){
+  switch(col){
+    case 'Red':
+    sim.context.fillStyle = "rgba(255, 0, 0, .5)"; break;
+    case 'Blue':
+    sim.context.fillStyle = "rgba(0, 0, 255, .5)"; break;
+    case 'Green':
+    sim.context.fillStyle = "rgba(0, 255, 0, .5)"; break;
+  }
+  sim.context.beginPath();
+  sim.context.arc(p.x,p.y,r, 0, Math.PI*2, true);
+  sim.context.closePath();
+  sim.context.fill();
+}
+function DrawLine(c0,c1,color){
+  if(color==='blue')sim.context.strokeStyle = '#00f'; // blue
+  else sim.context.strokeStyle = '#f00'; // red
+  sim.context.fillStyle   = '#00f'; // blue
+  sim.context.lineWidth   = 4;
+  sim.context.beginPath();
+  sim.context.moveTo(c0.x,c0.y);
+  sim.context.lineTo(c1.x,c1.y);
+  sim.context.stroke();
+  sim.context.closePath();
+}
+ function DrawCharAt(c,x,y){
+    var text = c.toString();
+    sim.context.beginPath();
+    sim.context.font = "10pt Calibri";
+    sim.context.fillStyle = "blue";
+    sim.context.fillText(text,x,y);
+    sim.context.closePath();
+    sim.context.fill();
+  }
+
+//==========================
+function WriteJSON(){
+  console.log(JSON.stringify(sim.nodes[0]));
+}
+</script>
+</head>
+<body>
+ <div id="holder">
+   <canvas id="myCanvas" width="600" height="400" >
+   </canvas>
+ </div>
+ <div>
+   <input type="button" value="Drag" onclick= "SetDragParticle()" />
+   <input type="button" value="Make Node" onclick= "SetCreateParticle()" />
+   <input type="button" value="Make Child" onclick= "SetMakeChild()" />
+   <input type="button" value="Collapse" onclick= "SetCollapseChildren()" />
+   <input type="button" value="DepthFirst" onclick= "SetTraverseD()" />
+   <input type="button" value="BreadthFirst" onclick= "SetTraverseB()" />
+   <br>
+   <input type="button" value="Random Link" onclick= "MakeRandomLink()" />
+   <input type="button" value="Reset Color" onclick= "ResetColor()" />
+   <input type="button" value="Physics" onclick= "RunPhysics()" />
+   <input type="button" value="Write JSON" onclick= "WriteJSON()" />
+   <input type="button" value="Read JSON" onclick= "GenerateNodesFromJSON()" />
+ </div>
+</body>
+</html>

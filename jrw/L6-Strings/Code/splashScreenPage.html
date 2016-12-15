@@ -1,0 +1,59 @@
+<html>
+<body>
+<script>
+//			 Billboard Moving Letters
+	var context		= null;
+	var timer = 0;	
+	var tiles = [];
+	window.onload=getCanvas;    
+	function getCanvas(){
+		var canvas = document.getElementById("myCanvas");
+		context = canvas.getContext("2d");
+		Run();
+	}
+	function Tile(c,x0,y0){
+		return {c:c, x:x0, y:y0}
+	}
+	function Run(){
+		if(timer == 0){
+			var message		= 'Ninja-Coders-Unite--';
+			var tileSpacing	= 50;
+			var letterArray = message.slice();
+			var N = letterArray.length;
+			for (var i=0;i<=N-1;i++) {	
+				tiles[i] = Tile(letterArray[i],100+i*tileSpacing,100);
+			}
+			timer = setInterval(Run,500);
+		}
+		else{
+			UpdatePositions(tiles);
+		}
+		context.clearRect(0, 0, 800, 200);
+		for (var j=0; j<=tiles.length-1;j++) {
+			DrawTile(tiles[j]);
+		}
+	}
+	function DrawTile(tile){
+		context.beginPath();
+		context.font = "40pt Calibri";
+		context.fillStyle = "blue";
+		context.fillText(tile.c, tile.x, tile.y);
+		context.closePath();
+		context.fill();
+	}
+
+	function UpdatePositions(tiles) {
+		// reorder array. Save first tile letter
+		var N = tiles.length;
+		var c = tiles[0].c; 
+		for (var i=1; i<=N-1;i++) {
+			tiles[i-1].c = tiles[i].c;
+		}
+		tiles[N-1].c = c;
+	}
+</script>
+<body>
+	<canvas id="myCanvas" width="800" height="200" >
+    </canvas>
+</body>
+</html>

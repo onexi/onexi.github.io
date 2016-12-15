@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+  <title>properties with arrays</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1.1em;}
+    .CodeMirror { height: auto; border: 1.2px solid #ddd; }
+    .CodeMirror-scroll { max-height: 350px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+// add ground plane
+var planeGeo = new THREE.PlaneGeometry(400, 200, 10, 10);
+var planeMat = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+var plane = new THREE.Mesh(planeGeo, planeMat);
+plane.rotation.x = -Math.PI/2;
+plane.position.y = -25;
+plane.receiveShadow = true;
+scene.add(plane);
+
+// spin cube
+litCube.position.x = Math.cos(t/600)*85;
+litCube.position.y = 60-Math.sin(t/900)*25;
+litCube.position.z = Math.sin(t/600)*85;
+litCube.rotation.x = t/500;
+litCube.rotation.y = t/800;</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+

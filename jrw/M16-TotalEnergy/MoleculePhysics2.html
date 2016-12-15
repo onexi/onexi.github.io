@@ -1,0 +1,488 @@
+<html>
+<head>
+  <script language="javascript" type="text/javascript" src="../flot/jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="../flot/jquery.flot.js">
+  </script>
+  <link href="examples.css" rel="stylesheet" type="text/css">
+  <script src="Vector2D.js" type="text/javascript" charset="utf-8"></script>
+
+  <script>
+    var context;
+    var WIDTH, HEIGHT;
+    var points = Array();
+    var targetNode = null;
+    var offset = 20;
+    var fontsize = 10;
+    var id = 0;
+    var deltaT = 0.5;
+    var alpha = 0;
+    var R1 = (1+alpha*deltaT/2); R2 = (1-alpha*deltaT/2);
+    var Kstiffness = 1, dzero = 40;
+    var gravity = 0;
+    var nodeRadius = 20;
+    var canvas = null;
+    var targetObject=null;
+    var rootNode = null;
+    var shapes = Array();
+    var pickedObject;
+    var lineNodes = Array();
+    var operationContext = 0;
+    var maxSpeed = 0;
+    var data = [];
+    var totalEnergy = [];
+
+    window.onload=getCanvas;    
+    function getCanvas(){
+      var canvas = document.getElementById("myCanvas");
+      context=canvas.getContext("2d");
+      WIDTH = canvas.width;
+      HEIGHT = canvas.height;
+      MakeNodes();
+    //myTimer = setInterval(UpdateParticles, 10);
+
+  }
+
+
+  var Node = function(x, y, radius){
+    this.name = 'Node';
+    this.cx = x;
+    this.cy = y;
+    this.radius = radius;
+    this.angle = 0;
+    this.visible = true;
+    this.picked = false;
+    this.color = 'Red';
+    this.parent = null;
+    this.children = Array();
+    this.lines = Array();
+    this.mass = 1;
+    this.velocity = Vector(2,0);
+    this.force = Vector(0,0);
+    this.draw = function(){ 
+      if (this.children.length > 0) this.color = 'Blue';
+      else this.color = 'Green'
+        if ( this.visible == true)
+          DrawCircle(this.cx,this.cy,this.radius, this.color);
+      }
+    this.Update = function(){   // mass damping is governed by R1 and R2 
+      this.velocity.x = R2/R1*this.velocity.x + (deltaT/R1) *(this.force.x /this.mass);
+      this.velocity.y = R2/R1*this.velocity.y + (deltaT/R1) *(this.force.y /this.mass + gravity);
+      this.cx += this.velocity.x*deltaT;
+      this.cy += this.velocity.y*deltaT;
+    }
+    this.CalcForce = function(){  
+      // various forces 1) springs 
+      // we will use springs of length dzero = 20 and stiffness Kstiffness
+      var myCenter = Vector(this.cx,this.cy);
+      var targets = this.GetInteractingNodes();  // get nodes with links 
+      for(var i = 0;i< targets.length;i++){
+        var target = targets[i];
+        if (target!= this){
+          var targetCenter = Vector(target.x,target.shape.centerY);
+          var dist = myCenter.distance(targetCenter);
+          // force = (dist - dzero)*Kstiffness
+          var forcemag = (dist-dzero)*Kstiffness;
+          var v = myCenter.minus(targetCenter).unit(); // unit vector between centers
+          var deltaF = v.scale(forcemag);
+          this.force =   this.force.minus(deltaF);  // can't do += with vectors
+          target.force = target.force.add(deltaF); // attractive
+        }
+      }
+      // now make sure no overlap in nodes - put repulsive force between nodes
+      var nodes = getNodes();
+      for (var j = 0; j < nodes.length;j++){
+        var target = nodes[j];
+        if (target!= this){
+          var targetCenter = Vector(target.cx,target.cy);
+          var dist =  myCenter.distance(targetCenter);
+          if(dist < 2*nodeRadius){
+            var forcemag = -(2*nodeRadius-dist)*Kstiffness;
+            var v = myCenter.minus(targetCenter).unit(); // unit vector between centers
+            var deltaF = v.scale(forcemag);
+            this.force =   this.force.minus(deltaF);  // can't do += with vectors
+            target.force = target.force.add(deltaF); // attractive
+          } 
+        }
+      }
+    }
+    this.WallCollision = function()
+    {
+      if(this.cx-this.radius <=  0 ) {
+        this.cx = this.radius+ 0.001;
+        this.velocity = Vector(-this.velocity.x,this.velocity.y);
+      }
+      if(this.cx+this.radius >= WIDTH){
+       this.cx = WIDTH-this.radius- 0.001;
+       this.velocity = Vector(-this.velocity.x,this.velocity.y);
+     }
+     if(this.cy-this.radius <= 0 ) {
+      this.cy = this.radius+ 0.001;
+      this.velocity = Vector(this.velocity.x,-this.velocity.y);
+    }
+    if(this.cy+this.radius >= HEIGHT){
+      this.cy = HEIGHT-this.radius-0.001;
+      this.velocity = Vector(this.velocity.x,-this.velocity.y);
+    }
+  }
+
+  this.GetInteractingNodes = function(){
+    var targets = Array();
+    var p = this.lines;
+    for(var i = 0;i< p.length;i++){
+      if(p[i].nodes[0]!=this)targets.push(p[i].nodes[0]);
+      if(p[i].nodes[1]!=this)targets.push(p[i].nodes[1]);
+    }
+    return targets;
+  }
+  console.log('Node '+this.cx+',  '+this.cy);
+  return {name:this.name, cx:this.cx, cy: this.cy, radius:this.radius, visible:this.visible,  color:this.color, mass:this.mass, draw:this.draw, 
+    velocity:this.velocity, force:this.force,
+    parent:this.parent, children:this.children, lines:this.lines, Update: this.Update, CalcForce: this.CalcForce, WallCollision: this.WallCollision,
+    GetInteractingNodes:this.GetInteractingNodes};
+  }
+  // when we make a line we always do it between 2 nodes
+  var Line = function(obj1, obj2){
+    this.name = 'Line';
+    this.shape = Shape();
+    this.nodes = Array(); // the children are the nodes
+    this.nodes.push(obj1);this.nodes.push(obj2);
+    this.shape.moveTo((this.x1+this.x2)/2,(this.y1+this.y2)/2);
+    this.shape.setBBox(30);
+    this.draw = function(){ 
+      if(this.shape.visible == true)
+        DrawLine(this.nodes[0], this.nodes[1]);
+    }
+
+    return {name:this.name, nodes: this.nodes,
+      draw:this.draw, parent:this.parent};
+
+    }
+
+
+function MakeNodes() {  // uncomment for test case of making a circle and Rectangle
+  // var myCirc = Circle(100,100,40);
+  // shapes.push(myCirc);
+  // var myRect = Rectangle(200,100,100,50,0);
+  // shapes.push(myRect);
+  // drawAll();
+}
+function DrawCircle(x,y,r,col){
+  switch(col){
+    case 'red':
+    context.fillStyle = "rgba(255, 0, 0, .5)"; break;
+    case 'Blue':
+    context.fillStyle = "rgba(0, 0, 255, .5)"; break;
+    case 'Green':
+    context.fillStyle = "rgba(0, 255, 0, .5)"; break;
+  }
+  context.beginPath();
+  context.arc(x,y,r, 0, Math.PI*2, true);
+  context.closePath();
+  context.fill();
+}
+function DrawLine(obj1, obj2){
+    context.strokeStyle = 'rgb(255,0, 0)'; // red
+    context.fillStyle   = 'rgb(0,  0, 255)'; // blue
+    context.lineWidth   = 4;
+    context.beginPath();
+    context.moveTo(obj1.cx,obj1.cy);
+    context.lineTo(obj2.cx,obj2.cy);
+    context.fill();
+    context.stroke();
+    context.closePath();
+  }   
+
+  function DrawRectangle(x,y,w,h){
+    context.beginPath();
+    context.rect(x,y,w,h);
+    context.fillStyle = 'yellow';
+    context.fill();
+    context.lineWidth = 7;
+    context.strokeStyle = 'black';
+    context.stroke();
+    context.closePath();
+  }
+  function drawAll(){
+    context.clearRect(0, 0, WIDTH, HEIGHT);
+    for(var i=0;i<shapes.length;i++) shapes[i].draw();
+  }
+// Deal with Mouse Events 
+document.onmousedown = pickObject;
+document.onmousemove = dragObject;
+document.onmouseup    = letGo;
+function dragObject(e){
+  if(pickedObject != null){
+    switch(operationContext){
+      case 0:   // pick object to drag
+      context.clearRect(0, 0, WIDTH, HEIGHT);
+      pickedObject.x = e.pageX;
+      pickedObject.cy = e.pageY;
+      drawAll();
+      break;
+      
+    }
+  }
+}
+function pickObject(e) {  // pick only nodes 
+  if(e.pageY < HEIGHT){   // be careful to pick up only events within the canvas
+    switch(operationContext){
+    case 0:   // pick object to drag
+    pickedObject = findPick(e);
+    break;
+    case 1:   // create Node
+    var myNode = Node(e.pageX, e.pageY,10);
+    shapes.push(myNode);
+    drawAll();
+    break;
+    case 2:  // create Line by selecting 2 nodes
+    var obj = findPick(e);
+      if(obj!= null && obj.name=='Node'){   // if we haven't clicked on a node then ignore the pick
+        if(lineNodes.length == 1){
+          var obj1 = lineNodes.pop(); // note that pop reduces the array to zero
+          var myLine = Line(obj1, obj);  
+          // now fix up all the connection stuff
+          obj1.lines.push(myLine); obj.lines.push(myLine);
+          shapes.push(myLine);
+          drawAll();
+        }
+        else if(lineNodes.length == 0){  // why do we put this 2nd and not above the check == 1
+          lineNodes.push(obj);
+        }
+      }
+      break;
+      case 3:  // Need to deal with 1) 1st click on parent 
+              // 2) 2nd click = create new object 3) 2nd click on an object
+var obj = findPick(e);
+      if(obj!= null && obj.name=='Node'){   // potential parent or child
+        if(lineNodes.length == 1){  // its a child
+          child = obj;
+          var parent = lineNodes.pop(); // note that pop reduces the array to zero
+          lineNodes = Array();
+          AttachChild(parent, child);
+        }
+        else if(lineNodes.length == 0){  // why do we put this 2nd and not above the check == 1
+          lineNodes.push(obj); // this is the parent
+        }
+      }
+      else if (obj == null && lineNodes.length == 1){  // need to create the child
+        var parent = lineNodes[0];
+        var child = Node(e.pageX,e.pageY, 10);
+        shapes.push(child);
+        AttachChild(parent, child);
+        lineNodes = Array();
+      }
+      break;
+      case 4:  // collapse or expand children 
+      var obj = findPick(e); // check that this is a parent
+      if(obj!=null && obj.children.length > 0){
+        if (obj.mass > 1){
+          expandParent(obj);
+        }
+        else {
+          collapseParent(obj);
+          drawAll();
+        } 
+      }
+      function collapseParent(obj){
+        for(var i=0;i< obj.children.length;i++){
+          obj.children[i].visible = false;
+          obj.mass++;  // add to the mass of the parent
+          for(var j=0;j<obj.children[i].lines.length;j++){
+            var lin = obj.children[i].lines[j];
+            lin.visible = false;
+            if(lin.nodes[0] != obj) collapseParent(lin.nodes[0]);
+            if(lin.nodes[1] != obj) collapseParent(lin.nodes[1]);
+          }
+        }
+        drawAll();
+      }
+      function expandParent(obj){
+        for(var i=0;i< obj.children.length;i++){
+          obj.children[i].visible = true;
+          obj.mass--;  // subtract from the mass of the parent
+          for(var j=0;j<obj.children[i].lines.length;j++){
+            var lin = obj.children[i].lines[j];
+            lin.shape.visible = true;
+            if(lin.nodes[0] != obj) expandParent(lin.nodes[0]);
+            if(lin.nodes[1] != obj) expandParent(lin.nodes[1]);
+          }
+        }
+      }
+      function findPick(e){
+        var a = Vector(e.pageX,e.pageY);
+        for(var i=0;i<shapes.length;i++){
+          var obj = shapes[i];
+          if(obj.name == 'Node'){
+            var b = Vector(obj.x,obj.shape.centerY);
+            var d = b.distance2(a);
+            if(d < 4*obj.radius*obj.radius)pickedObject = obj;
+          }
+        }
+        return pickedObject;
+      }
+    }
+  }
+  function AttachChild(parent, child){
+    child.parent = parent;
+    parent.children.push(child);
+    var myLine = Line(parent, child);  
+    // now fix up all the connection stuff
+    parent.lines.push(myLine); child.lines.push(myLine);
+    shapes.push(myLine);
+    drawAll();
+  }
+  drawAll();
+}
+
+function letGo(){
+  pickedObject = null;
+}
+function MakeNode(){
+  operationContext = 1;
+}
+function MakeLink(){
+  operationContext = 2;
+  lineNodes = Array();  // restart 
+}
+function MakeChild(){
+  operationContext = 3;
+  lineNodes = Array();  // restart 
+}
+function CollapseChildren(){
+  operationContext = 4;
+
+}
+function SetDrag(){operationContext = 0;}
+function getNodes(){   // get only nodes from all objects
+  var targetNodes = Array();
+  for(var i = 0; i< shapes.length;i++){
+    if(shapes[i].name == 'Node')targetNodes.push(shapes[i])
+  }
+return targetNodes;
+}
+function UpdatePhysics(){
+  var nodes = getNodes();
+  maxSpeed = 0;
+  var e = 0;
+  for(var i = 0;i<nodes.length;i++){
+    nodes[i].force = new Vector(0,0);
+  }
+  for(var j = 0;j<nodes.length;j++){
+    nodes[j].CalcForce();
+  }
+  for(var k = 0;k<nodes.length;k++){  // fix node id= 0
+    nodes[k].Update();
+    nodes[k].WallCollision();
+    var speed = nodes[k].velocity.abs();
+    if (speed > maxSpeed)maxSpeed = speed;
+    e += nodes[k].velocity.kinetic();
+  }
+  drawAll(); 
+  totalEnergy.push(e);
+  data.push(maxSpeed);
+  if (data.length > 300)data = data.slice(1);
+  if(totalEnergy.length> 300)totalEnergy = totalEnergy.slice(1);
+
+}
+function ResetMaxSpeed(){maxSpeed=0;}
+function RunPhysics(){
+
+  setInterval(UpdatePhysics,100);
+}
+//===============================================
+$(function() {
+  function getData1(){
+    var res = [];
+    for (var i = 0; i < data.length; ++i) {
+      res.push([i, data[i]]);
+    }
+
+    return res;
+  }
+  function getData2(){
+    var res = [];
+    for (var i = 0; i < totalEnergy.length; ++i) {
+      res.push([i, totalEnergy[i]]);
+    }
+
+    return res;
+  }
+
+    // Set up the control widget
+
+    var updateInterval = 30;
+    $("#updateInterval").val(updateInterval).change(function () {
+      var v = $(this).val();
+      if (v && !isNaN(+v)) {
+        updateInterval = +v;
+        if (updateInterval < 1) {
+          updateInterval = 1;
+        } else if (updateInterval > 2000) {
+          updateInterval = 2000;
+        }
+        $(this).val("" + updateInterval);
+      }
+    });
+
+    var plot = $.plot("#placeholder", [ getData1(),getData2() ], {
+      series: {
+        shadowSize: 0 // Drawing is faster without shadows
+      },
+      yaxis: {
+
+      },
+      xaxis: {
+        min:0,
+        max:300,
+        show: false
+      }
+    });
+
+    function update() {
+
+      //plot.setData([getRandomData(data)]);
+      plot.setData([{ label: "Max Speed", data: getData1()}, { label: "Kinetic Energy", data: getData2(), yaxis: 2 }]);
+      plot.setupGrid();
+      // Since the axes don't change, we don't need to call plot.setupGrid()
+
+      plot.draw();
+      setTimeout(update, updateInterval);
+    }
+
+    update();
+
+    // Add the Flot version string to the footer
+
+    $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+  });
+
+
+//================================================
+
+
+
+
+
+
+</script>
+</head>
+<body>
+ <div id="holder">
+   <canvas id="myCanvas" width="600" height="400" >
+   </canvas>
+ </div>
+ <div> <p>
+ </div>
+ <div>
+   <input type="button" value="Drag" onclick= "SetDrag()" />
+   <input type="button" value="Make Node" onclick= "MakeNode()" />
+   <input type="button" value="Make Link" onclick= "MakeLink()" />
+   <input type="button" value="Make Child" onclick= "MakeChild()" />
+   <input type="button" value="ResetMaxSpeed" onclick= "ResetMaxSpeed()" />
+   <input type="button" value="Physics" onclick= "RunPhysics()" />
+   <div class="demo-container">
+    <div id="placeholder" class="demo-placeholder"></div>
+  </div>
+</div>
+</body>
+</html>

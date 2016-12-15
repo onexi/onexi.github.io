@@ -1,0 +1,180 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+
+				<section>
+					<h1>Web Publishing</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Use Athena</h2>
+					<p>Your Athena account has a www directory that is ready.</p>
+					<img src="media/images/folders.png" height="100">
+				</section>
+
+
+				<section>
+					<h2>Transfer files</h2>
+					<p>Install:</p>
+					<ul>
+						<li><a href="http://ist.mit.edu/fetch/5x/mac">Fetch</a> (Mac)</li>
+						<li><a href="http://ist.mit.edu/securecrt-fx/7x/win">SecureFX</a> (Win)</li>						
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Connection Parameters</h2>
+					<ul>
+						<li><b>Hostname</b>: <i>ftp.dialup.mit.edu</i></li>
+						<li><b>Username</b>: <i>keberos_username</i></li>
+						<li><b>Connect using</b>: <i>SFTP</i></li>
+						<li><b>Password</b>: <i>kerberos_password</i></li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Fetch</h2>
+					<img src="media/images/fetch.png" height="400">
+				</section>
+
+				<section>
+					<h2>SecureFX</h2>
+					<img src="media/images/securefx.gif" height="400">
+				</section>
+
+
+				<section>
+					<h2>Active Learning - Upload Test File</h2>
+					<p>Create a "readme.txt" file. Upload load file to your www firectory.</p>
+					<iframe src="code/readme.html" width="600" height="350" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Readme.txt File</h2>
+					<img src="media/images/readme.png" height="250">
+				</section>
+
+
+				<section>
+					<h2>Basic Templates</h2>
+					<center>
+					<table cellpadding="0">
+						<tr>
+							<td><a href="code/templates/barebones.zip"><img src="media/images/barebones.png" height="150" style="margin-bottom:0px;; margin-right:10px;"></a>
+							</td>
+							<td><a href="code/templates/carousel.zip"><img src="media/images/carousel.png" height="150" style="margin-bottom:0px;; margin-left:10px;"></a></td>
+						</tr>
+						<tr>
+							<td><a href="code/templates/barebones.zip">Barebones</a></td>
+							<td><a href="code/templates/carousel.zip">Carousel</a></td>
+						</tr>
+
+						<tr>
+							<td><a href="code/templates/jumbotron.zip"><img src="media/images/jumbotron.png" height="150" style="margin-bottom:0px;; margin-right:10px;"></a></td>
+							<td><a href="code/templates/rich.zip"><img src="media/images/rich.png" height="150" style="margin-bottom:0px;; margin-left:10px;"></a></td>
+						</tr>
+						<tr>
+							<td><a href="code/templates/jumbotron.zip">Jumbotron</a></td>
+							<td><a href="code/templates/rich.zip">Rich</td>
+						</tr>
+
+					</table>
+					</center>					
+				</section>
+
+				<section>
+					<h2>Active Learning - Create Portafolio</h2>	
+					<p>Samples</p>
+					<center>
+					<table cellpadding="0">
+						<tr>
+							<td><img src="media/images/research_01.jpg" height="250"></td>
+							<td><img src="media/images/research_02.jpg" height="250"></td>
+						</tr>
+					</table>
+					</center>
+
+				</section>
+
+
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+
+		<script>
+
+			function playAudio(file){
+				var audio = document.createElement("audio");
+				if (audio != null && audio.canPlayType && audio.canPlayType("audio/mp3")) {
+					audio.src = file;
+					audio.play();
+				}        
+			}
+
+		</script>
+
+
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+	<script type="text/javascript">
+//  This lesson tracks Mouse Events 
+		var context; 
+		window.onload=getCanvas;
+		function getCanvas(){
+			context = document.getElementById("myCanvas").getContext("2d");
+			Run();
+		}
+		function Run(){
+		document.onmousemove = doSomething;
+        }
+		function doSomething(e) {
+			var posx = e.pageX;
+			var posy = e.pageY;
+			DrawCircle(posx,posy, 3);
+		}
+		function DrawCircle(x, y, radius){
+			context.fillStyle = "rgba(255, 0, 0, 1)";
+			context.beginPath();
+			context.arc(x, y, radius, 0, Math.PI*2, true);
+			context.closePath();
+			context.fill();
+		}
+    </script>
+</head>
+<body>
+		<canvas id="myCanvas" width="900" height="300" >
+        </canvas>
+</body>
+</html>

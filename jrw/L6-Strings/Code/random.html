@@ -1,0 +1,64 @@
+<html>
+<script>
+	var target = 'to be';
+	var start =  'beot beot toe';
+
+	var N = target.length;
+	var nTries = 0;
+	var theQuote = [];
+	var textB = null;
+	window.onload = function(){
+		textB = document.getElementById('T1');
+		textB.value = start;
+	};
+	function Run(){
+	var trial = [];
+	for (var j = 0;j<20000;j++){
+		theQuote = start.split('');
+		for(var i = 0;i<N;i++){    // fill up trial with letters chosen at random
+			trial.push(getRandomLetter());
+			if(trial.length === N)break;  // all slots are filled
+		}
+		nTries++;
+		textB.value = trial.toString();
+		//console.log(trial.toString());
+		if(checkQuote(trial, target.split('')) === true){
+			console.log("success !!!!");
+			break;
+		}
+		trial = [];
+	}
+	console.log("Number of tries = "+nTries);
+}
+	function getRandomLetter(){  // side effect theQuote is changed
+		for(var k=0;k<1000;k++){
+			var t = Math.random();
+			t = t * N;
+			var index = Math.floor(t);
+			if(theQuote[index] !== null){
+				var c = theQuote[index];
+				theQuote[index] = null;  
+				return c;
+			}
+		}
+	}
+	function checkQuote(a,b){  // a and b are same length arrays
+		var ncorrect = 0;
+		if(a.length === b.length){
+			for(var i = 0;i<a.length; i++){
+				if(a[i]===b[i]) ncorrect++;
+			}
+			if(ncorrect === a.length){
+				return true;
+			}
+			else return false;
+		}
+		else console.log("Error! - arrays are different lengths");
+	}
+</script>
+<body>
+<input type='text' id='T1'>
+<input type='button' value = 'Run' onclick='Run()' >
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Function Statement</title>
+
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto}
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+  </head>
+
+
+			<textarea id="code" name="code">
+// global message value
+var message = "global message";
+
+function scope(){
+	// local function message value
+	message = "local message";
+	console.log("message: " + message);
+}
+
+// output function message value
+scope();
+
+// output global message value
+console.log("message: " + message);
+
+/* -------------------------------------------------
+	EXERCISE:
+	The code above outputs the same message twice.
+
+	Your task is to output two different messages 
+	by adding one keyword - if you make the right 
+	change you will see the following:
+
+		message: local message
+		message: global message
+   ------------------------------------------------- */</textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>

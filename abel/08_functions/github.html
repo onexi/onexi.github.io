@@ -1,0 +1,117 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Binary Numbers</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation content">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.min.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- used for syntax highlighting on the presentation slide  -->			
+		<link rel="stylesheet" href="../template/lib/css/github.css">		
+
+		<!-- code mirror  -->
+		<link rel="stylesheet" href="../codemirror_new/codemirror.css">
+		<script src="../codemirror_new/codemirror.js"></script>
+		<script src="../codemirror_new/javascript.js"></script>
+
+
+		<!-- css below only used for printing  -->	
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+
+					<section>
+						<h2>Functions Provide Scope</h2>
+						<p>Any variable declaration with a <code>var</code> inside the function is invisible outside the function.</p>
+						<pre><code class="javascript">// global message value
+var message = "outside function";
+
+function scope(){
+	// function message value
+	var message = "inside function";
+	console.log("message: " + message);
+}
+
+// output function message value
+scope();
+
+// output global message value
+console.log("message: " + message);</code></pre>
+
+					</section>
+
+
+
+				<section>
+
+<textarea id="code" name="code">
+// function expression
+var add = function add(a, b) {
+    return a + b;
+};</textarea>
+
+				</section>
+
+
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		</div>
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.min.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				margin: 0.01,
+
+				dependencies: [	
+					// Syntax highlight for <code> elements
+					{ src: '../template/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				]
+			});
+
+		</script>
+
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+
+
+
+	</body>
+</html>

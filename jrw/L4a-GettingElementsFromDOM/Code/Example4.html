@@ -1,0 +1,36 @@
+<html>
+  <head>
+
+    <title>Getting Objects from DOM</title>
+
+	<!--  utilities and styles -->
+	<link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+
+  </head>
+
+  <body>
+
+
+<textarea id="code" name="code" style="height:400; width:700;">
+<html>
+<head>
+<script>
+function ChangeText(){
+	var element1 = document.getElementById("T1");
+	if(element1.innerText == "Hello"){
+		element1.innerText = "Ninja";
+	}
+	else {
+		element1.innerText = "Hello";
+	}
+}
+</script>
+</head>
+<body>
+	<H1 id="T1" onclick="ChangeText()" >Hello</H1>
+</body>
+</html>
+</textarea>
+</body>
+</html>

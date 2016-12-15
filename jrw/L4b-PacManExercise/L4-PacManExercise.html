@@ -1,0 +1,136 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation content">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.min.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- css below only used for printing  -->	
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Simple Model of The Browser</h1>
+					<h3 class="inverted"> Exercise - PacMan </h3>
+
+					<iframe src="./Code/PacMan0.html" width="800" height="400" ></iframe>
+
+					<p>
+						<i><small><a href="http://www.mit.edu">John R. Williams</a> and <a href="http://www.mit.edu">Abel Sanchez</a></small></i>
+					</p>
+
+
+				</section>
+<section>
+	<h2>Video PacMan Exercise</h2>
+	<iframe src="http://player.vimeo.com/video/86204206" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+</section>
+
+</section>
+<section>
+<section>
+<img src="./Media/YourTurn.jpg" width="600" height="400"><br>
+</section>
+</section>
+<section>
+<section>
+<h3>Exercise - PacMan</h3>
+ <br>
+<img src="./Code/PacMan1.png" width="100" height="100">
+<img src="./Code/PacMan2.png" width="100" height="100"><br>
+Copy the two images above and save them as "PacMan1.png" and "PacMan2.png". Copy the code below into a file called PacMan.html. 
+<br>
+<iframe src="./Code/ExamplePacMan1.html" width="900" height="600" ></iframe>
+</section>
+<section>
+Lets see if we can swap the image PacMan1.png for the image PacMan2.png  by changing the "src" of the image. We'll do this first in the Console and then by inputting Javascript in the Web Page. So after loading the html file open the Chrome Development Environment and the Console. Type in the following<br>
+<br>
+<iframe src="./Code/Snippet1.html" width="900" height="600" ></iframe>
+</section>
+<section>
+Now lets write code in 'Run()' to flip-flop between the two images when you click on the image. 
+<br>
+<iframe src="./Code/Snippet2.html" width="900" height="700" ></iframe>
+</section>
+<section>
+Make sure you understand why the image changes every time you click on it. Notice that we added <b>onclick="Run()"</b> to the "img" tag. <br>
+<iframe src="./Code/PacManPage2.html" width="700" height="600">  </iframe> <br>
+
+</section>
+<section>
+Now lets make the image move across the page every time we click on it. 
+To do this we need to look at what data we can change in the "img" object. The x-coordinate of the image is called "left" and we can get a reference to it at <b>img1.style.left </b>. We also need to modify our "img" tag to add <b>style="position:absolute" </b>.  <br>
+</section>
+<section>
+<iframe src="./Code/Snippet4.html" width="900" height="700" ></iframe>
+</section>
+<section>
+Here is the code from above running
+<iframe src="./Code/PacManPage4.html" width="1000" height="700"> </iframe> <br>
+</section>
+
+
+<section>
+<h3>Final Exercise - Hand this one in for Active Learning</h3>
+Finally can you make the PacMan move across the page in "10px" increments by using the timer 'setInterval(Run,300)';  This way you won't need to click on the image. When the PacMan goes off the right hand side of the page can you reset the postion back to zero? It should look like the PacMan on the next page.
+</section>
+<section>
+<iframe src="./Code/PacMan0.html" width="900" height="500" ></iframe>
+</section>
+</section>
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		</div>
+
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.min.js"></script>
+		<script src="../template/js/analytics.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'linear',
+
+				math: {
+					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				dependencies: [
+					{ src: '../template/lib/js/classList.js' },
+					{ src: '../template/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

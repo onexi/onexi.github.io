@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+  <title>Identifiers</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 300px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+var cities = [
+  { name : "denver", latitude : 39.73928535224345, longitude : -104.98481964122293},
+  { name : "san diego", latitude : 32.73400865085328, longitude : -117.14467120718},
+  { name : "manhattan", latitude : 40.737676802888515, longitude : -73.98896617244718},
+  { name : "dc", latitude : 38.88996344246798, longitude : -77.04304200958249},
+  { name : "santa fe", latitude : 35.689056624842586, longitude : -105.94112505566117},
+  { name : "columbus", latitude : 39.96138593275302, longitude : -82.99915534805295},
+  { name : "seattle", latitude : 47.605743070153494, longitude : -122.33232898067472},
+  { name : "boston", latitude : 42.355066931834095, longitude :  -71.06666726421354 },
+  { name : "chicago", latitude : 41.87581176272876, longitude : -87.61894387554166},
+  { name : "dallas", latitude : 32.778876364797185, longitude : -96.80077297042844},
+];</textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>
+

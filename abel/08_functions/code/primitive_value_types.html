@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto}
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code" style="height:300; width:500;">
+// ----------------------------------------------------
+//  JavaScript primitive value types: 
+//    numbers, strings, booleans, null, and undefined
+// ----------------------------------------------------
+
+// primitive types are compared by value
+var a = 1;
+var b = 2;
+if (a !== b) {
+    console.log("a is not equal to b"); //a is not equal to b 
+};
+
+// assign a's value to b
+b = a;
+if (a === b) {
+    console.log("a is equal to b"); // a is equal to b 
+};
+
+// if we change b, the value of a remains unchanged
+b = 8;
+console.log("a: " + a); // a: 1 
+console.log("b: " + b); // b: 8 </textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>

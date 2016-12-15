@@ -1,0 +1,78 @@
+<!doctype html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/xml.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+  <script src="../../codemirror/css.js"></script>
+  <script src="../../codemirror/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 850px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+
+<textarea id="code" name="code">
+<html>
+<script src="Three.js"></script>
+<body>
+<script>
+var renderer = new THREE.WebGLRenderer({antialias: true});
+renderer.setSize(document.body.clientWidth, document.body.clientHeight);
+document.body.appendChild(renderer.domElement);
+renderer.setClearColorHex(0xEEEEEE, 1.0);
+renderer.clear();
+var fov = 45; // camera field-of-view in degrees
+var width = renderer.domElement.width;
+var height = renderer.domElement.height;
+var aspect = width / height; // view aspect ratio
+var near = 1; // near clip plane
+var far = 10000; // far clip plane
+var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+camera.position.z = 300;
+var scene = new THREE.Scene();
+var cube = new THREE.Mesh(
+  new THREE.CubeGeometry(50,50,50),
+  new THREE.MeshBasicMaterial({color: 0x000000, opacity: 1})
+);
+scene.add(cube);
+
+
+renderer.render(scene, camera);
+var paused = false;
+function animate(t) {
+  if (!paused) {
+    camera.position.set(
+      Math.sin(t/1000)*300, 150, Math.cos(t/1000)*300);
+    renderer.clear();
+    camera.lookAt(scene.position);
+    renderer.render(scene, camera);
+  }
+  window.requestAnimationFrame(animate, renderer.domElement);
+};
+animate(new Date().getTime());
+onmessage = function(ev) {
+  paused = (ev.data == 'pause');
+};
+</script>
+</body>
+</html></textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>
+

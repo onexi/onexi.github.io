@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    html,body { height:100%; }
+</style>
+
+<body ondrop="drop(event)" ondragover="allowDrop(event)">
+
+<img draggable="true" id="smiley" src="smiley.png" style="position:absolute; left:10px; top:10px" ondragstart="drag(event)">
+
+<script>
+
+function allowDrop(e) {
+    e.preventDefault();
+}
+
+function drag(e) {
+    mouseOffset = {
+        x : e.clientX - e.target.offsetLeft,
+        y : e.clientY - e.target.offsetTop
+    };
+} 
+
+function drop(e) { 
+    e.preventDefault();    
+    var smiley = document.getElementById('smiley');
+    smiley.style.left = (e.clientX - mouseOffset.x) + "px";
+    smiley.style.top  = (e.clientY - mouseOffset.y) + "px";
+} 
+
+</script>
+
+</body>
+</html>

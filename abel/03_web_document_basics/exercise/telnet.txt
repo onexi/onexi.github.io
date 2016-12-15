@@ -1,0 +1,17 @@
+abel@abels-MacBook-Pro-6:~$ telnet www.bing.com 80
+Trying 204.79.197.200...
+Connected to any.edge.bing.com.
+Escape character is '^]'.
+GET / HTTP/1.1
+Host: www.bing.com
+
+--------------------------------
+
+abel@abels-MacBook-Pro-6:~$ telnet agriculture.mit.edu 80
+Trying 18.58.4.4...
+Connected to agriculture.mit.edu.
+Escape character is '^]'.
+GET / HTTP/1.1
+Host: agriculture.mit.edu
+
+HTTP/1.1 200 OK

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Strains</title>
+<script language="javascript" type="text/javascript">
+
+var exx,eyy,exy,eyx,tx,ty;
+var vertices3=[];
+var vdash=[];
+var T = null;
+
+window.onload=getCanvas;
+function getCanvas(){
+  canvas = document.getElementById("myCanvas");
+  context =  canvas.getContext ('2d');
+  WIDTH = canvas.width;
+  HEIGHT = canvas.height;
+  
+
+}
+function LoadSquare(){
+	vertices3 = [Vector(-50,-50,1), Vector(-50,50,1), 
+	Vector(50,50,1), Vector(50,-50,1)];          
+
+}
+function Repeat(){
+	setInterval(Run,100);
+}
+function Load(){
+GetInput(); // get input and create T matrix
+LoadSquare();
+Run();
+}
+
+function GetInput(){
+	exx = parseFloat(document.getElementById("EXX").value);
+	eyy = parseFloat(document.getElementById("EYY").value);
+	exy = parseFloat(document.getElementById("EXY").value);
+	eyx = parseFloat(document.getElementById("EYX").value);
+	tx = parseFloat(document.getElementById("TX").value);
+	ty = parseFloat(document.getElementById("TY").value);
+	T = PopulateMatrix();
+}
+function PopulateMatrix(){
+	return Matrix(Vector(exx,exy,tx),Vector(eyx,eyy,ty),Vector(0,0,1));
+}
+
+function Run() { 
+	GetInput();      
+	context.clearRect(0, 0, WIDTH, HEIGHT);
+	var t = []; 
+	var r;
+	for( var i = 0; i < vertices3.length; i++ ) {                
+		v = vertices3[i];
+		r = T.MultiplyBy(v);
+		t.push(r);
+	}
+	DrawRect(t,'Red');
+	vertices3 = t;
+
+}
+function DrawRect(t,col){
+	context.strokeStyle="red";
+  switch(col){
+    case 'Red':
+    context.strokeStyle = "rgba(255, 0, 0, .5)"; break;
+    case 'Blue':
+    context.strokeStyle = "rgba(0, 0, 255, .5)"; break;
+    case 'Green':
+    context.strokeStyle = "rgba(0, 255, 0, .5)"; break;
+  }
+  context.beginPath();
+	context.fillStyle = "#FF1C0A";
+	context.beginPath(); 
+	context.moveTo(t[0].x,t[0].y);                
+	context.lineTo(t[1].x,t[1].y);               
+	context.lineTo(t[2].x,t[2].y);                
+	context.lineTo(t[3].x,t[3].y);                
+	context.closePath();                
+	context.fill();
+}
+
+	function Vector(x,y,z){
+		var Dot = function(v){
+			return this.x*v.x + this.y*v.y + this.z*v.z;
+		};
+		return {x:x, y:y, z:z,Dot:Dot};
+	}
+		
+
+function Matrix(v1,v2,v3){
+	return {m11:v1.x, m12:v1.y, m13:v1.z,
+			m21:v2.x, m22:v2.y, m23:v2.z,
+			m31:v3.x, m32:v3.y, m33:v3.z,
+			Row1: function(){
+				return v1;
+			},
+			Row2:function(){
+				return v2;
+			},
+			Row3:function(){
+				return v3;
+			},
+			MultiplyBy: function(v){
+			return Vector(this.Row1().Dot(v),this.Row2().Dot(v), this.Row3().Dot(v));
+			}
+	};
+}
+</script>
+</head>
+<body>
+	<div>
+	Transoformation Matrix:<br>
+	exx<input type="text" id="EXX" value="1" >
+	exy<input type="text" id="EXY" value="0" > 
+	tx<input type="text" id="TX" value="200" > <br>
+	eyx<input type="text" id="EYX" value="0" >
+	eyy<input type="text" id="EYY" value="1" > 
+	ty<input type="text" id="TY" value="200" ><br>
+	.....<input type="text" id="L0" value="0" >
+	.....<input type="text" id="L1" value="0" >
+	...<input type="text" id="L2" value="1" ><br>
+	<br>
+	<input type="button" value="1st Step" onclick="Load()">
+	<input type="button" value="Repeat" onclick="Repeat()">
+	<br> 
+	</div>
+	<div>
+	<canvas id="myCanvas" width="578" height="400" >
+      </canvas>
+	</div>
+</body>
+</html>

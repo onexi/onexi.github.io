@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title>Coin Toss</title>
+<!--  utilities and styles -->
+<link rel="stylesheet" href="../../template/css/codestyles.css">
+<script src="../../template/js/codeeditor.js"></script>
+</head>
+<body>
+<textarea id="code" name="code" height='1800' width='1600'>
+<html>
+<script>
+	var target = 'to be or not';
+	var start =  'or not be to';
+	var N = target.length;
+	var textBox = null;
+	window.onload = function(){
+		textBox = document.getElementById('T1');
+		textBox.value = start;
+	};
+	function Run(){
+		var nTries = 0;
+		var theTarget = target.split(''); 
+		for (var j = 0;j<Nloop;j++){
+			var bag = start.split(''); //put letters in bag
+			var trial = [];
+			for(var i = 0;i<2000;i++){    // get random letter
+				var index = getRandomLetter(bag);
+				trial.push(bag[index]);
+				removeFromBag(bag, index);
+				if(trial.length === N)break;// all slots full
+			}
+			nTries++;
+			if(checkSolution(theTarget, trial)){
+				proclaimSuccess(trial, nTries);
+				break;
+			}
+		}
+		console.log('Finished '+Nloop+' trials');
+	}
+
+
+</textarea>
+  </body>
+</html>

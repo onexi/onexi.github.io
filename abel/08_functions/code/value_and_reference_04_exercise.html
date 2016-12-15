@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Value Copies</title>
+
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto}
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+
+  </head>
+
+
+			<textarea id="code" name="code">
+/* --------------------------------------------------
+	Answer the questions in line 19, 27, and 31
+   -------------------------------------------------- */
+var school = {name:"MIT",
+		  	school:"cambridge",
+		  	state:"masschusetts",
+		  	river:{name:"charles",
+		  		   sailing:true,
+		  		   rowing:true}};
+
+// get rowing value
+var rowing = school.river.rowing;
+
+// assign a new value to rowing
+rowing = false;
+
+// has the value to "school.river.rowing" changed?
+// --- output value of "school.river.rowing" 
+// --- your code ---
+
+// get river and assign a new value to "name"
+var river = school.river;
+river.name = "mishaum";
+
+// has the value to "school.river.name" changed?
+// --- output value of "school.river.name"
+// --- your code ---
+
+// can you explain the behavior?</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- google analytics -->    
+    <script src="assets/js/googleanalytics.js"></script>
+
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="youTubePlayer"></div>
+
+    <script>
+    	//var random  = Math.floor(Math.random()*1000);
+    	//var USER_ID = 'mit-000-' + random;    	
+
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youTubePlayer', {
+                height: '390',
+                width: '640',
+                videoId: 'sGbxmsDFVnE',
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+        function onPlayerStateChange(event) {
+
+            function getCurrentTime(){
+                var currentdate = new Date(); 
+                var prettyTime = currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds() + ", "
+                + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear();
+
+                return prettyTime;
+            }
+
+            // ---------------- START: GOOGLE ANALYTICS REPORTING ----------------
+    		// track when user clicks to Play
+    	    if (event.data == YT.PlayerState.PLAYING) {
+
+            console.log('play, ' + getCurrentTime());
+
+      			ga('send', {
+              hitType: 'event',
+              eventCategory: 'Video',
+              eventAction: 'play',
+              eventLabel: 'forceAwakens'
+      			});
+
+    	    }
+    	    // track when user clicks to Pause
+    	    if (event.data == YT.PlayerState.PAUSED) {
+            console.log('pause, ' + getCurrentTime());
+
+      			ga('send', {
+              hitType: 'event',
+              eventCategory: 'Video',
+              eventAction: 'pause',
+              eventLabel: 'forceAwakens'
+      			});
+
+    	    }
+    	    // track when video ends
+    	    if (event.data == YT.PlayerState.ENDED) {
+            console.log('end, ' + getCurrentTime());
+
+      			ga('send', {
+              hitType: 'event',
+              eventCategory: 'Video',
+              eventAction: 'end',
+              eventLabel: 'forceAwakens'
+      			});
+
+    	    }
+            // ---------------- END: GOOGLE ANALYTICS REPORTING ----------------
+
+
+        }
+
+        function stopVideo() {
+            player.stopVideo();
+        }
+
+    </script>
+
+  </body>
+</html>

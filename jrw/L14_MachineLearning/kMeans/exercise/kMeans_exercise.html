@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<script src="data.js"></script>
+<canvas id="canvas" width="640" height="480" 
+        style="border:1px solid black;"></canvas>
+<script>
+
+var kMeans 	 	= {};
+kMeans.k        = 3;
+kMeans.means    = [];
+kMeans.clusters = [];
+var counter 	= 0;
+
+// pick random centroids (means) at init
+function pickRandomMeans(k) {
+	// YOUR CODE
+}
+
+function assignCentroids(means) {
+	// YOUR CODE
+}
+
+// the assignCentroids function generates the cluster data
+// getClusters simply creates a new array that is easier to graph
+function getClusters(){
+	// YOUR CODE
+}
+
+// calcute centroid for each cluster
+function recalculateCentroids(clusters){
+	// YOUR CODE
+}
+
+function run(){
+	// assign means (centroids) to data points
+	assignCentroids(kMeans.means);
+
+	// organize data into point clusters
+	clusters = getClusters();
+	graphClusters(clusters);
+
+	// get new centroids
+	var oldMeans = kMeans.means;
+	kMeans.means = recalculateCentroids(clusters);
+	graphMeans(kMeans.means, 'pink', oldMeans);
+}
+
+function init(){
+	// draw data
+	graphData('black'); 	
+
+	// pick random centroids (means) to start
+	kMeans.means = pickRandomMeans(kMeans.k);
+	graphMeans(kMeans.means, 'gray');
+}
+window.onload = init;
+
+</script>
+<script src="graph.js"></script><br>
+<button onclick="run()">Run kMeans Algorithm</button>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,435 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+				<section>
+					<h1>Data Stores</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Data</h2>
+					<p>Fundamental components of computer programs:</p>
+					<ul>
+						<li>A way to represent data</li>
+						<li>A way to store data</li>
+						<li>Instructions to manipulate the data</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Data Stores</h2>
+					<p>Stores and manipulates information</p>
+				</section>
+
+				<section>
+					<h2>Two Types of Data Stores</h2>
+					<ul>
+						<li>Relational: represents all data as tables</li>
+						<li>Document: data is thought of as a “document”</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Database Design</h2>
+					<p>The database design involves choosing:</p>
+					<ul>
+						<li>The documents collections (tables)</li>
+						<li>The fields/properties (the columns)</li>
+						<li>How collections and properties interact</li>
+					</ul>
+				</section>
+
+
+				<!-- -------------------- START -------------------- -->
+
+
+				<section>
+					<h2>Entity-relationship modeling</h2>
+					<p>E/R Modelling is used for conceptual design</p>
+					<ul>
+						<li>Entities - objects or things of interest</li>
+						<li>Attributes - facts or properties of an entity</li>
+						<li>Relationships - links between entities</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Entities</h2>
+					<p>Represent objects or things of interest</p>
+					<ul>
+						<li>Physical things like students, professors, employees</li>
+						<li>Abstractions like courses, programs, projects, orders</li>
+						<li>Have types like course, professor</li>
+						<li>Have instances like courses: calculus, algebra</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Entities in Diagrams</h2>
+					<p>Entities are drawn as a box</p>
+					<img src="media/images/entities.png" height="300">
+				</section>
+
+
+				<section>
+					<h2>Attributes</h2>
+					<p>Attributes are facts, properties, or details of an entity.</p>
+					<ul>
+						<li>Students have IDs, names, courses</li>
+						<li>Courses have names, credits, level</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Attributes in Diagrams</h2>
+					<p>Represented a few different ways.</p>
+					<img src="media/images/attributes.png" height="300">
+				</section>
+
+
+				<section>
+					<h2>Relationships</h2>
+					<p>Relationships are an association between two or more entities.</p>
+					<ul>
+						<li>A student takes several courses</li>
+						<li>A course is taugh by one professor</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Cardinality Ratios</h2>
+					<p>An entity can participate in three types of relationships</p>
+					<ul>						
+						<li>One to one (1:1). Each professor has one office</li>
+						<li>One to many (1:N). A professor can advice many students</li>
+						<li>Many to many (N:N). Each student takes many classes, and each class is taken my many students.</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Relationships in Diagrams</h2>
+					<p>Relationships are links between two entities</p>
+					<img src="media/images/relationships.png" height="300">
+				</section>
+
+				<section>
+					<h2>Removing N:N Relationships</h2>
+					<p>We can split a many to many relationship into two one to many relationships. A new entity represents the N:N relationship.</p>
+					<img src="media/images/nn.png" height="200">
+				</section>
+
+				<section>
+					<h2>Entity-relationship modeling</h2>
+					<p>Look at your data and indentify</p>
+					<ul>						
+						<li>Entities</li>
+						<li>Attributes</li>
+						<li>Relationships</li>
+						<li>Cardinality ratios</li>						
+					</ul>
+				</section>
+
+				<section>
+					<h2>Example</h2>
+					<p>A university consists of a number of departments. Each department offers several programs. A number of courses make up each program. Students enroll in a particular program and take courses towards the completion of that program. Each course is taught by a professor from the appropriate department, and each professor advices a group of students.</p>
+				</section>
+
+				<section>
+					<h2>Example - Entities</h2>
+					<p>A university consists of a number of <b>departments</b>. Each department offers several <b>programs</b>. A number of <b>courses</b> make up each program. <b>Students</b> enroll in a particular program and take courses towards the completion of that program. Each course is taught by a <b>professor</b> from the appropriate department, and each professor advices a group of students.</p>
+				</section>
+
+				<section>
+					<h2>Example - ER Diagram</h2>
+					<p>Entities: department, program, course, professor, student</p>
+					<img src="media/images/entities.png" height="300">
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Complete ER Diagram</p>
+					<img src="media/images/er_exercise.png" height="300">
+				</section>
+
+
+				<!-- --------------------  END  -------------------- -->
+
+
+				<section>
+					<h2>Sample ER Diagram</h2>
+					<a href="media/images/er_diagram.png"><img src="media/images/er_diagram.png" height="450"></a>
+				</section>
+
+
+				<section>
+					<h2>Normalization Rules</h2>
+					<ul>
+						<li>Each row-and-column intersection holds only one value</li>
+						<li>Nonkey columns must depend on the entire primary key</li>
+						<li>No nonkey column depend on another nonkey column</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>We will use a document database</h2>
+					<img src="media/images/documents.png" height="300" style="border:0">
+				</section>
+
+
+				<section>
+					<h2>Advantages of Document Stores</h2>
+					<ul>
+						<li>Documents are independent units</li>
+						<li>Application logic is easier to write</li>
+						<li>Unstructured data can be stored easily</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Active Learning - Install MongoDB</h2>
+					<p>Submit screenshot of running server</p>
+					<p>(<a href="http://www.mongodb.org/">http://www.mongodb.org/</a>)</p>
+					<img src="media/images/mongodb.png" height="200">
+				</section>
+
+				<section>
+					<h2>Path Permissions</h2>
+					<p><i>You may need to set permissions</i></p>
+					<img src="media/images/paths.png" height="200">	
+				</section>
+
+
+				<section>
+					<h2>Bin</h2>
+					<img src="media/images/bin.png" height="250">	
+				</section>
+
+				<section>
+					<h2>Start Server</h2>
+					<p><i>mongod</i></p>
+					<img src="media/images/start_server.png" height="350">
+				</section>
+
+				<section>
+					<h2>Start Client</h2>
+					<p><i>mongo</i></p>					
+					<img src="media/images/start_client.png" height="250">
+				</section>
+
+				<section>
+					<h2>JavaScript & MongoDB</h2>
+					<img src="media/images/js_shell.png" height="250">	
+				</section>
+
+
+				<section>
+					<h2>Document</h2>
+					<img src="media/images/document.png" height="250">	
+				</section>
+
+
+				<section>
+					<h2>Insert</h2>
+					<iframe src="code/insert.html" width="700" height="350" ></iframe>
+				</section>
+
+				<section>
+					<h2>Insert</h2>
+					<img src="media/images/insert.png" height="500">	
+				</section>
+
+				<section>
+					<h2>Collection</h2>
+					<p>Multiple documents make a collection</p>
+				</section>
+
+				<section>
+					<h2>Collection</h2>
+					<img src="media/images/collection.png" height="350">	
+				</section>
+
+				<section>
+					<h2>Active Learning - Create Collection</h2>
+					<p>Enter a few documents into your collection. When you are done, list them using <i>db.yourCollectionName.find()</i></p>
+				</section>
+
+				<section>
+					<h2>Modify Documents</h2>
+					<p><i>db.collection.update()</i></p>
+					<iframe src="code/update.html" width="700" height="350" ></iframe>
+				</section>				
+
+				<section>
+					<h2>Modify Multiple Documents</h2>
+					<p>If <i>multi</i> is set to true, all matching documents are updated. Else, only one document is updated.</p>
+					<iframe src="code/update_multiple.html" width="700" height="350" ></iframe>
+				</section>				
+
+				<section>
+					<h2>Remove Documents</h2>
+					<iframe src="code/remove.html" width="700" height="350" ></iframe>
+				</section>				
+
+				<section>
+					<h2>Remove On Condition</h2>
+					<p>Remove documents in the <i>users</i> collection with email <i>parker@mit.edu</i></p>					
+					<iframe src="code/remove_condition.html" width="700" height="350" ></iframe>
+				</section>				
+
+
+				<section>
+					<h2>Query Documents</h2>
+					<p>the <i>find method</i> retrieves documents from a collection</p>
+					<iframe src="code/find.html" width="700" height="350" ></iframe>
+				</section>
+
+				<section>
+					<h2>Select All Documents in a Collection</h2>
+					<p>An empty query document selects all documents in the collection. Not specifying a query document has the same effect.</p>
+					<iframe src="code/find_all.html" width="700" height="350" ></iframe>
+				</section>
+
+				<section>
+					<h2>Find All</h2>
+					<p><i>db.users.find()</i></p>
+					<img src="media/images/find_all.png" height="100">	
+				</section>
+
+
+				<section>
+					<h2>Specify Condition</h2>
+					<iframe src="code/find_type.html" width="700" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Query Operators</h2>
+					<p>Use <i>$in</i> to match field values. The statement below matches documents in the <i>users</i> collection where the <i>name</i> field is <i>peter</i> or <i>clark</i>. For more query operators, see <a href="http://docs.mongodb.org/">http://docs.mongodb.org/</a></p>
+					<iframe src="code/find_in.html" width="700" height="450" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Query</h2>
+					<img src="media/images/query.png" height="450">	
+				</section>
+
+				<section>
+					<h2>Bulk Insert</h2>
+					<iframe src="code/load.html" width="700" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Bulk Insert</h2>
+					<iframe src="code/bulk_insert.html" width="700" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Robomongo</h2>
+					<p><a href="http://robomongo.org/"><i>http://robomongo.org/</i></a></p>
+					<img src="media/images/robomongo.jpg" height="350">	
+				</section>
+
+				<section>
+					<h2>Robomongo Local</h2>
+					<img src="media/images/robomongo_local.png" height="350">	
+				</section>
+
+				<section>
+					<h2>Video - MongoDB Install OSX</h2>
+					<iframe src="http://player.vimeo.com/video/90500240" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h2>Video - MongoDB Install Windows</h2>
+					<iframe src="https://player.vimeo.com/video/90503618" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h2>Video - Data Conversions</h2>
+					<iframe src="http://player.vimeo.com/video/90510872" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h2>Challenge</h2>
+					<p><a href="http://aba.mit.edu/challenge/">http://aba.mit.edu/challenge/</a></p>
+					<img src="media/images/project.png" height="450">
+				</section>
+
+				<section>
+					<h2>Components</h2>
+					<ol>
+					<li>JavaScript code on the client</li>
+					<li>JavaScript code on the server</li>
+					<li>JavaScript code on the DB</li>
+					<li>Datasets</li>
+					<li>GUI</li>
+					<li>Visualization</li>
+					</ol>
+				</section>
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+	</body>
+</html>

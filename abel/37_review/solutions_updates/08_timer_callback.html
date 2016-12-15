@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+var counter = 0;
+var timerID = 0;
+
+function timer(counter){
+	console.log(counter++);
+
+	// call timer with counter increment
+	timerID = setTimeout(function(){
+		timer(counter++);
+	},1000);
+}
+
+function stop(){ 
+	clearTimeout(timerID);
+}
+
+// call with timer(1)
+</script>
+
+</html>

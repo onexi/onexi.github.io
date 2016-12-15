@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<script src="data.js"></script>
+<canvas id="canvas" width="640" height="480" 
+        style="border:1px solid black;"></canvas>
+<script>
+
+var kMeans 	 	= {};
+kMeans.k        = 3;
+kMeans.means    = [];
+kMeans.clusters = [];
+var counter 	= 0;
+
+// pick random centroids (means) at init
+function pickRandomMeans(k) {
+	var means = [];
+	var x = 0;
+	var y = 0;
+
+	for (var i=0; i<k; i++){
+		x = Math.floor(Math.random()*640);
+		y = Math.floor(Math.random()*480);
+		means.push({x:x, y:y});
+	}
+	return means;
+	//return [{x:1,y:7},{x:10,y:5},{x:4,y:11}];
+}
+
+// consider illustrating (visually) assigning centroids
+function assignCentroids(means) {
+	// loop through data points
+	for (var i=0; i<data.length; i++){		
+
+		// store distance to each centroid
+		var distances = [];
+
+		// loop through centroids
+		// calculate distance from point to centroid
+		for (var j=0; j<means.length; j++){
+			dx = data[i].x - means[j].x;
+			dy = data[i].y - means[j].y;
+			distances[j] = Math.sqrt(dx*dx + dy*dy);
+		}
+
+		// find minimum distance
+		var minDistance = Math.min.apply(null, distances);
+
+		// find index position of minDistance
+		// index position corresponds to closest mean index position
+		data[i].centroid = distances.indexOf(minDistance);
+	}
+}
+
+// the assignCentroids function generates the cluster data
+// getClusters simply creates a new array that is easier to graph
+function getClusters(){
+
+	var clusters = [];
+
+	function match(element, counter) {
+	  return element.centroid === counter;
+	}
+
+	for(var i=0; i<kMeans.k; i++){
+		clusters.push(
+			data.filter(function(element){
+					return match(element, i);
+				}		
+			));
+	}
+	return clusters;
+}
+
+// calcute centroid for each cluster
+function recalculateCentroids(clusters){
+	var means = [];
+	for(var i=0; i<clusters.length; i++){
+		var xSum = 0;
+		var ySum = 0;
+		for(var j=0; j<clusters[i].length; j++){
+			xSum += clusters[i][j].x;
+			ySum += clusters[i][j].y;
+		}
+		var xCentroid = xSum/clusters[i].length;
+		var yCentroid = ySum/clusters[i].length;
+
+		// store old centroid, compare to new, if no change
+		// for more then 3 times, nudge
+		means[i] = {x:xCentroid, y:yCentroid};
+	}
+	return means;
+}
+
+
+function run(){
+	// assign means (centroids) to data points
+	assignCentroids(kMeans.means);
+
+	// organize data into point clusters
+	clusters = getClusters();
+	graphClusters(clusters);
+
+	// get new centroids
+	var oldMeans = kMeans.means;
+	kMeans.means = recalculateCentroids(clusters);
+	graphMeans(kMeans.means, 'pink', oldMeans);
+}
+
+
+function init(){
+	// draw data
+	graphData('black'); 	
+
+	// pick random centroids (means) to start
+	kMeans.means = pickRandomMeans(kMeans.k);
+	graphMeans(kMeans.means, 'gray');
+}
+window.onload = init;
+
+</script>
+<script src="graph.js"></script><br>
+<button onclick="run()">Run kMeans Algorithm</button>
+</html>
+
+
+
+
+
+
+

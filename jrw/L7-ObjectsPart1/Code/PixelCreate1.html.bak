@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+ <link rel="stylesheet" href="../../template/css/codestyles.css">
+		<script src="../../template/js/codeeditor.js"></script>
+  </head>
+  <body>
+<textarea id="code" name="code" style="height:600; width:800;">
+function Pixel(x,y){
+	return {xp:x+'px', yp:y+'px'};
+}
+var p1 = Pixel(3,4);
+console.log(p1.xp);
+console.log(p1.yp);
+
+</textarea>
+<div>
+		<input type="submit" value="run code" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="reload original code" id="reloadCode" onclick="location.reload();"/>
+	</div>
+
+	<br/>
+	<div id="output" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Output:</div>
+
+
+</body>
+</html>

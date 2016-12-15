@@ -1,0 +1,44 @@
+<!doctype html>
+<head>
+  <title>properties with arrays</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1.1em;}
+    .CodeMirror { height: auto; border: 1.2px solid #ddd; }
+    .CodeMirror-scroll { max-height: 350px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+function animate(t) {
+  // spin the camera in a circle
+  camera.position.x = Math.sin(t/1000)*300;
+  camera.position.y = 150;
+  camera.position.z = Math.cos(t/1000)*300;
+
+  // you need to update lookAt every frame
+  camera.lookAt(scene.position);
+
+  // renderer automatically clears unless autoClear = false
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(animate, renderer.domElement);
+};
+animate(new Date().getTime());</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+

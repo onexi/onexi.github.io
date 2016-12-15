@@ -1,0 +1,144 @@
+<html>
+<head>
+<script src="Vector2D.js" type="text/javascript" charset="utf-8"></script>
+<script>
+sim ={nodes  :[],
+			links  :[],
+			context:null,
+			canvas :null,
+		};
+var pos = Vector(200,100);
+window.onload=getCanvas;
+function getCanvas(){
+  sim.canvas = document.getElementById("myCanvas");
+  sim.context =  sim.canvas.getContext ('2d');
+ }
+function makeGraph(){
+	var n1 = Node(pos,5);
+	n1.id = '1';
+	sim.nodes.push(n1);
+	var c = Vector(pos.x-100,pos.y+100);
+	var n2 = Node(c,5);
+	n1.children.push(n2);
+	n2.id = '2';
+	sim.nodes.push(n2);
+	var alink = Link(n1,n2);
+	sim.links.push(alink);
+
+  // solution 
+  createNode(findNodeName('1'),'3',Vector(pos.x+100,pos.y+100), 5);
+
+  createNode(findNodeName('2'),'4',Vector(pos.x-150,pos.y+200), 5);
+
+  createNode(findNodeName('2'),'5',Vector(pos.x-50,pos.y+200), 5);
+
+  createNode(findNodeName('3'),'6',Vector(pos.x+150,pos.y+200), 5);
+  plotAll();
+}
+function createNode(parent,name, position,radius){
+  var n = Node(position,radius);
+  n.id = name;
+  parent.children.push(n);
+  sim.nodes.push(n);
+  sim.links.push( Link(parent, n));
+}
+function findNodeName(name){
+  var n = sim.nodes.length;
+  for(var i=0;i<n;i++){
+    if(sim.nodes[i].id === name)return sim.nodes[i];
+  }
+  return null;
+}
+function plotAll(){
+  sim.context.clearRect(0, 0, sim.WIDTH, sim.HEIGHT);
+  var p;
+  for(var i=0;i<sim.nodes.length;i++) {
+    p = sim.nodes[i];
+    if(p.visible === true)
+      DrawCircle(p.center,p.radius,p.color);
+      if(p.id !== null)DrawCharAt(p.id, p.center.x+10,p.center.y);
+  }
+  var n = sim.links.length;
+  var s;
+  for(i=0;i<n;i++){
+    s = sim.links[i];
+    if (s.visible === true)
+     DrawLine(s.nodes[0].center,s.nodes[1].center,s.color);
+  }
+}
+
+function Node(center,radius){
+	var id = null;
+	var children = [];
+	var color = 'Green';
+	var visible = true;
+	return { center:center, 
+		id:id,radius:radius,
+		color:color,
+		children:children,
+		visible:visible
+	};
+}
+//   springs or links between particles or nodes
+function Link(p0,p1){
+var nodes = [p0,p1]; // these are the particles
+var originalLength = 20;
+var color = 'Red';
+var visible = true;
+
+return {nodes:nodes, color:color, visible:visible,
+	originalLength:originalLength
+};
+}
+
+function DrawCircle(p,r,col){
+  switch(col){
+    case 'Red':
+    sim.context.fillStyle = "rgba(255, 0, 0, .5)"; break;
+    case 'Blue':
+    sim.context.fillStyle = "rgba(0, 0, 255, .5)"; break;
+    case 'Green':
+    sim.context.fillStyle = "rgba(0, 255, 0, .5)"; break;
+  }
+  sim.context.beginPath();
+  sim.context.arc(p.x,p.y,r, 0, Math.PI*2, true);
+  sim.context.closePath();
+  sim.context.fill();
+}
+function DrawLine(c0,c1,color){
+  if(color==='blue')sim.context.strokeStyle = '#00f'; // blue
+  else sim.context.strokeStyle = '#f00'; // red
+  sim.context.fillStyle   = '#00f'; // blue
+  sim.context.lineWidth   = 1;
+  sim.context.beginPath();
+  sim.context.moveTo(c0.x,c0.y);
+  sim.context.lineTo(c1.x,c1.y);
+  sim.context.stroke();
+  sim.context.closePath();
+}
+function DrawCharAt(c,x,y){
+  var text = c.toString();
+  sim.context.beginPath();
+  sim.context.font = "5pt Calibri";
+  sim.context.fillStyle = "blue";
+  sim.context.fillText(text,x,y);
+  sim.context.closePath();
+  sim.context.fill();
+}
+
+function writeJSON(){
+	console.log(JSON.stringify(sim.nodes[0]));
+}
+</script>
+</head>
+<body>
+	<div id="holder">
+		<canvas id="myCanvas" width="600" height="400" >
+		</canvas>
+	</div>
+	<div>
+		<input type="button" value="MakeGraph" onclick= "makeGraph()" />
+		<input type="button" value="WriteJSON" onclick= "writeJSON()" />
+	</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/xml.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+  <script src="../../codemirror/css.js"></script>
+  <script src="../../codemirror/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 300px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+
+<textarea id="code" name="code">
+<!DOCTYPE html>
+<html>
+
+<h1>Sensor Data</h1>
+</center>
+<table>
+<tr>
+  <td>Temperature: </td>
+  <td><div id="temperature"></div></td>
+</tr>         
+<tr>
+  <td>Precipitation: </td>
+  <td><div id="precipitation"></div></td>
+</tr>         
+<tr>
+  <td>Humidity: </td>
+  <td><div id="humidity"></div></td>
+</tr>         
+
+<tr>
+  <td>Wind: </td>
+  <td><div id="wind"></div></td>
+</tr>         
+
+<tr>
+  <td></td>
+  <td>
+  <button id="save" onclick="saveWeather()">Generate & Save</button>
+  <button id="clear" onclick="clearForm()">Clear Storage</button>
+  <button id="read" onclick="readWeather()">Read</button>
+  </td>
+</tr>         
+</table>
+</center>
+
+<div id="status"></div>
+
+<script>
+var saveWeather = function(){
+
+};
+
+var readWeather = function(){ 
+
+};
+
+var clearForm = function(){ 
+
+};
+</script>
+</html>
+</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>
+

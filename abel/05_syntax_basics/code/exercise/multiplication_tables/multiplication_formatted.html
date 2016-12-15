@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+var table = '';
+var value;
+
+for(var i=1; i<=10; i++){
+	for(j=1; j<=10; j++){
+		value = i*j;
+		if (value.toString().length < 2){
+			value = ' ' + value;
+		}
+		table = table + ' ' + value;
+	}
+	console.log(table);
+	table = '';	
+}
+
+</script>
+</html>

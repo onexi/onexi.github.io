@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<script src='https://www.google.com/jsapi'></script>
+<script>
+var data;
+var options;
+var chart;
+
+google.load('visualization', '1', {packages:['gauge']});
+google.setOnLoadCallback(init);
+
+function drawChart() {
+
+  data = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Memory', 80],
+    ['CPU', 55],
+    ['Network', 68]
+  ]);
+
+  options = {
+    width: 400, height: 120,
+    redFrom: 90, redTo: 100,
+    yellowFrom:75, yellowTo: 90,
+    minorTicks: 5
+  };
+
+  chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+  chart.draw(data, options);
+
+}
+
+function init(){
+  drawChart();
+  timer();
+}
+
+function timer(){
+  updateData();
+  setTimeout(timer,2000);
+}
+
+function updateData(){
+  var memory = Math.floor(100*Math.random());
+  var cpu = Math.floor(100*Math.random());
+  var network = Math.floor(100*Math.random());
+
+  if (memory > 90 || cpu > 90 || network > 90){
+    playAudio('danger.mp3')
+  }
+
+  data = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Memory', memory],
+    ['CPU', cpu],
+    ['Network', network]
+  ]);
+  chart.draw(data, options);
+}
+
+function playAudio(file){
+  var audio = document.createElement("audio");
+  if (audio != null && audio.canPlayType && audio.canPlayType("audio/mp3")) {
+    audio.src = file;
+    audio.play();
+  }        
+}
+
+</script>
+
+<div id='chart_div'></div>
+
+</html>
+

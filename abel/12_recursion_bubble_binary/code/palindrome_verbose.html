@@ -1,0 +1,63 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:0.8em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+</head>
+
+
+<textarea id="code" name="code">
+function isPalindrome(word){
+  console.log('word: ' + word);
+
+    // rule check
+    if(word.length <= 1) {
+        console.log('return true');
+        return true;
+    }
+    else{
+        // string manipulation
+        var length = word.length;
+        var start = word[0];
+        var end = word[length - 1];
+        var innerString = word.slice(1,length-1);
+
+        // rule check        
+        var startEndIsEqual = (start === end);
+
+        // rule check
+        var substringIsPalindrome = isPalindrome(innerString);
+
+        // write palindome
+        if (substringIsPalindrome) {
+            console.log('word: ' + word);
+        }
+
+        // if rules checkout, return true
+        return (startEndIsEqual && substringIsPalindrome); 
+    }
+}</textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>
+

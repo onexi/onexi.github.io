@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Value Copies</title>
+
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto}
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+  </head>
+
+
+			<textarea id="code" name="code">
+/* --------------------------------------------------
+	Write code for the requested sections
+   -------------------------------------------------- */
+	var a = {x:1,y:2};
+	var b = {x:3,y:4};
+	var c = {x:5,y:6};	
+
+	// make a copy of the object references a,b,c
+	// ---------------------------
+	//   your code
+	// ---------------------------
+
+	// assign a new object reference to a,b,c
+	//  - your code
+
+	// the x,y value of a,b,c
+	console.log("a:" + a.x + "," + a.y);
+	console.log("b:" + b.x + "," + b.y);
+	console.log("c:" + c.x + "," + c.y);
+
+	// the x,y value of your reference copies
+	console.log("a_ReferenceCopy:" + a_ReferenceCopy.x + "," + a_ReferenceCopy.y);
+	console.log("b_ReferenceCopy:" + b_ReferenceCopy.x + "," + b_ReferenceCopy.y);
+	console.log("c_ReferenceCopy:" + c_ReferenceCopy.x + "," + c_ReferenceCopy.y);
+
+	// pause execution
+	console.log("live debugging");</textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>

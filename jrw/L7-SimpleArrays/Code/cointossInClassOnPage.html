@@ -1,0 +1,46 @@
+<html>
+<head>
+
+<title>Coin Toss</title>
+<!--  utilities and styles -->
+<link rel="stylesheet" href="../../template/css/codestyles.css">
+<script src="../../template/js/codeeditor.js"></script>
+</head>
+<body>
+<textarea id="code" name="code" height='1400' width='1600'>
+<html>
+<script>	
+	var allHeads = '000000';
+	var coinTosses = allHeads.length;
+	var sanityCheck = 10000; 
+	function Run(){
+		// keep track of heads, current toss
+		var heads = [];
+		var toss;
+		// run experiment
+		for (var i = 1; i < sanityCheck; i++){
+			toss = tossCoin();
+			// if heads, add to array, else start over
+			if (toss === 0) {heads.push(toss);}
+			else{heads = [];}
+			// output current tosses, increase counter
+			console.log(i + ' : ' + JSON.stringify(heads));
+			// if we have enough heads, stop 
+			if (heads.length === coinTosses){
+				console.log('you are done!');
+				break;
+			}
+		}	
+	}
+	function tossCoin(){  
+			var toss = Math.random()*2;
+			return Math.floor(toss);
+	}
+
+</script>
+<input type='text' id='T1'>
+<input type='button' value = 'Run' onclick='Run()' >
+</html>
+</textarea>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+</head>
+
+
+<textarea id="code" name="code">
+// copy reference of city01 obj into city02
+var city01 = {name : 'boston', state : 'MA'};
+var city02 = city01;
+
+
+// assign new object to city01
+city01 = {name : 'miami', state : 'fl'};
+
+
+// what does city02.name print?
+console.log('city02.name: ' + city02.name);
+
+
+// getting the reference back
+city01 = city02;
+
+
+// what does city01.name print?
+console.log('city01.name: ' + city01.name);</textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>

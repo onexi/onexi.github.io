@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Mouse Events</title>
+ <SCRIPT>
+var x;
+var y;
+window.onload = Run;
+function Run(){
+	document.onmousedown = trackMouse;
+}
+function trackMouse(e) {
+	x = e.pageX;
+	y = e.pageY;
+	alert('Mouse = ('+x+', '+y+')');
+}
+</SCRIPT>
+</head>
+</html>

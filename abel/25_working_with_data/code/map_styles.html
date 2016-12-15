@@ -1,0 +1,75 @@
+<!doctype html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/xml.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+  <script src="../../codemirror/css.js"></script>
+  <script src="../../codemirror/htmlmixed.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:0.8em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height:350px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+var map;
+
+function initialize() {
+    var latlng = new google.maps.LatLng(41.886903, -87.722740);
+    var customStyle = 'custom_style';
+
+    var featureOpts = style();
+
+    var mapOptions = {
+        zoom: 12,
+        center: latlng,
+        mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, customStyle]
+        },
+        mapTypeId: customStyle
+    };
+
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    var styledMapOptions = {
+        name: 'Custom Style'
+    };
+
+    var customMapType = new google.maps.StyledMapType(featureOpts, 
+                                                  styledMapOptions);
+    map.mapTypes.set(customStyle, customMapType);
+}
+
+
+function style(){
+    return [
+        {
+            featureType: 'all',
+            stylers: [
+                {visibility: 'on'},
+                {hue: '#0000ff'},
+                {invert_lightness: 'true'},
+                {saturation: -50}
+            ]
+        }
+    ];
+}</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+

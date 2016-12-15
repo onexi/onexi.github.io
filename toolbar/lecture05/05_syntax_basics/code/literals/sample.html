@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+	<!--  utilities and styles -->
+	<script src="../../../codemirror/utilities.js"></script>
+	<link rel="stylesheet" href="../../../codemirror/styles.css">
+
+  </head>
+  <body>
+<textarea id="code" name="code" style="height:300; width:300;">
+1624&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// number
+"boston"&nbsp;&nbsp;&nbsp;// string
+'new york'&nbsp;// string
+true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// boolean
+false&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// boolean
+</textarea>
+
+
+	<script type="text/javascript">
+
+		var slide;				
+		window.onload = function(){
+				slide = editorBuilder('code', 'canvas');
+				slide.loadCode();				
+			};
+
+	</script>
+
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+		
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+
+
+				<section>
+					<h1>filters, sorting, callbacks</h1>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Select items larger than 30</h2>
+					<p>Write a function to select array items larger than 30</p>
+					<iframe src="code/select.html" width="700" height="500" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Callback Pattern</h2>
+					<p>A callback is a function that is passed as an argument to other code. The receiving code is expected to call back (execute) the argument when needed.</p>
+					<iframe src="code/callback.html" width="700" height="500" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Filter</h2>
+					<p>Applying a filter creates a new array with all elements that pass your function. The method takes a callback function.</p>
+					<iframe src="code/filter.html" width="700" height="450" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Filtering Objects</h2>
+					<iframe src="code/filter_hello_world.html" width="750" height="450" ></iframe>
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					Filter MechE students (course 2)
+					<iframe src="code/filter_students.html" width="750" height="450" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Sort</h2>
+					<p>The sort method takes a function and sorts the array. Your function needs to return positive, negative, or zero.</p>					
+					<iframe src="code/sort.html" width="750" height="450" ></iframe>					
+				</section>
+
+				<section>
+					<h2>Sort Numbers</h2>
+					<iframe src="code/sort_numbers.html" width="750" height="450" ></iframe>		
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Sort students by age</p>
+					<iframe src="code/sort_students.html" width="750" height="450" ></iframe>		
+				</section>
+
+				<section>
+					<h1>The End</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+		<script>
+
+			function playAudio(file){
+				var audio = document.createElement("audio");
+				if (audio != null && audio.canPlayType && audio.canPlayType("audio/mp3")) {
+					audio.src = file;
+					audio.play();
+				}        
+			}
+
+		</script>
+
+
+	</body>
+</html>

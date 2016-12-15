@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+/*
+Code to catch mouse down and mouse up events
+*/
+var canvas;
+var context;
+var particles = [];
+
+window.onload=getCanvas;
+function getCanvas(){
+  canvas = document.getElementById("myCanvas");
+  context =  canvas.getContext ('2d');
+
+}
+function Vector(x,y){
+	return{x:x,y:y};
+}
+function Particle(center,radius){
+  return {center:center, radius:radius};
+}
+// on mouse up call this
+function drawAll(){
+  var n = particles.length;
+  for(i=0;i<n;i++){
+    console.log(particles[i].x);
+    DrawCircle(particles[i].center,particles[i].radius);
+  }
+}
+// on mouse down call this
+function makeObject(e) {   
+  var radius = 10;
+  particles.push(Particle(Vector(e.pageX,e.pageY),radius));
+}
+function DrawCircle(p, radius){
+  context.fillStyle = "rgba(255, 0, 0, 1)";
+  context.beginPath();
+  context.arc(p.x, p.y, radius, 0, Math.PI*2, true);
+  context.closePath();
+  context.fill();
+}
+function SetCreateParticle(){
+  // wire up mouse events
+  document.onmousedown = makeObject;
+  document.onmouseup   = drawAll;
+}
+   </script>
+</head>
+<body>
+<canvas id="myCanvas" width="600" height="400" ></canvas>
+<div>
+<input type='button' value='make Particle' onclick='SetCreateParticle()'/>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+  <head>
+	<link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+  </head>
+  <body>
+<textarea id="code" name="code" style="height:500; width:700;">
+<html>
+<head>
+<SCRIPT>
+var flag = 1;
+var timer;
+function Run(){
+	var img1 = document.getElementById("PacMan");
+	var pos = 200;
+	img1.style.left = pos+"px";
+	if(flag === 1){
+		img1.src = "PacMan2.png";
+		flag = 0;
+	}
+	else {
+		img1.src = "PacMan1.png";
+		flag = 1;
+	}
+}
+function RunPhysics(){
+	timer = setInterval(Run,200);
+}
+function ResetTimer(){clearInterval(timer);
+}
+</SCRIPT>
+</head>
+<body>
+	<img id="PacMan" src = "PacMan1.png"
+	onclick = "Run()" style="position:absolute"> </img>
+ 	<input type="button" value="Start" onclick= "RunPhysics()" />
+	<input type="button" value="Stop"  onclick= "ResetTimer()" />
+	
+</body>
+</html>
+</textarea>
+  </body>
+</html>

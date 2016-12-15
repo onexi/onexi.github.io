@@ -1,0 +1,51 @@
+<!doctype html>
+<head>
+  <title>Variables</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }    
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+var start   = currentTime();
+var stop    = start + (1000*30);
+var counter = 0;
+var length  = 800000000;
+var timerId;
+
+
+function currentTime(){
+  return (new Date).getTime();
+}
+
+function task(){ 
+  for(var i=0; i<length; i++){} 
+}
+
+function run(){
+  var start = currentTime();
+  task();
+  var stop  = currentTime();  
+  console.log('task time: ' + (stop-start)/1000);
+}</textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+

@@ -1,0 +1,148 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Arrays Introduction</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../template/css/print/pdf.css' : '../template/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Javascript Arrays</h1>
+					<h3 class="inverted">  </h3>
+
+					<iframe src="./Media/a1.png" width="900" height="600" ></iframe> 
+					<br>
+						<i><small><a href="http://www.mit.edu">John R. Williams</a> and <a href="http://www.mit.edu">Abel Sanchez</a></small></i>
+					</p>
+</section>
+				
+<section>
+	<h2>Integer Arrays</h2>
+	<iframe src="http://player.vimeo.com/video/86457928" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+</section>
+</section>
+<section>
+<section>
+Follow along yourself in the Chrome Console.<br>
+Arrays in Javascript can store any kind of object eg numbers, strings etc. Here we will just store integers for compactness. We will demonstrate only the most common commands we will use. In a later lesson we will come back and discuss arrays in much more detail. <br>
+<img src="./Media/a1.png" width="600" height="350"><br>
+</section>
+<section>
+Arrays are 'zero' based so the first slot is a[0], then a[1] etc. If there are N slots then the last slot is a[N-1]<br>
+<img src="./Media/a2.png" width="600" height="500"><br>
+</section>
+<section>
+'push' a number onto the end of an array. Increases array length.<br>
+<img src="./Media/push.png" width="600" height="400"><br>
+</section>
+<section>
+'pop' a number from the end of an array. Alters array length.<br>
+<img src="./Media/pop.png" width="600" height="400"><br>
+</section>
+<section>
+'shift' a number from the beginning of an array. Alters array length.<br>
+<img src="./Media/shift.png" width="600" height="400"><br>
+</section>
+<section>
+'unshift' adds a number from the beginning of an array. Alters array length. <br>
+<img src="./Media/unshift.png" width="600" height="400"><br>
+</section>
+<section>
+'sort' - sorts an array.<br>
+<img src="./Media/sort.png" width="600" height="400"><br>
+</section>
+<section>
+'reverse' - reverse sorts an array.<br>
+<img src="./Media/reverse.png" width="600" height="400"><br>
+</section>
+<section>
+'indexOf' returns the index location of a number.<br>
+<img src="./Media/indexof.png" width="600" height="400"><br>
+</section>
+<section>
+Concatenate 2 arrays into a single array.<br>
+<img src="./Media/concat.png" width="600" height="400"><br>
+</section>
+<section>
+'slice' a section out of the array - leaves the array the same.<br>
+slice(start_pos, upto_end_pos)<br>
+<img src="./Media/slice.png" width="600" height="400"><br>
+</section>
+<section>
+'splice' a section out of the array - mutilates the array.<br>
+splice(start_pos, number_to_cut_out) <p>
+It is often used to remove the first element. The array can then act like a 'queue' ie splice(0,1)
+<img src="./Media/splice.png" width="600" height="400"><br>
+</section>
+
+<section>
+'splice' can also 'repair' an array by inserting elements.<br>
+splice(start_pos, 0, elements_to_be_inserted);
+<img src="./Media/spliceAddElements.png" width="600" height="600"><br>
+</section>
+</section>
+<section>
+<section>
+<img src="./Media/YourTurn.jpg" width="600" height="400"><br>
+</section>
+</section>
+<section>
+<section>
+<h2>Active Learning - See Stellar Site </h2>
+</section>
+</section>
+
+<!-- answers are [3,2] and a.splice(0,4) -->
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		</div>
+
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+	</body>
+</html>

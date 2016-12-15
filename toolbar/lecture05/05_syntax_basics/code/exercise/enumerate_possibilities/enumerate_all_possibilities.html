@@ -1,0 +1,116 @@
+<!doctype html>
+<script>
+	/*
+		How many different groups of 3 students can 
+		be chosen from a group of 18
+		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+
+		Find all combinations.
+	*/
+
+	function combinations()
+	{
+		var i, j, k;
+		var counter = 0;
+		var length = 18;
+
+		for (i=1; i <= length-2; i++)
+		{
+			for (j=i + 1; j <= length-1; j++)
+			{
+				for (k=j + 1; k <= length; k++){
+					console.log(i + ' ' + j + ' ' + k);
+					counter++;
+				}
+			}
+		}
+
+		console.log('counter: ' + counter);
+	}
+
+
+
+	function run(){
+		combinations();		
+	}
+
+
+	/*
+
+		----------------------------------------------------------------------
+		----------------------------------------------------------------------
+
+		Formulation to test number of combinations		
+
+		combinations =		n!
+		formula			--------
+						r!(n-r)!
+
+
+		In our case: how many different groups 
+		of 3 students can be chosen from a group of 18?
+
+		answer:				18!			18!			18x17x16	4896	
+						--------- = ---------- = ------------ = -------= 816
+						3!(18-3)!		3!15!		3x2x1		6
+
+
+		In our case: how many different groups 
+		of 3 students can be chosen from a group of 5?
+
+		answer:				5!			5!			5x4				20
+						--------- = ---------- = ------------ = -------= 10
+						3!(5-3)!		3!2!		2x1				2
+
+
+		----------------------------------------------------------------------
+		----------------------------------------------------------------------
+
+		Once we have the groups: how many different groups 
+		of 6 teams can be chosen from 816 possible groups?
+
+		answer:		816!		816!		816x815x814x813x812x811	
+				--------- = ---------- = --------------------------	= 402,538,204,390,168
+				6!(816-6)!		6!810!		6x5x4x3x2x1
+
+
+		----------------------------------------------------------------------
+		----------------------------------------------------------------------
+
+		Reasoning for the algorithm:
+
+		Lets say your array of letters looks like this: "ABCDEFGH". 
+		You have three indices (i, j, k) indicating which letters 
+		you are going to use for the current word, You start with:
+
+		A B C D E F G H
+		^ ^ ^
+		i j k
+		First you vary k, so the next step looks like that:
+
+		A B C D E F G H
+		^ ^   ^
+		i j   k
+		If you reached the end you go on and vary j and then k again.
+
+		A B C D E F G H
+		^   ^ ^
+		i   j k
+
+		A B C D E F G H
+		^   ^   ^
+		i   j   k
+		Once you j reached G you start also to vary i.
+
+		A B C D E F G H
+          ^ ^ ^
+          i j k
+
+		A B C D E F G H
+          ^ ^   ^
+          i j   k
+		...		
+
+	*/
+
+</script>

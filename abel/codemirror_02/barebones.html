@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+  <title>CodeMirror: Autocomplete Demo</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="docs.css">
+  <link rel="stylesheet" href="codemirror.css">
+  <script src="codemirror.js"></script>
+  <script src="xml.js"></script>
+  <script src="javascript.js"></script>
+  <script src="css.js"></script>
+  <script src="htmlmixed.js"></script>
+
+  <style>
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 200px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+  <div id="nav">
+    <a href="http://codemirror.net"><img id="logo" src="../doc/logo.png"></a>
+ 
+    <!-- my comment -->
+
+    <ul>
+      <li><a href="../index.html">Home</a>
+      </li><li><a href="../doc/manual.html">Manual</a>
+      </li><li><a href="https://github.com/marijnh/codemirror">Code</a>
+    </li></ul>
+    <ul>
+      <li><a class="active" href="#">HTML completion</a>
+    </li></ul>
+  </div></textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>
+

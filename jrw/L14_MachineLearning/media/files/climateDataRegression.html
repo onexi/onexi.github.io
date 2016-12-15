@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src = "climateData.json"></script>
+    <script type="text/javascript">
+window.onload = function(){
+    run();
+};
+function run(){
+   
+
+    var dataSet = jsonDataset();
+
+    drawChart(dataSet);
+}
+//  build dataset
+// -------------------------------------
+function jsonDataset(){
+
+    //  the first position is used for  
+    //  names for columns in data array
+    // -------------------------------------
+    var dataset = [[{label:'date',id:'date',type:'date'}, {label:'temp',id:'temp'}]];
+
+
+    var length = data.length;
+    var d, year, month, date;
+    for(var i=0; i<length; i++){
+        d = parseInt(data[i].date);
+        year = Math.floor(d/100);
+        month = d-year*100;
+        // it seems the month is zero based so Jan is 0 - but check this
+        date = new Date(year,month-1);
+        dataset.push([date, Number(data[i].GISS)]);
+    }
+    return dataset;
+}
+//  draw graph
+// -------------------------------------
+google.load("visualization", "1", {packages:["corechart"]});
+//google.setOnLoadCallback(drawChart);
+
+function drawChart(data) {
+
+    var options = {
+        title: 'Climate Temperature Anomaly',
+        series: {
+            0: {type: "scatter"}
+        },
+
+        vAxis: {minValue: -1, maxValue: 1},
+
+        trendlines: {
+            0: {
+            color: 'purple',
+            lineWidth: 10,
+            opacity: 0.2,
+            type: 'polynomial',
+            degree: 1,
+            showR2: true,
+            visibleInLegend: true,
+            }
+        }
+    };
+
+    var dataTable = google.visualization.arrayToDataTable(data);
+    var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+    chart.draw(dataTable, options);
+}
+
+function getRandomNumber()  { return Math.floor(Math.random()*100);}
+
+</script>
+
+<div id="chart_div" style="width: 1000px; height: 400px;"></div>
+
+</html>

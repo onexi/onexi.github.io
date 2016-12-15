@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>HTML5 Presentation</title>
+
+	<!--  utilities and styles -->
+	  <link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+
+
+  </head>
+
+  <body>
+
+
+			<textarea id="code" name="code" style="height:300; width:720;">
+// Example - array of values
+
+a = [5,6,7];  // define an array object
+console.log(a[0]+', '+a[1]+', '+a[2]);
+// add another value to the array and write it out
+</textarea>
+
+
+	<div>
+		<input type="submit" value="run code" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="reload original code" id="reloadCode" onclick="location.reload();"/>
+	</div>
+
+	<br/>
+	<div id="output" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Output:</div>
+
+	<br/>
+	<div id="exceptions" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Exceptions:</div>
+
+	<br/>
+	
+	</script>
+
+  </body>
+</html>

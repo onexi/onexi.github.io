@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Code</title>
+
+	<!--  utilities and styles -->
+  <link rel="stylesheet" href="../../template/css/codestyles.css">
+    <script src="../../template/js/codeeditor.js"></script>
+  </head>
+  <body>
+<textarea id="code" name="code" style="height:100; width:730;">
+var b = {
+name: 'fred',
+age: 22
+};
+b.surname='smith';
+b.getName=function(){return {firstName: this.name, 
+   surName: this.surname};};
+var c = b.getName();
+// can you think how we might write out 
+// both name and surname using alert?
+</textarea>
+</body>
+</html>

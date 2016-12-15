@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+ <link rel="stylesheet" href="../../template/css/codestyles.css">
+		<script src="../../template/js/codeeditor.js"></script>
+  </head>
+  <body>
+<textarea id="code" name="code" style="height:400; width:800;">
+function Point(x,y){
+  return {x:x, y:y};
+}
+var p1 = Point(3,4);
+var a = 7;
+var b = Calc(a,p1);
+console.log(a, p1.x);
+function Calc(a, p){
+	a= 99;
+	p.x = 24;
+	return a;
+}
+
+</textarea>
+<div>
+		<input type="submit" value="run code" id="runIntro" onclick="slide.runCode();"/>
+		<input type="submit" value="reload original code" id="reloadCode" onclick="location.reload();"/>
+	</div>
+
+	<br/>
+	<div id="output" style="width:90%; border:1px solid black;background-color:#FFFFB4;"> Output:</div>
+
+
+</body>
+</html>

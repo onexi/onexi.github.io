@@ -1,0 +1,293 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Development Environment</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation content">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.min.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- css below only used for printing  -->	
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+				<section>
+					<h1>Web Document Basics</h1><br>
+					<h3>HTML, CSS, and JavaScript</h3>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+					
+				</section>
+
+				<section>
+					<h2>NYTimes, 169 Requests</h2>
+					<img src="media/images/nytimes.png" height="450">
+				</section>
+
+				<section>
+					<h2>1 Connection to Agriculture</h2>
+					<img src="media/images/agriculture.png" height="270">
+				</section>
+
+				<section>
+					<h2>Web Request By Hand</h2>
+					<img src="media/images/http.png" height="450">
+				</section>
+
+				<section>
+					<h2>Inspecting Request in Browser</h2>
+					<img src="media/images/agriculture2.png" height="450">
+				</section>
+
+				<section>
+					<h2>File System Basics</h2>
+					<ul style="list-style-type: none;">
+						<li>Mac</li>
+						<li>
+							<ul style="list-style-type: square;">
+								<li>pwd - current working directory</li>
+								<li>ls - list files</li>
+								<li>cd - current directory</li>
+								<li>more - file contents</li>
+							</ul>
+						</li>
+						<li><br></li>
+						<li>PC</li>
+						<li>
+							<ul style="list-style-type: square;">
+								<li>dir - list files</li>
+								<li>cd - current directory</li>
+								<li>more - file contents</li>
+								<li>mkdir - make directory</li>
+							</ul>
+						</li>							
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Minimal HTML Document</h2>
+					<img src="media/images/minimal.png" height="400">
+				</section>
+
+				<section>
+					<h2>Adding Title</h2>
+					<img src="media/images/titles.png" height="140">
+				</section>
+
+				<section>
+					<h2>Adding Headings</h2>
+					<img src="media/images/headings.png" height="110">
+				</section>
+
+				<section>
+					<h2>Adding Paragraphs</h2>
+					<img src="media/images/paragraphs.png" height="110">
+				</section>
+
+				<section>
+					<h2>Adding Images</h2>
+					<img src="media/images/images.png" height="120">
+				</section>
+
+				<section>
+					<h2>Adding Links</h2>
+					<img src="media/images/links.png" height="87">
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>	
+					<p>Create the HTML page below. <a href="http://agriculture.mit.edu/jellybeans.html">Here is the jellybeans image.</a></p>			
+					<img src="media/images/browser.jpg" height="450">
+				</section>
+
+				<section>
+					<h2>CSS Basics</h2>
+					<img src="media/images/css_basics.png" height="303">
+				</section>
+
+				<section>
+					<h2>CSS Selectors</h2>
+					<img src="media/images/selectors.png" height="477">
+				</section>
+
+				<section>
+					<h2>CSS (Styles) File</h2>
+					<img src="media/images/stylesfile.png" height="300">
+				</section>
+
+
+				<section>
+					<h2>Adding Styles</h2>
+					<img src="media/images/styles.png" height="120">
+				</section>
+
+				<section>
+					<h2>Styling Elements Directly</h2>
+					<img src="media/images/css_element.png" height="212">
+				</section>
+
+				<section>
+					<h2>CSS Shapes</h2>
+					<center>
+					<table>
+					<tr>
+					<td>
+					<div style="
+						width: 100px;
+						height: 100px;
+						background: red;"></div>
+					</td>
+					<td>
+					<div style="font-family:courier; text-align: left;">
+						#square {<br>
+							&nbsp;&nbsp; width: 100px;<br>
+							&nbsp;&nbsp; height: 100px;<br>
+							&nbsp;&nbsp; background: red;<br>
+						}				
+					</div>
+					</td>
+					</tr>
+					</table>
+					</center>
+					
+				</section>
+
+				<section>
+					<h2>Style Coordinates</h2>
+					<img src="media/images/coordinates_01.jpg" height="250">
+					<img src="media/images/coordinates_02.jpg" height="250">					
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>	
+					<p>Create an HTML page. Position eight circles as fallows.</p>			
+					<img src="media/images/assignment.png" style="border:0;box-shadow:none;">
+					<p>See starter code in next slide</p>
+				</section>
+
+				<section>
+					<h2>Starter Code</h2>
+					<p>
+					The code below produces a green circle. </p>	
+					<iframe src="code/circle_css.html" width="700" height="600" ></iframe>
+				</section>
+
+				<section>
+					<h2>Adding Script</h2>
+					<img src="media/images/javascript.png" height="200">
+				</section>
+
+				<section>
+					<h2>HTML File</h2>
+					<img src="media/images/htmlfile.png" height="450">
+				</section>
+
+				<section>
+					<h2>HTML File In Browser</h2>
+					<img src="media/images/browser.jpg" height="450">
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<ol>
+						<li>Title, "1.00 Exercise"</li>
+						<li>H1 heading, "Welcome to the Web"</li>
+						<li>Add chrome logo image from<br>
+							<a href="http://agriculture.mit.edu/chrome.html">http://agriculture.mit.edu/chrome.html</a></li>
+						<li>Paragraph, "Paragraph text goes here"</li>
+						<li>Create a CSS file</li>
+						<li>Add a font style for H1<br>
+							"h1{font-family:verdana}"
+						</li>
+						<li>Add CSS file to HTML file<br>
+							&lt;link rel="stylesheet" href="style.css"&gt;	
+						</li>
+					</ol>					
+
+				</section>
+
+				<section>
+					<h2>Creating an HTML Page</h2>
+					<iframe src="http://player.vimeo.com/video/86326464" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h2>Web Request by Hand</h2>
+					<iframe src="http://player.vimeo.com/video/86326918" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+				<section>
+					<h2>Web Fonts (optional)</h2>
+					<ul>
+						<li>HTML: 4 fonts by default</li>
+						<li>Device limitations - Tablets have 1 font!</li>
+						<li>Images are very large compared to text</li>
+						<li>Images loose text information - affects SEO</li>
+						<li>Web fonts triumph - browser agreement</li>
+						<li>Resizing on different screens is not a problem (vector)</li>
+						<li>500+ web fonts</li>
+						<li>1 billion used per day</li>						
+					</ul>
+				</section>
+
+				<section>
+					<h2>Specifying Web Fonts I</h2>
+					<a href="code/basics_01.html"><img src="media/images/webFonts_01.jpg" height="366"></a>
+				</section>
+
+				<section>
+					<h2>Specifying Web Fonts II</h2>
+					<a href="code/basics_02.html"><img src="media/images/webFonts_02.jpg" height="367"></a>
+				</section>
+
+
+				<section>
+					<h2>Sample Farm Sign</h2>
+					<a href="code/farmstand.html"><img src="media/images/farmstand.jpg" height="500"></a>	
+				</section>
+
+				
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		</div>
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.min.js"></script>
+		<script src="../template/js/analytics.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+			});
+
+		</script>
+
+
+	</body>
+</html>

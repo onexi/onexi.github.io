@@ -1,0 +1,403 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+
+
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../template/css/print/pdf.css' : '../template/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+				<section>
+					<h1>Web Document Basics</h1><br>
+					<h3>HTML, CSS, and JavaScript</h3>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+					
+				</section>
+
+				<section>
+					<h2>imitate proudly</h2>
+
+
+					<div style="width: 100%; text-align: center;">
+						<div style="display: inline-block;">
+
+						<p style="text-align: left;">We are often given negative feedback on imitation. When it comes to learning to program, Salvador Dali said it best:</p>
+
+						<p><i>“Those who do not want <br>to imitate anything, <br>produce nothing.”</i></p>
+
+						<p style="text-align: left;">As you get started programing, imitate proudly, it’s the quickest way to learn.</p>
+
+
+						</div>
+					</div>
+
+				</section>
+
+				<section>
+					<h2>Three Different Languages</h2>
+					<img src="media/images/html.png" height="256" style="background:none; border:none; box-shadow:none;">
+					<img src="media/images/css.png" height="256" style="background:none; border:none; box-shadow:none;">
+					<img src="media/images/js.png" height="256" style="background:none; border:none; box-shadow:none;">
+				</section>
+
+
+				<section>
+					<h2>NYTimes, 169 Requests</h2>
+					<img src="media/images/nytimes.png" height="450">
+				</section>
+
+				<section>
+					<h2>1 Connection to Agriculture</h2>
+					<img src="media/images/agriculture.png" height="270">
+				</section>
+
+				<section>
+					<h2>Web Request By Hand</h2>
+					<img src="media/images/http.png" height="450">
+				</section>
+
+				<section>
+					<h2>Inspecting Request in Browser</h2>
+					<img src="media/images/agriculture2.png" height="450">
+				</section>
+
+				<section>
+					<h2>File System Basics</h2>
+					<ul style="list-style-type: none;">
+						<li>Mac</li>
+						<li>
+							<ul style="list-style-type: square;">
+								<li>pwd - current working directory</li>
+								<li>ls - list files</li>
+								<li>cd - current directory</li>
+								<li>more - file contents</li>
+							</ul>
+						</li>
+						<li><br></li>
+						<li>PC</li>
+						<li>
+							<ul style="list-style-type: square;">
+								<li>dir - list files</li>
+								<li>cd - current directory</li>
+								<li>more - file contents</li>
+								<li>mkdir - make directory</li>
+							</ul>
+						</li>							
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Minimal HTML Document</h2>
+					<img src="media/images/minimal.png" height="400">
+				</section>
+
+				<section>
+					<h2>Adding Title</h2>
+					<img src="media/images/titles.png" height="140">
+				</section>
+
+				<section>
+					<h2>Adding Headings</h2>
+					<img src="media/images/headings.png" height="110">
+				</section>
+
+				<section>
+					<h2>Adding Paragraphs</h2>
+					<img src="media/images/paragraphs.png" height="110">
+				</section>
+
+				<section>
+					<h2>Adding Images</h2>
+					<img src="media/images/images.png" height="120">
+				</section>
+
+				<section>
+					<h2>Adding Links</h2>
+					<img src="media/images/links.png" height="87">
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>	
+					<p>Create the HTML page below. <a href="exercise/jellybeans.jpg">Here is the jellybeans image.</a></p>			
+					<img src="media/images/browser.jpg" height="450">
+				</section>
+
+				<section>
+					<h2>CSS Basics</h2>
+					<img src="media/images/css_basics.png" height="303">
+				</section>
+
+				<section>
+					<h2>CSS Selectors</h2>
+					<img src="media/images/selectors.png" height="477">
+				</section>
+
+				<section>
+					<h2>CSS (Styles) File</h2>
+					<img src="media/images/stylesfile.png" height="300">
+				</section>
+
+
+				<section>
+					<h2>Adding Styles</h2>
+					<img src="media/images/styles.png" height="120">
+				</section>
+
+				<section>
+					<h2>Styling Elements Directly</h2>
+					<img src="media/images/css_element.png" height="212">
+				</section>
+
+				<section>
+					<h2>CSS Shapes: Square</h2>
+					<center>
+					<div style="
+						width: 100px;
+						height: 100px;
+						background: red;"></div>
+					<div style="font-family:courier; text-align: left;">
+						#square {<br>
+							&nbsp;&nbsp; width: 100px;<br>
+							&nbsp;&nbsp; height: 100px;<br>
+							&nbsp;&nbsp; background: red;<br>
+						}				
+					</div>
+					</center>
+					
+				</section>
+
+
+				<section>
+					<h2>CSS Shapes: Circle</h2>
+					<center>
+					<div style="
+						width:100px;
+						height:100px;
+						border-radius:50%;
+						background:red"></div>
+					<div style="font-family:courier; text-align: left;">
+						#circle {<br>
+							&nbsp;&nbsp; width: 100px;<br>
+							&nbsp;&nbsp; height: 100px;<br>
+							&nbsp;&nbsp; border-radius:50%;<br>
+							&nbsp;&nbsp; background: red;<br>
+						}				
+					</div>
+					</center>
+					
+				</section>
+
+				<section>
+					<h2>CSS Shapes: Triangle</h2>
+					<center>
+					<div style="
+						width: 0;
+						height: 0;
+						border-left: 50px solid transparent;
+						border-right: 50px solid transparent;
+						border-bottom: 100px solid red;"></div>
+					<div style="font-family:courier; text-align: left;">
+						#circle {<br>
+							&nbsp;&nbsp; width: 0px;<br>
+							&nbsp;&nbsp; height: 0px;<br>
+							&nbsp;&nbsp; border-left: 50px solid transparent;<br>
+							&nbsp;&nbsp; border-right: 50px solid transparent;<br>
+							&nbsp;&nbsp; border-bottom: 100px solid red;<br>
+						}				
+					</div>
+					</center>
+					
+				</section>
+
+				<section>
+					<h2>More Shapes ...</h2>
+					<a href="https://css-tricks.com/examples/ShapesOfCSS/">The Shapes of CSS</a>					
+				</section>
+
+
+				<section>
+					<h2>Style Coordinates</h2>
+					<img src="media/images/coordinates_01.jpg" height="250">
+					<img src="media/images/coordinates_02.jpg" height="250">					
+				</section>
+
+				<section>
+					<h2>Position</h2>
+					<img src="media/images/positionAbsolute.png" height="455">
+				</section>
+
+
+				<section>
+					<h2>Active Learning</h2>	
+					<p>Create an HTML page. Position eight circles as fallows.</p>			
+					<img src="media/images/assignment.png" style="border:0;box-shadow:none;">
+					<p>See starter code in next slide</p>
+				</section>
+
+				<section>
+					<h2>Starter Code</h2>
+					<p>
+					The code below produces a green circle. </p>	
+					<iframe src="code/circle_css.html" width="700" height="400" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Adding Script</h2>
+					<img src="media/images/javascript.png" height="200">
+				</section>
+
+				<section>
+					<h2>HTML File</h2>
+					<img src="media/images/htmlfile.png" height="450">
+				</section>
+
+				<section>
+					<h2>Referencing External JS File</h2>
+					<img src="media/images/externalJavascript.png" height="336">
+				</section>
+
+				<section>
+					<h2>Active Learning - Page 1 of 2</h2>
+					<ol>
+						<li>Title, "1.00 Exercise"</li>
+						<li>H1 heading, "Welcome to the Web"</li>
+						<li>Add chrome logo image from
+							<a href="exercise/chrome.png">chrome.png</a></li>
+						<li>Paragraph, "Paragraph text goes here"</li>
+						<li>Create a CSS file</li>
+						<li>Add a font style for H1<br>
+							<div style="font-family:courier; text-align: left;">
+							h1{font-family:verdana}
+							<div style="font-family:courier; text-align: left;">
+						</li>
+					</ol>					
+
+				</section>
+
+				<section>
+					<h2>Active Learning - Page 2 of 2</h2>
+					<ol>
+						<li>Reference CSS file<br>
+							<div style="font-family:courier; text-align: left;">
+							&lt;link rel="stylesheet" href="style.css"&gt;
+							</div>	
+						</li>
+						<li>Create a JavaScript file</li>
+						<li>Add alert<br>
+							<div style="font-family:courier; text-align: left;">
+							alert('hello')
+							</div>
+						</li>
+						<li>Reference JavaScript file<br>
+							&lt;script src="yourFile.js"&gt;&lt;/script&gt;
+						</li>
+					</ol>					
+
+				</section>				
+
+				<section>
+					<h2>Creating an HTML Page</h2>
+					<iframe src="http://player.vimeo.com/video/86326464" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h2>Web Request by Hand</h2>
+					<iframe src="http://player.vimeo.com/video/86326918" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+				<section>
+					<h2>Web Fonts (optional)</h2>
+					<ul>
+						<li>HTML: 4 fonts by default</li>
+						<li>Device limitations - Tablets have 1 font!</li>
+						<li>Images are very large compared to text</li>
+						<li>Images loose text information - affects SEO</li>
+						<li>Web fonts triumph - browser agreement</li>
+						<li>Resizing on different screens is not a problem (vector)</li>
+						<li>700+ web fonts</li>
+						<li>1 billion used per day</li>						
+					</ul>
+				</section>
+
+				<section>
+					<h2>Specifying Web Fonts I</h2>
+					<a href="code/basics_01.html"><img src="media/images/webFonts_01.jpg" height="366"></a>
+				</section>
+
+				<section>
+					<h2>Specifying Web Fonts II</h2>
+					<a href="code/basics_02.html"><img src="media/images/webFonts_02.jpg" height="367"></a>
+				</section>
+
+
+				<section>
+					<h2>Sample Farm Sign</h2>
+					<a href="code/farmstand.html"><img src="media/images/farmstand.jpg" height="500"></a>	
+				</section>
+
+				
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+
+	</body>
+</html>

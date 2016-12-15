@@ -1,0 +1,59 @@
+<!doctype html>
+<head>
+  <title>Identifiers</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:1em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: auto; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+// data object
+var data = {
+  students : [
+    {firstName : 'peter parker', age : 19},
+    {firstName : 'bruce wayne', age : 18},
+    {firstName : 'clark kent', age : 20}  
+  ],
+  schools : [
+    {name : 'mit', city : 'cambridge'},
+    {name : 'bu', model : 'boston'},
+    {name : 'bc', model : 'newton'} 
+  ],
+  // add scholarships 
+};
+
+// loop through students
+var length = data.students.length;
+for (var i = 0; i < length; i++) {
+  console.log(data.students[i].firstName);
+}
+
+// loop through schools
+length = data.schools.length;
+for (i = 0; i < length; i++) {
+  console.log(data.schools[i].name);
+}</textarea>
+
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });      
+
+</script>
+
+</html>
+

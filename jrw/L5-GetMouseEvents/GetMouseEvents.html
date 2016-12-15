@@ -1,0 +1,219 @@
+ <html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation content">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.min.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- css below only used for printing  -->	
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+		<style>
+p{ font-size:12px;
+  margin-left: 1cm; text-align: left
+}
+textarea{ font-size:18px;
+  margin-left: 1cm; text-align: left
+}
+
+		</style>
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Get Mouse Events</h1>
+					<p>
+						<i><small><a href="http://www.mit.edu">John R. Williams</a> and <a href="http://www.mit.edu">Abel Sanchez</a></small></i>
+					</p>
+
+				<iframe src="Code/MouseTracker.html" width="950" height="400" ></iframe><br>
+				</section>
+
+				<section>
+				<iframe src="Media/video.html" width="900" height="700" > </iframe>
+				</section>
+				
+				
+<section>
+<section>
+<p>
+The browser and HTML5 provide several ways in which mouse events can be handled. We have already seen that we can call a "Run()" function when a button is clicked. These functions are often called "listeners" because they wait listening for events. We note that events are associated with HTML elements, such as a button element, document element or canvas element. We'll in the lesson how to add "listeners" to events on a specific HTML element, such as an image or the canvas.</p>
+<textarea  style="height:200; width:800;">
+<input type="button" id="myButton" value="Run" onclick="Run()">
+</textarea>
+</section>
+
+<section>
+<h2>Mouse Events</h2><p>
+We need to capture the mouse events. The browser gives us an easy way to do this. First lets listen for events on the whole 'document'. Every time the mouse is clicked on the document the browser fires an  'onmousedown' event.  There are two ways we can add "listeners" to an HTML element. They are shown below and we can use either. Notice that the listener gets passed the "event" as its first argument. 
+</p>
+<textarea id="code" name="code" style="height:200; width:900;">
+<SCRIPT>
+document.onmousedown(trackMouse);    // notice this uses onmousedown    
+document.addEventListener('mousedown',trackMouse); // this uses mousedown
+function trackMouse(e){
+	// the event e is the mousedown event 
+}
+
+
+</SCRIPT>
+</textarea>
+</section>
+
+<section>
+<p>
+Here is some simple code to track the mouse down event. On the next page you can run it.
+</p>
+<iframe src="Code/getMouseEvents.html" width="950" height="700" ></iframe><br>
+<br>
+</section>
+<section>
+<h2>Click your mouse button to see coordinate in alert box</h2>
+<iframe src="Code/getMouseEventsPage.html" width="950" height="700" ></iframe><br>
+<br>
+</section>
+
+<section>
+<h2> Move your mouse around on the page</h2>
+<iframe src="Code/MouseTracker.html" width="950" height="400" ></iframe><br>
+<br>
+</section>
+<section><p>
+Now lets look at the code to track your mouse by drawing a trail of circles. To do this we are going to use a new element on the HTML page called "canvas". We will use the id to get hold of the canvas and attach listeners to it. 
+</p>
+<textarea id="code" name="code" style="height:200; width:700;">
+<body>
+<canvas id="myCanvas" width="900" height="300"></canvas>
+</body>
+</textarea>
+</section>
+<section>
+<p>
+Here is the JavaScript that adds an event listener to the canvas element. 
+It also draws little red circles on the canvas.  
+</p>
+<textarea id="code" name="code" style="height:600; width:900;">
+<SCRIPT>
+var context; 
+var canvas;
+window.onload=getCanvas;
+function getCanvas(){ 
+canvas = document.getElementById("myCanvas"); // get a handle on canvas
+context = canvas.getContext("2d");   // we need context to draw on canvas
+Run();
+}
+function Run(){
+canvas.addEventListener('mousemove',trackMouse);
+}
+function trackMouse(e) {
+var posx = e.pageX;
+var posy = e.pageY;
+DrawCircle(posx,posy, 3);
+}
+function DrawCircle(x, y, radius){  // notice the use of context to draw
+context.fillStyle = "rgba(255, 0, 0, 1)";
+context.beginPath();
+context.arc(x, y, radius, 0, Math.PI*2, true);
+context.closePath();
+context.fill();
+}
+</SCRIPT>
+</textarea>
+</section>
+	
+<section>
+<h3>Simple events</h3>
+<p>
+The following are simple mouse events:
+<ul>
+<li>mousedown -
+Triggered by an element when a mouse button is pressed down over it
+</li>
+<li>mouseup-
+Triggered by an element when a mouse button is released over it
+</li>
+<li>mouseover-
+Triggered by an element when the mouse comes over it
+</li>
+<li>mouseout-
+Triggered by an element when the mouse goes out of it
+</li>
+<li>mousemove-
+Triggered by an element on every mouse move over it.
+</li>
+</ul>
+</p>
+</section>
+<section>
+<h3>Complex events</h3>
+<p>
+The browser provides more complex events:
+<ul>
+<li>
+click-
+Triggered by a mouse click: mousedown and then mouseup over an element
+</li>
+<li>contextmenu-
+Triggered by a right-button mouse click over an element.
+</li>
+<li>dblclick-
+Triggered by two clicks within a short time over an element
+There is also a mousewheel event, but it’s not used. The scroll event is used to track scrolling instead. It occurs on any scroll, including keyboard scroll.
+</li>
+</ul>
+</p>
+</section>
+</section>
+<section>
+		<h1>THE END</h1>
+</section>
+</div>
+</div>
+	
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.min.js"></script>
+		<script src="../template/js/analytics.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'linear',
+
+				math: {
+					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				dependencies: [
+					{ src: '../template/lib/js/classList.js' },
+					{ src: '../template/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

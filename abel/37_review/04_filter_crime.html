@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+var criminals = [
+	{ id : 88888, name : 'bob', crime : 'NARCOTICS'},
+	{ id : 22222, name : 'ted', crime : 'THEFT'},
+	{ id : 99999, name : 'amy', crime : 'NARCOTICS'},
+	{ id : 44444, name : 'ben', crime : 'ARSON'},
+	{ id : 33333, name : 'eva', crime : 'NARCOTICS'},
+	{ id : 11111, name : 'ivy', crime : 'THEFT'},	
+	{ id : 55555, name : 'pam', crime : 'ARSON'},
+	{ id : 66666, name : 'liz', crime : 'NARCOTICS'},
+	{ id : 66666, name : 'sue', crime : 'THEFT'},
+	{ id : 66666, name : 'sam', crime : 'KIDNAPPING'},	
+];
+
+var crimes = [
+	'NARCOTICS',
+	'THEFT',
+	'ARSON',
+	'KIDNAPPING',
+	'WEAPONS VIOLATION'
+];
+
+function crimeMatch(element) {
+  return element.crime === 'NARCOTICS';
+}
+
+function filter(){
+	var filtered = criminals.filter(crimeMatch);
+	return filtered;
+}
+
+</script>
+</html>

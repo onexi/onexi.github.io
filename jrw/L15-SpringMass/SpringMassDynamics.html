@@ -1,0 +1,366 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Spring Mass Dynamics</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation content">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.min.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- css below only used for printing  -->	
+		<!--<link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+	</head>
+	
+	
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Particle Dynamics</h1>
+		
+
+
+					<p>
+						<i><small><a href="http://www.mit.edu">John R. Williams</a> and <a href="http://www.mit.edu">Abel Sanchez</a></small></i>
+					</p>
+
+<img src='Media/Equation4.png' width="400" height="350"><br>
+				</section>
+				
+				<section>
+			<iframe src="http://player.vimeo.com/video/89019771" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+				</section>
+				
+				
+<section>
+
+<section>
+<h2>Newton's Equations</h2>
+<img src="Media/Equation1.png" width="800" height="600" /><br>
+</section>
+<section>
+<h2>Newton's Equations</h2>
+<img src="Media/Equation2.png" width="800" height="600" /><br>
+</section>
+<section>
+<h2>Newton's Equations</h2>
+<img src="Media/Equation3.png" width="800" height="600" /><br>
+</section>
+<section>
+<h2>Newton's Equations</h2>
+<img src="Media/Equation5.png" width="800" height="600" /><br>
+</section>
+<section>
+<h2>Newton's Equations</h2>
+<img src="Media/Equation6.png" width="800" height="600" /><br>
+</section>
+<section>
+<h2>Newton's Equations</h2>
+<img src="Media/Equation7.png" width="800" height="600" /><br>
+</section>
+<section>
+<h2>Newton's Equations</h2>
+<img src="Media/Equation8.png" width="800" height="600" /><br>
+</section>
+<section>
+<textarea id="code" name="code" style="height:600; width:900;font-size: 16pt; ">
+function Spring(p0,p1,stiffness,velocity){
+	var masses = [p0,p1];
+	var originalLength = p1.center.minus(p0.center).abs();
+	
+	var updateSpringForces = function updateSpringForces(){
+		var c0 = masses[0].center;
+		var c1 = masses[1].center;
+	    var len1 = c1.minus(c0).abs();
+	    var forcemag = (len1 - originalLength)*stiffness;
+	    var unitVec = c1.minus(c0).unit();
+
+	    var f = unitVec.scale(forcemag);
+	    masses[0].force = masses[0].force.plus(f);
+	    masses[1].force = masses[1].force.minus(f);
+	  };
+
+  return {masses:masses, originalLength:originalLength,
+    updateSpringForces:updateSpringForces};
+}
+</textarea>
+</section>
+
+</section>
+<section>
+<section>
+<img src="./Media/YourTurn.jpg" width="600" height="400"><br>
+</section>
+</section>
+<section>
+
+<section>
+In class Assignment 1. <br>
+Here is code starter code to create masses and springs. We'll start with just two masses and one spring to test the code. <br> 
+<img src="Media/canvas.png" width="500" height="600" /><br>
+</section>
+<section>
+<textarea id="code" name="code" style="height:600; width:900;font-size: 12pt; ">
+<!DOCTYPE html>
+<html>
+<head>
+<script src = 'Vector2D.js'></script>
+<script>
+var canvas;
+var context;
+var stiffness = 1;
+var mass    = 1;
+var deltaT  = 0.1;
+var gravity = -1;
+var velx, vely;
+var trackerFlag =0;
+var particles=[];
+var springs = [];
+
+window.onload=getCanvas;
+function getCanvas(){
+  canvas = document.getElementById("myCanvas");
+  context =  canvas.getContext ('2d');
+}
+
+function Run(){
+  setInterval(UpdateAll, 10);
+}
+function UpdateAll(){
+  // zero all the forces on the masses
+  for(var i=0;i<particles.length;i++){
+    particles[i].force = Vector(0,0);
+  }
+  for(i=0;i<springs.length;i++){  // update forces on masses
+    springs[i].updateSpringForces();
+  }
+  // update displacements
+  for(i=0;i<particles.length;i++){
+	if(i>0) updateDisplacement(particles[i]);
+  }
+
+  plotAll();
+
+}
+function plotAll(){
+	if(!trackerFlag){
+		context.clearRect(0, 0, 600, 600);
+		var s;
+		for(var i=0;i<springs.length;i++){
+			s = springs[i];
+			DrawLine(s.masses[0].center,s.masses[1].center);
+		}
+	}
+	var radius = mass * 10;
+	for(i=0;i<particles.length;i++)DrawCircle(particles[i].center,radius);
+}
+function TrackerOn(){
+	if(trackerFlag===0)
+		trackerFlag = 1;  // don't draw the line but track the circle path
+	else {
+		trackerFlag = 0;
+	}
+}
+	// a spring has particles (masses)
+	// it updates itself under gravity
+function Spring(p0,p1,stiffness,velocity){
+	var masses = [p0,p1];
+	var originalLength = p1.center.minus(p0.center).abs();
+	
+	var updateSpringForces = function updateSpringForces(){
+		var c0 = masses[0].center;
+		var c1 = masses[1].center;
+		var len1 = c1.minus(c0).abs();
+		var forcemag = (len1 - originalLength)*stiffness;
+		var unitVec = c1.minus(c0).unit();
+
+		var f = unitVec.scale(forcemag);
+		masses[0].force = masses[0].force.plus(f);
+		masses[1].force = masses[1].force.minus(f);
+		};
+
+  return {masses:masses, originalLength:originalLength,
+    updateSpringForces:updateSpringForces};
+}
+function checkWallCollision(){
+  for(var i=0;i<particles.length;i++){
+    var m = particles[i];
+    var v = m.velocity.x;
+    var dx = m.velocity.x * deltaT;
+    var dy = m.velocity.y * deltaT;
+
+    if (m.center.x + dx > canvas.width || m.center.x + dx < 0){
+      m.velocity.x = -m.velocity.x;
+    }
+    if (m.center.y + dy >= canvas.height || m.center.y + dy <= 0){
+      m.velocity.y = -m.velocity.y;
+    }
+  }
+}
+// this assumes we have a spring with an original Length and stiffness
+function Particle(center,radius){
+	var velocity = Vector(0,0);
+	var force = Vector(0,0);
+	var mass = 1;
+  return {center:center, radius:radius,mass:mass,velocity:velocity,
+			force:force};
+}
+function updateDisplacement(p)
+{
+  p.velocity.x += p.force.x*(deltaT/p.mass);
+  p.velocity.y += (p.force.y - gravity*mass)*(deltaT/p.mass);
+  //console.log('fx,fy ='+m.force.x+', '+m.force.y +' v ='+m.velocity.x+', '+m.velocity.y);
+
+  // check if either mass will hit the wall
+  checkWallCollision(p);
+
+  // update the position of the masses and draw
+  p.center.x += p.velocity.x *deltaT;
+  p.center.y += p.velocity.y *deltaT;
+  DrawCircle(p.center,5);
+}
+// on mouse up call this
+
+function makeParticle(e){
+	var radius = 10;
+   if(e.pageX < canvas.width && e.pageY < canvas.height){
+particles.push(Particle(Vector(e.pageX,e.pageY),radius));
+console.log("particle created at "+e.pageX,', '+e.pageY);
+if(particles.length%2 ===0){
+	var n = particles.length;
+	springs.push(Spring(particles[n-2],particles[n-1],stiffness,Vector(10,0)));
+	plotAll();
+}
+	}
+}
+function pickParticle(e){
+  pickedParticle = null;
+  var a = Vector(e.pageX,e.pageY);
+  if(e.pageX < canvas.width && e.pageY < canvas.height){
+	var target;
+	var p;
+	for(var i=0;i<particles.length;i++){
+		target = particles[i];
+		p = target.center;
+		var d = Math.sqrt(( p.x-a.x)*(p.x-a.x) + (p.y-a.y)*(p.y-a.y));
+		if(d < 20)pickedParticle = target;
+	}
+	}
+}
+// on mouse move call this
+function updatePosition(e){
+  if(pickedParticle!==null){
+    pickedParticle.center.x = e.pageX;
+    pickedParticle.center.y = e.pageY;
+    plotAll();
+  }
+}
+function letGo(){
+  pickedParticle = null;
+  plotAll();
+}
+function SetDragParticle(){
+  document.onmousedown = pickParticle;
+  document.onmousemove = updatePosition;
+  document.onmouseup   = letGo;
+}
+function SetCreateParticle(){
+  document.onmousedown = makeParticle;
+  document.onmouseup   = letGo;
+}
+function DrawLine(c0,c1){
+  context.strokeStyle = '#f00'; // red
+  context.fillStyle   = '#00f'; // blue
+  context.lineWidth   = 4;
+  context.beginPath();
+  context.moveTo(c0.x,c0.y);
+  context.lineTo(c1.x,c1.y);
+  context.stroke();
+  context.closePath();
+}
+function DrawCircle(p, radius){
+  context.fillStyle = "rgba(255, 0, 0, 1)";
+  context.beginPath();
+  context.arc(p.x, p.y, radius, 0, Math.PI*2, true);
+  context.closePath();
+  context.fill();
+}
+   </script>
+</head>
+<body>
+<div>
+<canvas id="myCanvas" width="600" height="600" ></canvas>
+</div>
+<input type='button' value='Run' onclick='Run()' />
+<input type='button' value="Tracker On" onclick="TrackerOn()" /><br>
+<input type='button' value='make Particle' onclick='SetCreateParticle()'/>
+<input type='button' value='drag Particle' onclick='SetDragParticle()'/>
+
+</body>
+</html>
+</textarea>
+</section>
+<section>
+Create two particles. Drag the fixed one so that you get the other to oscillate and create at least two different patters for the orbits. Hand in your screen shots.<br>
+<img src='Media/Pattern1.png' width="300" height="300" /><img src='Media/Pattern3.png' width="300" height="300" /><br>
+</section>
+<section>
+Assignment 2 <br>
+Change the code so that 3 particles are tied together by 2 springs. Hand in a screen shot of the two particles oscillating about the fixed one. <br> 
+<img src='Media/Threes.png' width="500" height="600" /><br>
+</section>
+<section>
+Assignment 3 - Fracture of Materials<br>
+ If the force in any of the springs exceeds 20 then remove that spring. ie the particles break apart. Make at least 3 groups of 3 particles per group and hand in a screen shot after two of the groups break apart. Hint: Find the code where the spring force is generated. Flag the spring if its greater than 20 (use setDeleteSpring = 'this' to grab a reference to the spring object.) Now after the loop over all springs use var k = springs.indexOf(setDeleteSpring) and then delete the spring from 'springs' by using 'splice'<br>
+
+</section>
+</section>
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.min.js"></script>
+		<script src="../template/js/analytics.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'linear',
+
+				math: {
+					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				dependencies: [
+					{ src: '../template/lib/js/classList.js' },
+					{ src: '../template/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

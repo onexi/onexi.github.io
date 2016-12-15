@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+function callServer(){
+	var url = 'http://localhost:8000/?name=abel&fruit=apple';
+
+	// make xhr request
+	var xhReq = new XMLHttpRequest();
+	xhReq.open('GET', url, false);
+	xhReq.send(null);
+	var serverResponse = xhReq.responseText;
+
+	// create object from response
+	var obj = JSON.parse(serverResponse);
+	console.log(obj.name);
+	console.log(obj.fruit);	
+}
+
+</script>
+
+<input type="button" value="call server" onclick="callServer()">
+
+</html>

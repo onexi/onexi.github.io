@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<body>
+
+<script>
+
+	var a = {x:1,y:2};
+	var b = {x:3,y:4};
+	var c = {x:5,y:6};	
+
+	// make a copy of the object references a,b,c
+	var a_ReferenceCopy = a;
+	var b_ReferenceCopy = b;
+	var c_ReferenceCopy = c;
+
+	// assign a new object reference to a
+	a = b = c = {x:0,y:0};
+
+	// the x,y value of a,b,c
+	console.log("a:" + a.x + "," + a.y);
+	console.log("b:" + b.x + "," + b.y);
+	console.log("c:" + c.x + "," + c.y);
+
+	// the x,y value of a,b,c
+	console.log("a_ReferenceCopy:" + a_ReferenceCopy.x + "," + a_ReferenceCopy.y);
+	console.log("b_ReferenceCopy:" + b_ReferenceCopy.x + "," + b_ReferenceCopy.y);
+	console.log("c_ReferenceCopy:" + c_ReferenceCopy.x + "," + c_ReferenceCopy.y);
+
+	// pause execution
+	console.log("live debugging");	
+
+</script>
+
+</body>
+</html>
+

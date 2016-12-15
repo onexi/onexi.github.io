@@ -1,0 +1,373 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../template/css/print/pdf.css' : '../template/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+				<section>
+					<h1>Syntax Basics</h1><br>
+					<h3>Operators, Control Structures</h3>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+					
+				</section>
+
+				<section>
+					<h2>Variables</h2>
+					<iframe src="code/declaring_variables/var.html" width="700" height="400" ></iframe>
+				</section>
+
+
+				<section>
+						<h2>Reserved Words</h2>
+						<p>JavaScript has a list of reserved identifiers. You cannot use these words for your identifiers <font size="4"><i>- click on image to expand</i></font></p><a href="reservedWords.html"><img src="media/images/reservedWords.png" height="250" ></a>
+				</section>
+
+
+				<section>
+					<h2>Words You cannot use</h2>
+					<iframe src="http://player.vimeo.com/video/86569094" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+				<section>
+					<h2>Identifiers</h2>
+					<p>An identifier must start with a letter, a dollar sign, or an underscore. After the first character, you may use letters, numbers, underscores, or dollar signs.</p>
+
+					<iframe src="code/identifiers/sample.html" width="700" height="400" ></iframe>
+				</section>
+
+
+				<section>
+					<h2>Identifiers</h2>				
+					<p>Can you find the error?<p>
+					<iframe src="code/identifiers/identifiers.html" width="700" height="400" ></iframe>
+				</section>
+
+
+				<section>
+						<h2>Case Sensitive</h2>
+						<img src="media/images/caseSensitive.png" height="400">
+				</section>
+
+				
+				<section>
+						<h2>Case Sensitive</h2>
+						<iframe src="http://player.vimeo.com/video/86580667" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+
+				<section>
+					<h2>Literals</h2>
+					<p>A literal is a value that you directly represent in your program - as opposed to a variable.</p>
+					<iframe src="code/literals/sample.html" width="700" height="400" ></iframe>					
+				</section>
+
+
+
+
+				<section>
+					<h2>Whitespace</h2>
+					<p>Use whitespaces to format your code and improve readability.</p>
+					<img src="media/images/whitespace_00.png"> vs <img src="media/images/whitespace_01.png">
+					<p>Whitespaces are ignored in JavaScript.</p>
+				
+				</section>
+
+
+				<section>
+						<h2>Loading JavaScript Files</h2>
+						<a href="media/images/loadfile.png"><img src="media/images/loadfile.png" height="550"></a>
+				</section>
+
+				<section>
+						<h2>Loading JavaScript Files</h2>
+						<iframe src="http://player.vimeo.com/video/86570300" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+				<section>
+						<h2>Comments</h2>
+						<img src="media/images/comments.png" height="400">
+				</section>
+
+				<section>
+					<h2>Comments: Single Line & Multi Line</h2>
+					<p>For single line, everything after <code>//</code> is ignored. In multi line, everything between <code>/*</code> and <code>*/</code> is ignored.</p>
+
+					<iframe src="code/comments/sample.html" width="700" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>Comments</h2>
+					<p>Can you find the error?</p>
+					<iframe src="code/comments/comments.html" width="700" height="400" ></iframe>
+				</section>
+
+				<section>
+					<h2>HTML Comments</h2>
+					<iframe src="code/comments/html.html" width="700" height="400" ></iframe>
+				</section>
+
+				
+				<section>
+						<h2>Comments</h2>
+						<iframe src="http://player.vimeo.com/video/86581056" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+
+
+
+				<section>
+					<h2>Line Terminators</h2>
+					<p>JavaScript uses a semicolon to separate statements.</p>
+					<iframe src="code/lineterminator/sample.html" width="700" height="400" ></iframe>		
+				</section>
+
+
+				<section>
+					<h2>Automatic Semicolon Insertion</h2>
+					<p>If you forget a semicolon, JavaScript will try to add a semicolon for you. This can be very dangerous. Always finish your statements with a semicolon.</p>
+				</section>
+
+				<section>
+					<h2>Active Learning</h2>
+					<iframe src="code/lineterminator/lineterminator.html" width="700" height="400" ></iframe>		
+				</section>
+
+
+				<section>
+					<h2>Active Learning</h2>
+					<p>Code output?</p>
+					<iframe src="code/lineterminator/return.html" width="700" height="400" ></iframe>
+				</section>
+
+
+
+				<section>
+					<h2>Line Break</h2>
+					<p>For the <b>return</b> keyword, the <b>break</b> keyword, the <b>continue</b> keyword, and the <b>throw</b> keyword, a <b>line break</b> will be interpreted as a semicolon.</b></p>
+				</section>
+
+
+				<section>
+						<h2>If ... Else</h2>
+						<img src="media/images/if_else.png" height="350">
+				</section>
+
+				
+				<section>
+						<h2>If ... Else</h2>
+						<iframe src="http://player.vimeo.com/video/86581623" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h2>Comparison Operators</h2>
+					<p>Take <b>x=7</b> for the following comparisons.</p>
+					<center>
+					<table>
+						<thead>
+							<tr>
+								<th>Operator</th>
+								<th>Description</th>
+								<th>Comparing</th>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>===</td>
+								<td>equal value/type</td>
+								<td>x === 7</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td>!==</td>
+								<td>not eq value or type</td>
+								<td>x !== 7</td>
+								<td>false</td>
+							</tr>
+							<tr>
+								<td>></td>
+								<td>greater than</td>
+								<td>x > 7</td>
+								<td>false</td>
+							</tr>
+							<tr>
+								<td><</td>
+								<td>less than</td>
+								<td>x < 7</td>
+								<td>false</td>
+							</tr>							
+							<tr>
+								<td>>=</td>
+								<td>greater or equal</td>
+								<td>x >= 7</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td><=</td>
+								<td>less or equal</td>
+								<td>x <= 7</td>
+								<td>true</td>
+							</tr>							
+
+						</tbody>
+					</table>
+					</center>					
+				</section>
+
+
+				<section>
+					<h2>Comparison Operators</h2>
+					<p>Take <b>x=7</b> and <b>y=5</b> for the following comparisons.</p>
+					<center>
+					<table>
+						<thead>
+							<tr>
+								<th>Operator</th>
+								<th>Description</th>
+								<th>Comparing</th>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>&&</td>
+								<td>and</td>
+								<td>(x < 10 && y > 1)</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td>||</td>
+								<td>or</td>
+								<td>(x === 7 || y === 7)</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td>!</td>
+								<td>not</td>
+								<td>!(x === 7)</td>
+								<td>false</td>
+							</tr>						
+
+						</tbody>
+					</table>
+					</center>					
+				</section>
+
+
+				<section>
+					<h2>Active Learning</h2>				
+			      	<iframe src="http://player.vimeo.com/video/114083857" width="720" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			      	</video>				
+				</section>
+
+				<section>
+						<h2>Download images & starter code</h2>
+						<a href="code/starter_code.zip">
+						<img src="media/images/zip_download.png" style="border:0;box-shadow:none;"></a><br>
+						<p>click on zip image above</p>
+						
+				</section>
+
+
+				<section>
+						<h2>For Loops</h2>
+						<img src="media/images/loops.png" height="250">
+				</section>
+
+				<section>
+						<h2>Loops - Active Learning</h2>
+						<iframe src="code/exercise/multiplication_tables/exercise.html" width="700" height="550" ></iframe>
+				</section>
+
+				
+				<section>
+						<h2>For Loops</h2>
+						<iframe src="http://player.vimeo.com/video/86581660" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+				<section>
+						<h2>Lexical Conventions</h2>
+						<iframe src="http://player.vimeo.com/video/86626419" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</section>
+
+
+				<section>
+					<h2>Style Guide (reference)</h2>				
+					<iframe src="http://player.vimeo.com/video/86057182" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>				
+				</section>
+
+				<section>
+					<h2>JavaScript Reference</h2>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">
+					https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference</a><br>
+					<img src="media/images/mdn.png" height="300" style="border:0px;">
+				</section>
+
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+		</script>
+
+	</body>
+</html>

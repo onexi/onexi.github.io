@@ -1,0 +1,147 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Energy of a System</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation content">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.min.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+		<!-- css below only used for printing  -->	
+		<!--<link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+	</head>
+	
+	
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Total Energy (KE+IE+PE) of a System</h1>
+		
+
+
+					<p>
+						<i><small><a href="http://www.mit.edu">John R. Williams</a> and <a href="http://www.mit.edu">Abel Sanchez</a></small></i>
+					</p>
+
+<img src='Media/Particles1.png' width="300" height="350"><br>
+				</section>
+				
+				<section>
+			<iframe src="http://player.vimeo.com/video/89325395" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+				</section>
+				
+				
+<section>
+<section>
+In this lesson we will look at damping. First we will use what is called 'mass damping' because the damping is made proportional to the mass. 
+
+</section>
+
+<section>
+<h2>Newton's Equations With Damping</h2>
+<img src="Media/Damping1.png" width="800" height="600" /><br>
+</section>
+<section>
+<h2>Newton's Equations With Damping</h2>
+<img src="Media/Damping2.png" width="800" height="600" /><br>
+</section>
+
+<section>
+<h2>Total Energy of a System</h2>
+<img src="Media/Energy1.png" width="800" height="600" /><br>
+</section>
+</section>
+<section>
+<section>
+<img src="./Media/YourTurn.jpg" width="600" height="400"><br>
+</section>
+</section>
+<section>
+<section>
+Assignment 1. Put the damped equations of motion into 'updateDisplacement()'. Test the code on two masses, one fixed and the other free under gravity. Use alpha = 0.1. Hand in a screen shot of the function updateDisplacement.
+<textarea id="code" name="code" style="height:300; width:500;font-size: 12pt; ">
+function updateDisplacement(p)
+ {
+  p.velocity.x += p.force.x*(deltaT/p.mass);
+  p.velocity.y += (p.force.y - gravity*mass)*(deltaT/p.mass);
+  //console.log('fx,fy ='+m.force.x+', '+m.force.y +' v ='+m.velocity.x+', '+m.velocity.y);
+
+  // check if either mass will hit the wall
+  checkWallCollision(p);
+
+  // update the position of the masses and draw
+  p.center.x += p.velocity.x *deltaT;
+  p.center.y += p.velocity.y *deltaT;
+  DrawCircle(p.center,5);
+}
+</textarea>
+</section>
+
+<section>
+Assignment 2. In this we will explore the relationship between kinetic energy, internal energy and potential energy. To do this we will write all of these energies out at every time step. In your code find out where these can be calculated. For the kinetic energy you need the velocity. For the internal energy you need the extension or compression of the spring. For the potential energy you need the height of the mass above some fixed point. Use y = 200 as the fixted height. 
+<br>
+
+</section>
+<section>
+Create a fixed mass at y = 100 and a free mass at y = 200. Make gravity -100, mass = 1, springStiffness = 1. <br>
+Run1 - no damping. What is the maximum kinetic energy and at what height (y coordinate)? What is the maximum internal energy and at what height? 
+</section>
+<section>
+Assignment 3 <br>
+Run2 - alpha = 0.1. What is the equilibrium height of the free mass? In Run1 what was the kinetic energy at this height. <br>
+Run3 - alpha = 10. What is the equilibrium height of the free mass? 
+<br>
+Write the answers in your editor clearly identifying Run1, Run2, Run3 and the quantities you observed.
+
+</section>
+</section>
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.min.js"></script>
+		<script src="../template/js/analytics.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'linear',
+
+				math: {
+					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				dependencies: [
+					{ src: '../template/lib/js/classList.js' },
+					{ src: '../template/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
