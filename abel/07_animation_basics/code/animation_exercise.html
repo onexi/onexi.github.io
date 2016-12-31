@@ -1,0 +1,78 @@
+<!doctype html>
+<head>
+  <title>CodeMirror</title>
+  <meta charset="utf-8"/>
+  <link rel=stylesheet href="../../codemirror/docs.css">
+  <link rel="stylesheet" href="../../codemirror/codemirror.css">
+  <script src="../../codemirror/codemirror.js"></script>
+  <script src="../../codemirror/javascript.js"></script>
+  <script src="../../codemirror/htmlmixed.js"></script>
+  <script src="../../codemirror/xml.js"></script>
+  <script src="../../codemirror/css.js"></script>
+
+  <style>
+    body {background-color:transparent;}  
+    .CodeMirror { font-size:0.8em;}
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 700px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+  </style>
+
+</head>
+
+<textarea id="code" name="code">
+<!doctype html><html><!-- ANIMATION EXERCISE - STARTER CODE --> 
+<div style="
+  z-index:1;         position:absolute;
+  left:0px;          top: 0px;
+  width:25px;        height:25px;
+  border-radius:50%; background:black;"
+  id="ball" 
+  onclick="init()">
+</div>
+<div style="
+  z-index:0;           position:absolute;
+  left:0px;            top:0px;
+  width: 525px;        height: 425px;
+  border-style: solid; border-width: 1px;">
+</div>
+<script>
+  var x       = 0;    var dx        = 2;  
+  var y       = 0;    var dy        = 3;
+  var counter = 0;    var timeSteps = 500;
+  var ball;
+
+  function init() {
+    ball = document.getElementById("ball");
+    animate();
+  }
+
+  function animate() {                
+    if (counter < timeSteps) {
+      moveBall();             
+      setTimeout(animate,15);
+    }   
+    counter++;
+  }
+
+  function moveBall(){
+    ball.style.left = x + "px";
+    ball.style.top  = y + "px";
+
+    // ------- YOUR CODE ------- 
+
+    x += dx;
+    y += dy;
+  }
+</script>
+</html></textarea>
+
+<script type="text/javascript">
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "text/html"
+  });      
+
+</script>
+
