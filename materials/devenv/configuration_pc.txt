@@ -1,0 +1,58 @@
+// PC CONFIG
+// -------------------------------------- 
+// create a global configuration file, 
+// name it ".eslintrc.json"
+// save to c:\\vscode\\.eslintrc.json
+
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "plugins": [
+        "import",
+        "html"
+    ],    
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-console": "off"
+    },
+    "globals": {
+        "firebase": true
+    },
+    "extends": "eslint:recommended",    
+    "plugin": [ "html" ]        
+}
+
+
+// add configuration to vscode
+// file -> preferences -> user settings
+
+   "eslint.options": { "configFile": "c:\\vscode\\.eslintrc.json" },
+    "eslint.validate": [
+        "javascript", "html"
+    ],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.fontSize": 18
+
+
+
+
+
