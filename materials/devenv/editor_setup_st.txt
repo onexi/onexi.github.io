@@ -1,0 +1,182 @@
+- Goal: Setup basics first, 
+		then hints, style, syntax highlighting, autocomplete (they will make your life easier)
+
+- Install: ST3, https://www.sublimetext.com/3
+
+- Demo: syntax highlighting, mention this is the basic
+		console.log('Hello World!');
+
+- Note: We are going to add plugins
+
+- Install: NodeJS: https://nodejs.org/en/
+
+- Verify: node -v
+
+- Install in OS: JSHint
+	$ sudo su
+	$ npm install jshint -g
+	$ exit
+
+- Install: Package Manager
+	Menu: View -> Show Console
+	https://sublime.wbond.net/installation
+
+- Verify: Package Manager
+	CMD+Shift+P
+	(start typing "Package")
+	Package Control: List Packages
+
+- Install in ST: SublimeLinter
+	Package Control: Install Package
+	SublimeLinter (the one for ST3)
+
+- Install in ST: JSHint
+	Package Control: Install Package
+	SublimeLinter-jshint
+
+- Install in ST: SublimeCode Intel
+	Package Control: Install Package
+	SublimeCode Intel
+
+- Verify: Plugins
+	CMD+Shift+P
+	Package Control: List Packages
+
+- Verify: functionality of JSHint
+		console.log('Hello World!');
+
+------------------------------------------
+
+// VS Code Setup Steps
+
+// VSCode - download and install
+https://code.visualstudio.com/
+
+- Demo: syntax highlighting, mention this is the basic
+		console.log('Hello World!');
+
+- Note: We are going to add plugins
+
+- Install: NodeJS: https://nodejs.org/en/
+
+- Verify: node -v
+	$ sudo su
+
+// at terminal, install eslint globally
+npm install -g eslint
+
+// at terminal, install html plugin globally
+npm install -g eslint-plugin-html
+
+// at terminal, install import plugin globally
+npm install -g eslint-plugin-import
+
+
+// ----- PC -----
+
+// create a global configuration file, name it ".eslintrc.json", put it somewhere sensible
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "plugins": [
+        "import",
+        "html"
+    ],    
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-console": "off"
+    },
+    "globals": {
+        "firebase": true
+    },
+    "extends": "eslint:recommended",    
+    "plugin": [ "html" ]        
+}
+
+
+// in vscode install "ESLint" plugin
+
+
+//  in vscode, file -> preferences -> user settings
+   "eslint.options": { "configFile": "c:\\vscode\\.eslintrc.json" },
+    "eslint.validate": [
+        "javascript", "html"
+    ],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.fontSize": 18
+
+
+
+// ----- MAC -----
+
+// create a global configuration file, name it ".eslintrc.json", put it somewhere sensible
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "plugins": [
+        "import",
+        "html"
+    ],    
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-console": "off"
+    },
+    "globals": {
+        "firebase": true
+    },
+    "extends": "eslint:recommended",    
+    "plugin": [ "html" ]        
+}
+
+
+// in vscode install "ESLint" plugin
+
+
+//  in vscode, code -> preferences -> user settings
+   "eslint.options": { "configFile": "/Users/abel/vscode/.eslintrc.json" },
+    "eslint.validate": [
+        "javascript", "html"
+    ],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.fontSize": 18
+
+
+
