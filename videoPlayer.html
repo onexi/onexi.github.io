@@ -50,40 +50,58 @@ function getParameter(name) {
 function log(){
 
 	var events = [
-		'ready',
-		'canplay',
-		'canplaythrough',
-		'emptied',
+		// 'ready',
+		// 'canplay',
+		// 'canplaythrough',
+		// 'emptied',
 		'ended',
 		'error',
-		'loadeddata',
-		'loadedmetadata',
-		'loadstart',
+		// 'loadeddata',
+		// 'loadedmetadata',
+		// 'loadstart',
 		'pause',
 		'play',
 		'playing',
-		'progress',
+		// 'progress',
 		'seeked',
 		'seeking',
 		'stalled',
-		'timeupdate',
+		// 'timeupdate',
 		'volumechange',
 		'waiting',
 		'enterfullscreen',
 		'exitfullscreen',
 		'captionsenabled',
 		'captionsdisabled',
-		'destroyed'
+		// 'destroyed'
 	];
 
 	events.forEach(function(event){
 		player[0].on(event, function(e) {
-			console.log(event);					
-			console.log(e.timeStamp);
-			console.log(e.detail.plyr.getCurrentTime());
-			console.log(e.detail.plyr.getDuration());
-			console.log(e.detail.plyr.getVolume());
-			console.log(e.detail.plyr.isMuted());			
+			// console.log(event);					
+			// console.log(e.timeStamp);
+			// console.log(e.detail.plyr.getCurrentTime());
+			// console.log(e.detail.plyr.getDuration());
+			// console.log(e.detail.plyr.getVolume());
+			// console.log(e.detail.plyr.isMuted());			
+			// console.log(e.detail.plyr.getEmbed().getVideoData().title);		
+			// console.log(e.detail.plyr.getEmbed().getVideoData().video_id);
+
+
+			ga('send', {
+			  hitType: 'event',
+			  eventCategory: 'Videos',
+			  eventAction: event,
+			  eventLabel: e.detail.plyr.getEmbed().getVideoData().title,
+			  timeStamp: e.timeStamp,
+			  currentTime: e.detail.plyr.getCurrentTime(),
+			  duration: e.detail.plyr.getDuration(),
+			  volume: e.detail.plyr.getVolume(),
+			  title: e.detail.plyr.getEmbed().getVideoData().title,		
+			  videoid: e.detail.plyr.getEmbed().getVideoData().video_id,
+			});
+
+
 		});	
 	});
 }
