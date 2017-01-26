@@ -1,85 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
+<html>
+<link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/plyr.css">
+<link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/demo.css">
+<script src="https://cdn.plyr.io/2.0.11/plyr.js"></script>
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- google analytics -->    
+<script src="fireheap.js"></script>        
+<script src="assets/js/googleanalytics.js"></script>
 
-    <!-- Custom styles for this template -->
-    <link href="assets/css/starter-template.css" rel="stylesheet">
-    <link href="assets/css/video.css" rel="stylesheet">                   
 
-    <!-- google analytics -->    
-    <script src="assets/js/googleanalytics.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
-  </head>
+<body></body>
 
 <script>
+// sample test
+// http://localhost:8080/plyr_referrer.html?type=youtube&id=bTqVqk7FSmY
 
-  var videoTools = {};
+var player = null;
 
-  videoTools.setTitle = function (title) {
-      document.title = title;
-  };
+window.onload = function(){
 
-  videoTools.getParameterByName = function (name) {
-      var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-  };
+	// get video data from query string
+	var type = getParameter('type');
+	var id   = getParameter('id');	
 
-  videoTools.addIFrame = function (url){
-      var iframe = document.createElement('iframe');
-      iframe.src = url;
-      iframe.setAttribute('width', '500');
-      iframe.setAttribute('height', '281');
-      iframe.setAttribute('frameborder', '0');
-      iframe.setAttribute('allowFullScreen', '');
-      iframe.setAttribute('webkitallowfullscreen', '');
-      iframe.setAttribute('mozallowfullscreen', '');
-      document.getElementById("target").appendChild(iframe);
-  };
+	// create div for video
+	var div = document.createElement('div');
+	div.setAttribute('data-type', type);
+	div.setAttribute('data-video-id', id);
+	div.setAttribute('id', 'placeholder');	
 
-  window.onload = function(){
-      videoTools.url = videoTools.getParameterByName('url');
-      videoTools.title = videoTools.getParameterByName('title');  
-      videoTools.setTitle(videoTools.title);
-      videoTools.addIFrame(videoTools.url);
-  };
+	// add to div to document
+	document.body.appendChild(div);	
+
+	// instantiate player
+	player = plyr.setup(div[0], {
+		autoplay: true
+	});
+
+	// log events
+	log();
+};
+
+
+function getParameter(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function log(){
+
+	var events = [
+		'ready',
+		'canplay',
+		'canplaythrough',
+		'emptied',
+		'ended',
+		'error',
+		'loadeddata',
+		'loadedmetadata',
+		'loadstart',
+		'pause',
+		'play',
+		'playing',
+		'progress',
+		'seeked',
+		'seeking',
+		'stalled',
+		'timeupdate',
+		'volumechange',
+		'waiting',
+		'enterfullscreen',
+		'exitfullscreen',
+		'captionsenabled',
+		'captionsdisabled',
+		'destroyed'
+	];
+
+	events.forEach(function(event){
+		player[0].on(event, function(e) {
+			console.log(event);					
+			console.log(e.timeStamp);
+			console.log(e.detail.plyr.getCurrentTime());
+			console.log(e.detail.plyr.getDuration());
+			console.log(e.detail.plyr.getVolume());
+			console.log(e.detail.plyr.isMuted());			
+		});	
+	});
+}
+
 
 </script>
 
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="javascript:history.back()" >Back</a>
-        </div>
-      </div>
-    </div>
-
-        <div class="flex-video widescreen" id='target'></div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>    
-    <script src="assets/js/bootstrap.min.js"></script>    
-  </body>
 </html>

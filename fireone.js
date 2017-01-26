@@ -50,6 +50,7 @@ function handler(xhr, fireone) {
     response = JSON.parse(response);
     fireone.login = response.login;
     localStorage.setItem('fireone', JSON.stringify(fireone));
+    document.getElementById('status').innerHTML = 'sucess!!';
   }
 }
 
