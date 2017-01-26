@@ -91,29 +91,25 @@ function log(){
 		    var fireone = JSON.parse(localStorage.getItem('fireone'));
 		    if(localStorage.getItem('fireone')){
 
-				// ga('send', {
-				//   hitType: 'event',
-				//   eventCategory: 'Videos',
-				//   eventAction: event,
-				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().title,
-				//   timeStamp: e.timeStamp,
-				//   currentTime: e.detail.plyr.getCurrentTime(),
-				//   duration: e.detail.plyr.getDuration(),
-				//   volume: e.detail.plyr.getVolume(),
-				//   title: e.detail.plyr.getEmbed().getVideoData().title,		
-				//   videoid: e.detail.plyr.getEmbed().getVideoData().video_id,
-				//   user: fireone.login
-				// });
+				ga('send', {
+				  hitType: 'event',
+				  eventCategory: 'Video',
+				  eventAction: fireone.login,
+				  eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
+				  eventValue: e.timeStamp
+				});
 
+				// user, video, time
 
-				ga('send', 'event', 'Videos', event, {
+				ga('set', {
 					'dimension1': e.timeStamp,
 					'dimension2': e.detail.plyr.getCurrentTime(),
 					'dimension3': e.detail.plyr.getDuration(),
 					'dimension4': e.detail.plyr.getVolume(),
 					'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
 					'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
-					'dimension7': fireone.login
+					'dimension7': fireone.login,
+					'dimension8': event
 				});
 
 
@@ -132,13 +128,23 @@ function log(){
 				//   videoid: e.detail.plyr.getEmbed().getVideoData().video_id
 				// });
 
-				ga('send', 'event', 'Videos', event, {
+				ga('send', {
+				  hitType: 'event',
+				  eventCategory: 'Video',
+				  eventAction: event,
+				  eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
+				  eventValue: e.timeStamp
+				});
+
+
+				ga('set', {
 					'dimension1': e.timeStamp,
 					'dimension2': e.detail.plyr.getCurrentTime(),
 					'dimension3': e.detail.plyr.getDuration(),
 					'dimension4': e.detail.plyr.getVolume(),
 					'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
-					'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id
+					'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
+					'dimension8': event					
 				});
 
 
