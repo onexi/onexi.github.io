@@ -2,13 +2,6 @@ window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.h
   heap.load("400785213");
 
 
-	if(window.addEventListener){
-		window.addEventListener('load', func1)
-	}else{
-		window.attachEvent('onload', func1)
-	}      	
-
-
 (function () {
 
 	function setIdentity(){
