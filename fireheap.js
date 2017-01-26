@@ -6,7 +6,7 @@ window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.h
 
 	function setIdentity(){
 	    if(localStorage.getItem('fireone')){
-	        fireone = JSON.parse(localStorage.getItem('fireone'));
+	        var fireone = JSON.parse(localStorage.getItem('fireone'));
 			heap.identify(fireone.login);	
 	    }	
 	}
