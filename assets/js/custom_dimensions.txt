@@ -1,0 +1,32 @@
+
+timeStamp
+var dimensionValue = 'SOME_DIMENSION_VALUE';
+ga('set', 'dimension1', dimensionValue);
+
+currentTime
+var dimensionValue = 'SOME_DIMENSION_VALUE';
+ga('set', 'dimension2', dimensionValue);
+
+duration
+var dimensionValue = 'SOME_DIMENSION_VALUE';
+ga('set', 'dimension3', dimensionValue);
+
+volume
+var dimensionValue = 'SOME_DIMENSION_VALUE';
+ga('set', 'dimension4', dimensionValue);
+
+title
+var dimensionValue = 'SOME_DIMENSION_VALUE';
+ga('set', 'dimension5', dimensionValue);
+
+videoid
+var dimensionValue = 'SOME_DIMENSION_VALUE';
+ga('set', 'dimension6', dimensionValue);
+
+login
+var dimensionValue = 'SOME_DIMENSION_VALUE';
+ga('set', 'dimension7', dimensionValue);
+
+event
+var dimensionValue = 'SOME_DIMENSION_VALUE';
+ga('set', 'dimension8', dimensionValue);
