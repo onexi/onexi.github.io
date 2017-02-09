@@ -1,0 +1,22 @@
+{
+    "name": "pacman-williams",
+    "version": "1.0.0",
+    "description": "PacMan Exercise",
+    "main": "solution.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "keywords": [
+        "pacman",
+        "image"
+    ],
+    "author": "jrw@mit.edu",
+    "license": "MIT",
+    "dependencies": {
+        "chai": "^3.5.0",
+        "mocha": "^3.2.0"
+    }
+}

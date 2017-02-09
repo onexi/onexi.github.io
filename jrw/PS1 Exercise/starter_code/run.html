@@ -1,0 +1,17 @@
+<html>
+
+<body>
+    <img id="PacMan" src="PacMan1.png" style="position:absolute" width='200'>
+    <script src="exercise.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            exercise.pos = {
+                x: 0
+            };
+            exercise.img1 = document.getElementById('PacMan');
+            setInterval(exercise.run, 200);
+        };
+    </script>
+</body>
+
+</html>
