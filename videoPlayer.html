@@ -91,30 +91,76 @@ function log(){
 		    var fireone = JSON.parse(localStorage.getItem('fireone'));
 		    if(localStorage.getItem('fireone')){
 
-				ga('send', {
-				  hitType: 'event',
-				  eventCategory: 'Video',
-				  eventAction: fireone.login,
-				  eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
-				  eventValue: e.timeStamp
-				});
+		    	// user accessible through: fireone.login
+				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
+						'dimension1': e.timeStamp,
+						'dimension2': e.detail.plyr.getCurrentTime(),
+						'dimension3': e.detail.plyr.getDuration(),
+						'dimension4': e.detail.plyr.getVolume(),
+						'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
+						'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
+						'dimension7': fireone.login,
+						'dimension8': event
+					}
+				);
+
+
+				// ga('send', {
+				//   hitType: 'event',
+				//   eventCategory: 'Video',
+				//   eventAction: event,
+				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
+				//   eventValue: e.timeStamp
+				// });
 
 				// user, video, time
 
-				ga('set', {
-					'dimension1': e.timeStamp,
-					'dimension2': e.detail.plyr.getCurrentTime(),
-					'dimension3': e.detail.plyr.getDuration(),
-					'dimension4': e.detail.plyr.getVolume(),
-					'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
-					'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
-					'dimension7': fireone.login,
-					'dimension8': event
-				});
+				// ga('set', {
+				// 	'dimension1': e.timeStamp,
+				// 	'dimension2': e.detail.plyr.getCurrentTime(),
+				// 	'dimension3': e.detail.plyr.getDuration(),
+				// 	'dimension4': e.detail.plyr.getVolume(),
+				// 	'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
+				// 	'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
+				// 	'dimension7': fireone.login,
+				// 	'dimension8': event
+				// });
 
 
 		    }
 		    else{
+
+				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
+						'dimension1': e.timeStamp,
+						'dimension2': e.detail.plyr.getCurrentTime(),
+						'dimension3': e.detail.plyr.getDuration(),
+						'dimension4': e.detail.plyr.getVolume(),
+						'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
+						'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
+						'dimension8': event
+					}
+				);
+
+
+				// ga('send', {
+				//   hitType: 'event',
+				//   eventCategory: 'Video',
+				//   eventAction: event,
+				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
+				//   eventValue: e.timeStamp
+				// });
+
+				// ga('set', {
+				// 	'dimension1': e.timeStamp,
+				// 	'dimension2': e.detail.plyr.getCurrentTime(),
+				// 	'dimension3': e.detail.plyr.getDuration(),
+				// 	'dimension4': e.detail.plyr.getVolume(),
+				// 	'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
+				// 	'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
+				// 	'dimension8': event					
+				// });
+
+
 				// ga('send', {
 				//   hitType: 'event',
 				//   eventCategory: 'Videos',
@@ -127,26 +173,6 @@ function log(){
 				//   title: e.detail.plyr.getEmbed().getVideoData().title,		
 				//   videoid: e.detail.plyr.getEmbed().getVideoData().video_id
 				// });
-
-				ga('send', {
-				  hitType: 'event',
-				  eventCategory: 'Video',
-				  eventAction: event,
-				  eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
-				  eventValue: e.timeStamp
-				});
-
-
-				ga('set', {
-					'dimension1': e.timeStamp,
-					'dimension2': e.detail.plyr.getCurrentTime(),
-					'dimension3': e.detail.plyr.getDuration(),
-					'dimension4': e.detail.plyr.getVolume(),
-					'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
-					'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
-					'dimension8': event					
-				});
-
 
 		    }
 
