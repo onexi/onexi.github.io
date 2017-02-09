@@ -92,7 +92,7 @@ function log(){
 		    if(localStorage.getItem('fireone')){
 
 		    	// user accessible through: fireone.login
-				ga('send', 'event', 'Video', event, {
+				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
 						'dimension1': e.timeStamp,
 						'dimension2': e.detail.plyr.getCurrentTime(),
 						'dimension3': e.detail.plyr.getDuration(),
@@ -130,7 +130,7 @@ function log(){
 		    }
 		    else{
 
-				ga('send', 'event', 'Video', event, {
+				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
 						'dimension1': e.timeStamp,
 						'dimension2': e.detail.plyr.getCurrentTime(),
 						'dimension3': e.detail.plyr.getDuration(),
