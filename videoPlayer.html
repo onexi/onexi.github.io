@@ -87,20 +87,26 @@ function log(){
 			// console.log(e.detail.plyr.getEmbed().getVideoData().title);		
 			// console.log(e.detail.plyr.getEmbed().getVideoData().video_id);
 
+			var percentage = e.detail.plyr.getCurrentTime()/e.detail.plyr.getDuration();
+			percentage = Math.floor(percentage*100);
+
 
 		    var fireone = JSON.parse(localStorage.getItem('fireone'));
 		    if(localStorage.getItem('fireone')){
 
-		    	// user accessible through: fireone.login
 				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
-						'dimension1': e.timeStamp,
-						'dimension2': e.detail.plyr.getCurrentTime(),
-						'dimension3': e.detail.plyr.getDuration(),
-						'dimension4': e.detail.plyr.getVolume(),
-						'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
-						'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
-						'dimension7': fireone.login,
-						'dimension8': event
+						'dimension1': event,
+						'dimension2': e.detail.plyr.getEmbed().getVideoData().title,
+						'dimension3': e.detail.plyr.getEmbed().getVideoData().video_id,
+						'dimension4': e.detail.plyr.getType(),
+						'dimension5': e.detail.plyr.isFullscreen(),	
+						'dimension6': e.detail.plyr.isMuted(),
+						'dimension7': e.detail.plyr.isPaused(),
+						'dimension8': fireone.login,
+						'metric1': Math.floor(e.detail.plyr.getDuration()),
+						'metric2': Math.floor(e.detail.plyr.getCurrentTime()),
+						'metric3': percentage,
+						'metric4': e.detail.plyr.getVolume()
 					}
 				);
 
@@ -131,16 +137,33 @@ function log(){
 		    else{
 
 				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
-						'dimension1': e.timeStamp,
-						'dimension2': e.detail.plyr.getCurrentTime(),
-						'dimension3': e.detail.plyr.getDuration(),
-						'dimension4': e.detail.plyr.getVolume(),
-						'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
-						'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
-						'dimension8': event
+						'dimension1': event,
+						'dimension2': e.detail.plyr.getEmbed().getVideoData().title,
+						'dimension3': e.detail.plyr.getEmbed().getVideoData().video_id,
+						'dimension4': e.detail.plyr.getType(),
+						'dimension5': e.detail.plyr.isFullscreen(),	
+						'dimension6': e.detail.plyr.isMuted(),
+						'dimension7': e.detail.plyr.isPaused(),
+						'metric1': Math.floor(e.detail.plyr.getDuration()),
+						'metric2': Math.floor(e.detail.plyr.getCurrentTime()),
+						'metric3': percentage,
+						'metric4': e.detail.plyr.getVolume()
 					}
 				);
 
+				// console.log('===========================================');
+				// console.log('event: ' + event);
+				// console.log('title: ' + e.detail.plyr.getEmbed().getVideoData().title);				
+				// console.log('duration: ' + Math.floor(e.detail.plyr.getDuration()));
+				// console.log('timeStamp: ' + Math.floor(e.detail.plyr.getCurrentTime()));
+				// console.log('volume: ' + e.detail.plyr.getVolume());
+				// console.log('id: ' + e.detail.plyr.getEmbed().getVideoData().video_id);
+				// console.log('type: ' + e.detail.plyr.getType());
+				// console.log('isFullscreen: ' + e.detail.plyr.isFullscreen());
+				// console.log('isMuted: ' + e.detail.plyr.isMuted());
+				// console.log('isPaused: ' + e.detail.plyr.isPaused());
+				// console.log('percentage: ' + percentage);
+				// console.log('===========================================');
 
 				// ga('send', {
 				//   hitType: 'event',
