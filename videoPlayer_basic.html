@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/plyr.css">
+<link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/demo.css">
+<script src="https://cdn.plyr.io/2.0.11/plyr.js"></script>
+
+<!-- google analytics -->    
+<script src="fireheap.js"></script>        
+<script src="assets/js/googleanalytics.js"></script>
+
+
+<body></body>
+
+<script>
+// sample test
+// http://localhost:8080/plyr_referrer.html?type=youtube&id=bTqVqk7FSmY
+
+var player = null;
+
+window.onload = function(){
+
+	// get video data from query string
+	var type = getParameter('type');
+	var id   = getParameter('id');	
+
+	// create div for video
+	var div = document.createElement('div');
+	div.setAttribute('data-type', type);
+	div.setAttribute('data-video-id', id);
+	div.setAttribute('id', 'placeholder');	
+
+	// add to div to document
+	document.body.appendChild(div);	
+
+	// instantiate player
+	player = plyr.setup(div[0], {
+		autoplay: true
+	});
+
+	// log events
+	log();
+};
+
+
+function getParameter(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function log(){
+
+	var events = [
+		// 'ready',
+		// 'canplay',
+		// 'canplaythrough',
+		// 'emptied',
+		'ended',
+		'error',
+		// 'loadeddata',
+		// 'loadedmetadata',
+		// 'loadstart',
+		'pause',
+		'play',
+		'playing',
+		// 'progress',
+		'seeked',
+		'seeking',
+		'stalled',
+		// 'timeupdate',
+		'volumechange',
+		'waiting',
+		'enterfullscreen',
+		'exitfullscreen',
+		'captionsenabled',
+		'captionsdisabled',
+		// 'destroyed'
+	];
+
+	events.forEach(function(event){
+		player[0].on(event, function(e) {
+			// console.log(event);					
+			// console.log(e.timeStamp);
+			// console.log(e.detail.plyr.getCurrentTime());
+			// console.log(e.detail.plyr.getDuration());
+			// console.log(e.detail.plyr.getVolume());
+			// console.log(e.detail.plyr.isMuted());			
+			// console.log(e.detail.plyr.getEmbed().getVideoData().title);		
+			// console.log(e.detail.plyr.getEmbed().getVideoData().video_id);
+
+			var percentage = e.detail.plyr.getCurrentTime()/e.detail.plyr.getDuration();
+			percentage = Math.floor(percentage*100);
+
+
+		    var fireone = JSON.parse(localStorage.getItem('fireone'));
+		    if(localStorage.getItem('fireone')){
+
+				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
+						'dimension1': event,
+						'dimension2': e.detail.plyr.getEmbed().getVideoData().title,
+						'dimension3': e.detail.plyr.getEmbed().getVideoData().video_id,
+						'dimension4': e.detail.plyr.getType(),
+						'dimension5': e.detail.plyr.isFullscreen(),	
+						'dimension6': e.detail.plyr.isMuted(),
+						'dimension7': e.detail.plyr.isPaused(),
+						'dimension8': fireone.login,
+						'metric1': Math.floor(e.detail.plyr.getDuration()),
+						'metric2': Math.floor(e.detail.plyr.getCurrentTime()),
+						'metric3': percentage,
+						'metric4': e.detail.plyr.getVolume()
+					}
+				);
+
+
+				// ga('send', {
+				//   hitType: 'event',
+				//   eventCategory: 'Video',
+				//   eventAction: event,
+				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
+				//   eventValue: e.timeStamp
+				// });
+
+				// user, video, time
+
+				// ga('set', {
+				// 	'dimension1': e.timeStamp,
+				// 	'dimension2': e.detail.plyr.getCurrentTime(),
+				// 	'dimension3': e.detail.plyr.getDuration(),
+				// 	'dimension4': e.detail.plyr.getVolume(),
+				// 	'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
+				// 	'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
+				// 	'dimension7': fireone.login,
+				// 	'dimension8': event
+				// });
+
+
+		    }
+		    else{
+
+				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
+						'dimension1': event,
+						'dimension2': e.detail.plyr.getEmbed().getVideoData().title,
+						'dimension3': e.detail.plyr.getEmbed().getVideoData().video_id,
+						'dimension4': e.detail.plyr.getType(),
+						'dimension5': e.detail.plyr.isFullscreen(),	
+						'dimension6': e.detail.plyr.isMuted(),
+						'dimension7': e.detail.plyr.isPaused(),
+						'metric1': Math.floor(e.detail.plyr.getDuration()),
+						'metric2': Math.floor(e.detail.plyr.getCurrentTime()),
+						'metric3': percentage,
+						'metric4': e.detail.plyr.getVolume()
+					}
+				);
+
+				// console.log('===========================================');
+				// console.log('event: ' + event);
+				// console.log('title: ' + e.detail.plyr.getEmbed().getVideoData().title);				
+				// console.log('duration: ' + Math.floor(e.detail.plyr.getDuration()));
+				// console.log('timeStamp: ' + Math.floor(e.detail.plyr.getCurrentTime()));
+				// console.log('volume: ' + e.detail.plyr.getVolume());
+				// console.log('id: ' + e.detail.plyr.getEmbed().getVideoData().video_id);
+				// console.log('type: ' + e.detail.plyr.getType());
+				// console.log('isFullscreen: ' + e.detail.plyr.isFullscreen());
+				// console.log('isMuted: ' + e.detail.plyr.isMuted());
+				// console.log('isPaused: ' + e.detail.plyr.isPaused());
+				// console.log('percentage: ' + percentage);
+				// console.log('===========================================');
+
+				// ga('send', {
+				//   hitType: 'event',
+				//   eventCategory: 'Video',
+				//   eventAction: event,
+				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
+				//   eventValue: e.timeStamp
+				// });
+
+				// ga('set', {
+				// 	'dimension1': e.timeStamp,
+				// 	'dimension2': e.detail.plyr.getCurrentTime(),
+				// 	'dimension3': e.detail.plyr.getDuration(),
+				// 	'dimension4': e.detail.plyr.getVolume(),
+				// 	'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
+				// 	'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
+				// 	'dimension8': event					
+				// });
+
+
+				// ga('send', {
+				//   hitType: 'event',
+				//   eventCategory: 'Videos',
+				//   eventAction: event,
+				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().title,
+				//   timeStamp: e.timeStamp,
+				//   currentTime: e.detail.plyr.getCurrentTime(),
+				//   duration: e.detail.plyr.getDuration(),
+				//   volume: e.detail.plyr.getVolume(),
+				//   title: e.detail.plyr.getEmbed().getVideoData().title,		
+				//   videoid: e.detail.plyr.getEmbed().getVideoData().video_id
+				// });
+
+		    }
+
+
+		});	
+	});
+}
+
+
+</script>
+
+</html>

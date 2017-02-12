@@ -1,44 +1,106 @@
 <!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/plyr.css">
-<link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/demo.css">
-<script src="https://cdn.plyr.io/2.0.11/plyr.js"></script>
+<html lang="en">
 
-<!-- google analytics -->    
-<script src="fireheap.js"></script>        
-<script src="assets/js/googleanalytics.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>Video Player</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/starter-template.css" rel="stylesheet">
+
+    <!-- video player -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/plyr.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/demo.css">
+    <script src="https://cdn.plyr.io/2.0.11/plyr.js"></script>
+
+    <!-- google analytics -->
+    <script src="fireheap.js"></script>
+    <script src="assets/js/googleanalytics.js"></script>
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
 
 
-<body></body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a class="navbar-brand" href="index.html">Engineering Computation</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Lectures</a></li>
+                    <li><a href="homeworks.html">Homeworks</a></li>
+                    <li><a href="labs.html">Labs</a></li>
+                    <li><a href="videos.html">Videos</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+
+    <div id="videoTarget" style="padding-top:50px"></div>
+    <div id="videoTitle" style="color:white"></div>
+
 
 <script>
 // sample test
-// http://localhost:8080/plyr_referrer.html?type=youtube&id=bTqVqk7FSmY
+// http://localhost:8080/videoPlayer.html?type=youtube&id=bTqVqk7FSmY
 
 var player = null;
+var type   = '';
+var id     = '';
 
 window.onload = function(){
 
-	// get video data from query string
-	var type = getParameter('type');
-	var id   = getParameter('id');	
+    // get video data from query string
+    type = getParameter('type');
+    id   = getParameter('id');  
 
-	// create div for video
-	var div = document.createElement('div');
-	div.setAttribute('data-type', type);
-	div.setAttribute('data-video-id', id);
-	div.setAttribute('id', 'placeholder');	
+    // create div for video
+    var div = document.getElementById('videoTarget');
+    div.setAttribute('data-type', type);
+    div.setAttribute('data-video-id', id);
+    div.setAttribute('id', 'placeholder');  
 
-	// add to div to document
-	document.body.appendChild(div);	
+    // instantiate player
+    player = plyr.setup(div, {
+        autoplay: true
+    });
 
-	// instantiate player
-	player = plyr.setup(div[0], {
-		autoplay: true
-	});
+    document.body.style.background = 'black';
+    document.body.style.paddingTop = '50px';
+    document.documentElement.style.background = 'black';    
 
-	// log events
-	log();
+    // log events
+    log();
 };
 
 
@@ -49,162 +111,95 @@ function getParameter(name) {
 
 function log(){
 
-	var events = [
-		// 'ready',
-		// 'canplay',
-		// 'canplaythrough',
-		// 'emptied',
-		'ended',
-		'error',
-		// 'loadeddata',
-		// 'loadedmetadata',
-		// 'loadstart',
-		'pause',
-		'play',
-		'playing',
-		// 'progress',
-		'seeked',
-		'seeking',
-		'stalled',
-		// 'timeupdate',
-		'volumechange',
-		'waiting',
-		'enterfullscreen',
-		'exitfullscreen',
-		'captionsenabled',
-		'captionsdisabled',
-		// 'destroyed'
-	];
+    var events = [
+        'ready',    
+        'ended',
+        'error',
+        'pause',
+        'play',
+        'playing',
+        'seeked',
+        'seeking',
+        'stalled',
+        'volumechange',
+        'waiting',
+        'enterfullscreen',
+        'exitfullscreen',
+        'captionsenabled',
+        'captionsdisabled',
+    ];
 
-	events.forEach(function(event){
-		player[0].on(event, function(e) {
-			// console.log(event);					
-			// console.log(e.timeStamp);
-			// console.log(e.detail.plyr.getCurrentTime());
-			// console.log(e.detail.plyr.getDuration());
-			// console.log(e.detail.plyr.getVolume());
-			// console.log(e.detail.plyr.isMuted());			
-			// console.log(e.detail.plyr.getEmbed().getVideoData().title);		
-			// console.log(e.detail.plyr.getEmbed().getVideoData().video_id);
+    events.forEach(function(event){
+        player[0].on(event, function(e) {
 
-			var percentage = e.detail.plyr.getCurrentTime()/e.detail.plyr.getDuration();
-			percentage = Math.floor(percentage*100);
+            if(event === 'ready'){
+                console.log('video is ready');
+            }
 
+            // calculate percentage viewed
+            var percentage = e.detail.plyr.getCurrentTime()/e.detail.plyr.getDuration();
+            percentage = Math.floor(percentage*100);
 
-		    var fireone = JSON.parse(localStorage.getItem('fireone'));
-		    if(localStorage.getItem('fireone')){
+            // try to get title, fails for vimeo
+            var title;
+            try{ title = e.detail.plyr.getEmbed().getVideoData().title;}
+            catch(error){ title = '';}
 
-				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
-						'dimension1': event,
-						'dimension2': e.detail.plyr.getEmbed().getVideoData().title,
-						'dimension3': e.detail.plyr.getEmbed().getVideoData().video_id,
-						'dimension4': e.detail.plyr.getType(),
-						'dimension5': e.detail.plyr.isFullscreen(),	
-						'dimension6': e.detail.plyr.isMuted(),
-						'dimension7': e.detail.plyr.isPaused(),
-						'dimension8': fireone.login,
-						'metric1': Math.floor(e.detail.plyr.getDuration()),
-						'metric2': Math.floor(e.detail.plyr.getCurrentTime()),
-						'metric3': percentage,
-						'metric4': e.detail.plyr.getVolume()
-					}
-				);
+            var fireone = JSON.parse(localStorage.getItem('fireone'));
+            if(localStorage.getItem('fireone')){
+
+                ga('send', 'event', 'Video', event, id, {
+                        'dimension1': event,
+                        'dimension2': title,
+                        'dimension3': id,
+                        'dimension4': e.detail.plyr.getType(),
+                        'dimension5': e.detail.plyr.isFullscreen(), 
+                        'dimension6': e.detail.plyr.isMuted(),
+                        'dimension7': e.detail.plyr.isPaused(),
+                        'dimension8': fireone.login,
+                        'metric1': Math.floor(e.detail.plyr.getDuration()),
+                        'metric2': Math.floor(e.detail.plyr.getCurrentTime()),
+                        'metric3': percentage,
+                        'metric4': e.detail.plyr.getVolume()
+                    }
+                );
 
 
-				// ga('send', {
-				//   hitType: 'event',
-				//   eventCategory: 'Video',
-				//   eventAction: event,
-				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
-				//   eventValue: e.timeStamp
-				// });
+            }
+            else{
 
-				// user, video, time
-
-				// ga('set', {
-				// 	'dimension1': e.timeStamp,
-				// 	'dimension2': e.detail.plyr.getCurrentTime(),
-				// 	'dimension3': e.detail.plyr.getDuration(),
-				// 	'dimension4': e.detail.plyr.getVolume(),
-				// 	'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
-				// 	'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
-				// 	'dimension7': fireone.login,
-				// 	'dimension8': event
-				// });
+                ga('send', 'event', 'Video', event, id, {
+                        'dimension1': event,
+                        'dimension2': title,
+                        'dimension3': id,
+                        'dimension4': e.detail.plyr.getType(),
+                        'dimension5': e.detail.plyr.isFullscreen(), 
+                        'dimension6': e.detail.plyr.isMuted(),
+                        'dimension7': e.detail.plyr.isPaused(),
+                        'metric1': Math.floor(e.detail.plyr.getDuration()),
+                        'metric2': Math.floor(e.detail.plyr.getCurrentTime()),
+                        'metric3': percentage,
+                        'metric4': e.detail.plyr.getVolume()
+                    }
+                );
 
 
-		    }
-		    else{
-
-				ga('send', 'event', 'Video', event, e.detail.plyr.getEmbed().getVideoData().title, {
-						'dimension1': event,
-						'dimension2': e.detail.plyr.getEmbed().getVideoData().title,
-						'dimension3': e.detail.plyr.getEmbed().getVideoData().video_id,
-						'dimension4': e.detail.plyr.getType(),
-						'dimension5': e.detail.plyr.isFullscreen(),	
-						'dimension6': e.detail.plyr.isMuted(),
-						'dimension7': e.detail.plyr.isPaused(),
-						'metric1': Math.floor(e.detail.plyr.getDuration()),
-						'metric2': Math.floor(e.detail.plyr.getCurrentTime()),
-						'metric3': percentage,
-						'metric4': e.detail.plyr.getVolume()
-					}
-				);
-
-				// console.log('===========================================');
-				// console.log('event: ' + event);
-				// console.log('title: ' + e.detail.plyr.getEmbed().getVideoData().title);				
-				// console.log('duration: ' + Math.floor(e.detail.plyr.getDuration()));
-				// console.log('timeStamp: ' + Math.floor(e.detail.plyr.getCurrentTime()));
-				// console.log('volume: ' + e.detail.plyr.getVolume());
-				// console.log('id: ' + e.detail.plyr.getEmbed().getVideoData().video_id);
-				// console.log('type: ' + e.detail.plyr.getType());
-				// console.log('isFullscreen: ' + e.detail.plyr.isFullscreen());
-				// console.log('isMuted: ' + e.detail.plyr.isMuted());
-				// console.log('isPaused: ' + e.detail.plyr.isPaused());
-				// console.log('percentage: ' + percentage);
-				// console.log('===========================================');
-
-				// ga('send', {
-				//   hitType: 'event',
-				//   eventCategory: 'Video',
-				//   eventAction: event,
-				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().video_id,
-				//   eventValue: e.timeStamp
-				// });
-
-				// ga('set', {
-				// 	'dimension1': e.timeStamp,
-				// 	'dimension2': e.detail.plyr.getCurrentTime(),
-				// 	'dimension3': e.detail.plyr.getDuration(),
-				// 	'dimension4': e.detail.plyr.getVolume(),
-				// 	'dimension5': e.detail.plyr.getEmbed().getVideoData().title,	
-				// 	'dimension6': e.detail.plyr.getEmbed().getVideoData().video_id,
-				// 	'dimension8': event					
-				// });
+            }
 
 
-				// ga('send', {
-				//   hitType: 'event',
-				//   eventCategory: 'Videos',
-				//   eventAction: event,
-				//   eventLabel: e.detail.plyr.getEmbed().getVideoData().title,
-				//   timeStamp: e.timeStamp,
-				//   currentTime: e.detail.plyr.getCurrentTime(),
-				//   duration: e.detail.plyr.getDuration(),
-				//   volume: e.detail.plyr.getVolume(),
-				//   title: e.detail.plyr.getEmbed().getVideoData().title,		
-				//   videoid: e.detail.plyr.getEmbed().getVideoData().video_id
-				// });
-
-		    }
-
-
-		});	
-	});
+        }); 
+    });
 }
 
 
 </script>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+</body>
 
 </html>
