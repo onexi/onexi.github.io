@@ -1,0 +1,21 @@
+{
+  "name": "starter_code",
+  "version": "1.0.0",
+  "description": "Template for node exercises",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "testing"
+  ],
+  "author": "abelsan <abel@mit.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
