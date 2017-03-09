@@ -53,7 +53,3 @@ function handler(xhr, fireone) {
     document.getElementById('status').innerHTML = 'sucess!!';
   }
 }
-
-window.onload = function(){
-  fireone();
-};
