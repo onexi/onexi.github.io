@@ -360,6 +360,7 @@ function loadVideos(){
 	videos.forEach(function(project){
 
       	html += '<div class="well">';
+      	html += '<h3>' + project.team + '</h3>';
         html += '<div class="row">';
 
 		project.videos.forEach(function(video){
