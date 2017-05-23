@@ -215,7 +215,11 @@ videos.push({
 		{
 			'deliverable' : '03',
 			'link' : '3IFLmr-JSVI'
-		}
+		},
+		{
+			'deliverable' : '04',
+			'link' : 'R5YESUti0uw'
+		}		
 	]
 });    
 
