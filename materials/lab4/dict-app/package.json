@@ -1,0 +1,14 @@
+{
+  "name": "dict-app",
+  "version": "1.0.0",
+  "description": "A dictionary for the word five",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sabrina",
+  "license": "MIT",
+  "dependencies": {
+    "five": "^0.8.0"
+  }
+}
