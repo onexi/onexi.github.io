@@ -1,0 +1,22 @@
+{
+  "name": "regression-nmagallon",
+  "version": "1.0.0",
+  "description": "Linear Regression Exercise",
+  "main": "exercise.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "linear",
+    "regression"
+  ],
+  "author": "nmagallon",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
