@@ -1,0 +1,286 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Course Software Platform</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->	
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../template/lib/css/monokai-sublime.css">
+
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->	
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+	</head>
+
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<div class="slides">
+				<section>
+					<h1>async, await, and promises</h1><br>
+					<h3>working with nonblocking computation</h3>
+					<p>	
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a>, <a href="http://jrw.mit.edu">John R Williams</a></small></i>
+					</p>
+					
+				</section>
+
+
+				<section>
+					<h2>nonblocking computation</h2>
+					<p>Write order?</p>
+					<pre><code data-trim>
+setTimeout(function(){
+    console.log('1');
+},3000);
+
+setTimeout(function(){
+    console.log('2');
+},0);
+
+console.log('3');
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>How do we control the execution order?</h2>
+					<ul>
+						<li>Promises</li>
+						<li>async</li>
+						<li>await</li>
+					</ul>					
+				</section>				
+
+
+				<section>
+					<h2>Promises, ex 1</h2>
+					<pre><code data-trim>
+var p = new Promise(function(resolve,reject){
+    setTimeout(function(){
+        resolve('Hello 1');
+    },3000);
+});
+
+p.then(function(msg){
+    console.log(msg);
+});
+
+console.log('Hello 2');
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Promises, ex 2</h2>
+					<pre><code data-trim>
+var p1 = new Promise(function(resolve,reject){
+    setTimeout(function(){
+        resolve('Hello 1');
+    },3000);
+});
+
+var p2 = new Promise(function(resolve,reject){
+    setTimeout(function(){
+        resolve('Hello 2');
+    },1000);
+});
+
+p1.then(function(msg){
+    console.log(msg);
+    return 'P1 done!';
+})
+.then(function(msg){
+    p2.then(function(msg){
+        console.log(msg);
+    }); 
+    console.log(msg);
+});
+
+console.log('Hello 3');
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>async</h2>
+					<pre><code data-trim>
+function timeout(milliSeconds){
+    console.log('In timeout'); 
+    return new Promise(function(resolve){
+        setTimeout(resolve,milliSeconds)
+    });
+}
+
+async function run(x) {
+    await timeout(3000);
+    return 'Timeout Finished!';
+}
+
+run(10).then(function(msg){
+    console.log(msg)
+});
+
+console.log('Last Line');
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>async, await, & promise</h2>
+					<pre><code data-trim>
+function resolveAfter3Secs(x) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        console.log('01 - ' + new Date());          
+        resolve(x+10);
+      }, 3000);
+    });
+}
+
+async function run(x) {
+    var response = await resolveAfter3Secs(x);
+    console.log('02 - ' + new Date());
+    return response;
+}
+
+run(10).then(response => {
+    console.log(response);
+    console.log('03 - ' + new Date());  
+});
+
+console.log('04 - ' + new Date());
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>async request</h2>
+					<pre><code data-trim>
+var request = require('request');
+var url = 'http://student.mit.edu/catalog/m1a.html';
+
+function makeRequest(url) {
+    // return promise
+    return new Promise(function(resolve,reject) {
+        function callback(error, response, body) {
+            resolve(body);
+        }
+        request(url, callback);
+    });
+}
+
+var run = async () => {
+    console.log('make: ' + await makeRequest(url))
+    return "done"
+}
+  
+run().then((result) =>{
+    console.log(result);
+});
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>node-fetch</h2>
+					<pre><code data-trim>
+var fetch = require('node-fetch');
+
+var makeRequest = async function (url) {
+    var response = await fetch(url);
+    var text     = await response.text();
+    return text;
+};  
+
+var url = 'http://student.mit.edu/catalog/m1a.html';
+
+makeRequest(url).then((text) =>{
+    console.log(text);
+});    
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>fetch multiple urls, write response to file system</h2>
+					<pre><code data-trim>
+var fetch = require('node-fetch');
+var fs    = require('fs');
+var urls  = ['http://student.mit.edu/catalog/m1a.html'];
+
+const writeFile = (path, data, opts = 'utf8') =>
+    new Promise((resolve, reject) => {
+        fs.writeFile(path, data, opts, (err) => {
+            if (err) reject(err)
+            else resolve()
+    })
+})
+
+var makeRequest = async function (url,counter) {
+    var response = await fetch(url);
+    await writeFile('data/' + counter + '.html', await response.text());
+    return 'done - ' + counter;        
+};  
+
+urls.forEach(function(url,i){
+    makeRequest(url,i).then((result) =>{
+        console.log(result);
+    });    
+})
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+		
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+			Reveal.initialize({
+			    dependencies: [
+
+			        // Syntax highlight for <code> elements
+			        { src: '../template/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+			        // MathJax
+			        { src: '../template/plugin/math/math.js', async: true }
+			    ]
+			});
+
+		</script>
+
+
+	</body>
+</html>
