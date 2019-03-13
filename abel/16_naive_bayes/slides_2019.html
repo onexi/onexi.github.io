@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Naive Bayesian Classification</title>
+
+		<!-- meta data for search engines  -->
+		<meta name="description" content="engineering computation, data science, big data, web programming, computational thinking">
+		<meta name="author" content="abel sanchez, abel@mit.edu">
+		<meta name="author" content="john r Williams, jrw@mit.edu">
+
+		<!-- mobile layout info  -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- styles for the template  -->
+		<link rel="stylesheet" href="../template/css/reveal.css">
+		<link rel="stylesheet" href="../template/css/theme/beige.css" id="theme">
+
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../template/lib/css/github.css">
+
+		<!-- two printing options: pdf and paper  -->
+		<!-- <link rel="stylesheet" href="../template/css/print/pdf.css"> -->
+		<!-- <link rel="stylesheet" href="../template/css/print/paper.css"> -->
+		<!-- use "?print-pdf" at end of URL to activate printing style sheet -->
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+	</head>
+
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+
+				<h1>Machine Learning</h1>
+					<h3>Naive Bayesian Classification</h3>
+					<img src="media/images/robot.png" width="128" style="border:0;box-shadow:none;">
+
+					<p>
+						<i><small><a href="http://abel.mit.edu">Abel Sanchez</a> and <a href="http://esd.mit.edu/Faculty_Pages/williams/williams.htm">John R. Williams</a></small></i>
+					</p>
+
+				</section>
+
+
+
+
+				<section>
+					<h2>Introduction</h2>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/_DsO4ZSYpHU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					<p>
+						<i><small> Video Source: 
+							<a href="https://www.youtube.com/watch?v=_DsO4ZSYpHU">
+								https://www.youtube.com/watch?v=_DsO4ZSYpHU
+							</a>
+						</small></i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Bayes Theorem</h2>
+					<p><img src="media/images/formula.png" height="400"></p>
+				</section>
+
+				<section>
+					<h3>Classification of Drew</h3>
+				</section>
+
+				<section>
+					<h2>Example: Classification of Drew</h2>
+					<p>
+						<ul>
+							<li>We have two classes: c1=male, and c2=female</li>
+							<li>Classifying drew as male or female is equivalent to asking is it more probable that drew is male or female.</li>
+						</ul>
+					</p>
+					<p><img src="media/images/drew.png" width="600"></p>
+				</section>
+
+				<section>
+					<h2>Using Data</h2>
+					<p><img src="media/images/using_data_1.png" height="150"></p>
+					<p><img src="media/images/using_data_2.png" height="300"></p>
+				</section>
+
+				<section>
+					<h2>Bayesian Approach</h2>
+					<p>
+						<ul>
+							<li>Posterior probability based on prior probability plus a new event</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Classification of Documents</h2>
+				</section>
+
+				<section>
+					<h2>Questions We Can Answer</h2>
+					<p>
+						<ul>
+							<li>Is this spam?</li>
+							<li>Who wrote which Federalist papers?</li>
+							<li>Positive or negative movie review?</li>
+							<li>What is the subject of this article?</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Text Classification</h2>
+					<p>
+						<ul>
+							<li>Assigning subject categories, topics, or genres</li>
+							<li>Authorship identification</li>
+							<li>Age/gender identification</li>
+							<li>Language Identification</li>
+							<li>Sentiment analysis</li>
+							<li>...</li>
+						</ul>
+					</p>
+				</section>
+
+ 				<section>
+					<h2>For Active Learning we will use*</h2>
+					<p><img src="media/images/homework.png" height="400"></p>
+					<small>* http://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering</small>
+				</section>
+
+				<section>
+					<h2>Calculating Probabilities</h2>
+					<p>
+						<ul>
+							<li>probability that word shows up in a language
+							<img src="media/images/p1.png" height="100">
+							</li>
+							<li>probability that word is not in language
+								<img src="media/images/p2.png" height="100">
+							</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Underflow Prevention</h2>
+					<p>
+						<ul>
+							<li>Multiplying lots of probabilities can result in floating-point underflow. Since log(xy) = log(x) + log(y); better to sum logs of probabilities instead of multiplying probabilities.
+							</li>
+							<li>Add probability of words (per language) using:<br>
+								<img src="media/images/under_1.png" height="100">
+							</li>
+							<li>In JavaScript ln is Math.log, and e is Math.exp</li>
+							<li>At completion of each language:<br>
+								<img src="media/images/under_2.png" height="100">
+							</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="../template/lib/js/head.min.js"></script>
+		<script src="../template/js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'convex'
+			});
+
+			Reveal.initialize({
+			    dependencies: [
+			        // Syntax highlight for <code> elements
+			        { src: '../template/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+			        // MathJax
+			        { src: '../template/plugin/math/math.js', async: true }
+			    ]
+			});
+
+		</script>
+
+
+	</body>
+</html>
