@@ -1,0 +1,15 @@
+# for the full documentation
+www.npmjs.com/json-server
+
+# to install
+npm install json-server
+
+# to start json server
+json-server --watch db.json
+
+# to do an HTTP POST
+curl --data "title=pear&author=peter" http://localhost:3000/posts
+
+# HTTP POST using json
+curl -H "Content-Type: application/json" -X POST -d '{"title":"kiwi","author":"david"}' http://localhost:3000/posts
+

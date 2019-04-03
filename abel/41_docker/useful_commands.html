@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Docker - NodeJS Hello World</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+
+    <!-- syntax highlighter -->
+    <link type="text/css" rel="stylesheet" href="css/theme.css">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="../../index.html">Arch & Eng Computation</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../../lectures.html">Lectures <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<div class="container">
+
+  <h1>Useful Docker Commands</h1>
+  <hr>
+
+  <p>Build image</p>
+
+<pre class="brush: bash">
+# the "-t" gives your image a name 
+$ docker build -t YourImageName .
+</pre>
+
+
+  <p>List Containers</p>
+
+<pre class="brush: bash">
+# containers currently runing
+$ docker ps -a
+</pre>
+
+  <p>List Images</p>
+
+<pre class="brush: bash">
+# list all docker images
+$ docker images -a
+</pre>
+
+
+  <p>Delete containers</p>
+
+<pre class="brush: bash">
+# Delete every Docker containers
+# Must be run first because images are attached to containers
+$ docker rm $(docker ps -a -q)
+</pre>
+
+  <p>Delete images</p>
+
+<pre class="brush: bash">
+# Delete every Docker image
+$ docker rmi $(docker images -q)
+</pre>
+
+  <p>Force delete images</p>
+
+<pre class="brush: bash">
+# to force use
+$ docker rmi -f $(docker images -q)
+</pre>
+
+  <p>Stop container</p>
+
+<pre class="brush: bash">
+stop a container
+$ docker stop &lt;container id&gt;
+</pre>
+
+
+  <p>Shell in running container</p>
+
+<pre class="brush: bash">
+# from docker 1.3 onwards
+$ sudo docker exec -i -t &lt;containerIdOrName&gt; bash
+</pre>
+
+
+
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- syntax highlighter -->
+    <script type="text/javascript" src="js/syntaxhighlighter.js"></script>
+  </body>
+</html>

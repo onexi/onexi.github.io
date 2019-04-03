@@ -1,0 +1,70 @@
+===============
+Problem Set
+===============
+
+Build an AWS Machine. Write a node application to run on a container. The application needs to implement the following Application Programming Interface (API) and functionality.
+
+1) Add two numbers - GET interface
+
+API
+-------
+HTTP GET
+URL: YourIP/add/:value1/:value2
+
+Input Parameters
+------------------
+value1 is a number
+value2 is a number
+
+Response is an object
+-----------------------
+{ result : value1+value2 }
+
+
+2) Add two numbers - POST interface
+
+API
+-------
+HTTP POST
+URL: YourIP/add/
+
+Input Parameter is an object
+-------------------------------
+{ value1 : 3, value2 : 5 }
+
+Response is an object
+-----------------------
+{ result : 8 }
+
+
+3) Add an array of numbers - POST interface
+
+API
+-------
+HTTP POST
+URL: YourIP/addArray/
+
+Input Parameter is an object
+-------------------------------
+{ numbers : [3,1,2] }
+
+Response is an object
+------------------
+{ result : 6 }
+
+
+4) Return numbers greater than X - POST interface
+
+API
+-------
+HTTP POST
+URL: YourIP/numbersGreaterThan/
+
+Input Parameter is an object
+-------------------------------
+{ numbers : [3,1,2], greaterThan: 1 }
+
+Response is an object
+------------------
+{ result : [3,2] }
+

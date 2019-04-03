@@ -1,0 +1,5 @@
+# for the full documentation
+www.npmjs.com/lowdb
+
+# to install
+npm install lowdb

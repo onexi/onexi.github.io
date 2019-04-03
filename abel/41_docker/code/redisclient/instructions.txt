@@ -1,0 +1,9 @@
+# docker image for redis
+# This image includes EXPOSE 6379 (the redis port), 
+# so standard container linking will make it 
+# automatically available to the linked containers 
+$ docker run -p 6379:6379 --name some-redis -d redis
+
+# npm package, https://www.npmjs.com/package/redis
+$ npm install redis
+

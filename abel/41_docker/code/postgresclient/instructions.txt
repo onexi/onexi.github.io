@@ -1,0 +1,8 @@
+# This image includes EXPOSE 5432, the postgres port. 
+# The default postgres user and database are 
+# created in the entrypoint with initdb.
+
+$ docker run -p 5432:5432 --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+// npm package
+$ npm install pg --save

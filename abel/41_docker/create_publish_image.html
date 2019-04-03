@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Docker - NodeJS Hello World</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+
+    <!-- syntax highlighter -->
+    <link type="text/css" rel="stylesheet" href="css/theme.css">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="../../index.html">Arch & Eng Computation</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../../lectures.html">Lectures <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<div class="container">
+
+  <h1>Create and Publish a Docker Image</h1>
+  <hr>
+
+  <p>Login to docker hub and create a repository for your image (<a href="http://hub.docker.com">hub.docker.com</a>). Once we are done creating the image, you will push into this repository. For this example, I created a repository called "abelsan/cabinfever" <br>
+  <img src="create_docker_repository.png" style="border-radius: 25px;background: #73AD21;border: 2px solid #73AD21;margin-top: 10px;">
+  </p>
+
+  <p>Create an application and a docker file for the application. Then, create a docker image for the application. Name your image YourDockerUsername/YourImageName. In this example the username is "abelsan" and the image name is "cabinfever"</p>
+
+<pre class="brush: bash">
+# create docker image
+$ docker build -t abelsan/cabinfever .
+</pre>
+
+  <p>Test your new image. </p>
+
+<pre class="brush: bash">
+# "-p 8080:3000" sets the container port to 3000 and the host port to 8080
+# "--name cabinfeverInstance" sets the container name to cabinfeverInstance
+# "-t cabinfever" references the cabinfever image
+$ docker run -p 8080:3000 --name cabinfeverInstance -t abelsan/cabinfever
+</pre>
+
+
+  <p>After you confirm your application works, push your image to docker hub</p>
+
+<pre class="brush: bash">
+# note the username/image matches the docker repository 
+$ docker push abelsan/cabinfever
+</pre>
+
+  <p>To use the image, enter the pull command</p>
+
+<pre class="brush: bash">
+$ docker pull abelsan/cabinfever
+</pre>
+
+
+
+
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- syntax highlighter -->
+    <script type="text/javascript" src="js/syntaxhighlighter.js"></script>
+  </body>
+</html>

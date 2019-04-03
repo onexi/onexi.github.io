@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Docker - NodeJS Hello World</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+
+    <!-- syntax highlighter -->
+    <link type="text/css" rel="stylesheet" href="css/theme.css">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="../../index.html">Arch & Eng Computation</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../../lectures.html">Lectures <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<div class="container">
+
+  <h1>Docker - NodeJS Hello World</h1>
+  <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+  <hr>
+
+  <h2>Create a barebones NodeJS application</h2>
+  <p>Create a directory named "docnode". Initialize your application ("npm init"). Install express ("npm install express --save"). Your "package.json" file should look like the following.</p>
+
+<pre class="brush: javascript">
+{
+  "name": "docnode",
+  "version": "1.0.0",
+  "description": "barebones node on docker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "abel@mit.edu",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.5"
+  }
+}
+</pre>
+
+  <p>Add a barebones express server. Name your file "index.js"</p>
+
+<pre class="brush: javascript">
+var express = require('express');
+var app     = express();
+
+app.get('/', function(req,res){
+  res.send('Hello World!');
+});
+
+var port = 3000;
+app.listen(port,function(){
+  console.log('Listening on port:' + port);
+});
+</pre>
+
+<p>Create a docker file. Name it "Dockerfile"</p>
+<pre class="brush: javascript">
+FROM node:slim
+
+MAINTAINER abelsan &lt;abel@mit.edu&gt;
+
+WORKDIR /app
+
+# copy code, install npm dependencies
+COPY index.js /app/index.js
+COPY package.json /app/package.json
+RUN npm install
+</pre>
+
+<p>Create a docker compose file. Name it "docker-compose.yml"</p>
+<pre class="brush: javascript">
+version: "2"
+
+services:
+  gin:
+    build: .
+    ports:
+      - "3000:3000"
+</pre>
+
+<p>If needed, copy your code to the remote machine. Once there, at the command line, enter "docker-compose up"</p>
+<pre class="brush: bash">
+docker-compose up
+</pre>
+
+
+
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- syntax highlighter -->
+    <script type="text/javascript" src="js/syntaxhighlighter.js"></script>
+  </body>
+</html>

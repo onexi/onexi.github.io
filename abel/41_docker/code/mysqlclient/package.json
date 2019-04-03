@@ -1,0 +1,14 @@
+{
+  "name": "mysqlclient",
+  "version": "1.0.0",
+  "description": "mysql client from node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "abel@mit.edu",
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.14.1"
+  }
+}

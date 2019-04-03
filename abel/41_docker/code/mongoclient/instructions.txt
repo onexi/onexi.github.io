@@ -1,0 +1,7 @@
+# This image includes EXPOSE 27017 (the mongo port),
+# so standard container linking will make it 
+# automatically available to the linked containers
+$ docker run -p 27017:27017 --name some-mongo -d mongo
+
+# npm package, npm install mongodb
+https://www.npmjs.com/package/mongodb

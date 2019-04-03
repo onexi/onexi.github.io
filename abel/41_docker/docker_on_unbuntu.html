@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How To Install Docker on Ubuntu | DigitalOcean</title>
+
+
+
+    <link rel="stylesheet" media="all" href="css/do.css" />
+
+    
+
+  </head>
+  <body class="feature-filter-bar feature-upvotes tutorials-controller tutorial-single" 
+>
+
+<!-- START: content container -->
+<div style="padding-left: 20px;padding-right: 20px;padding-top: 20px;padding-bottom: 20px;">
+
+<h1>How To Install Docker on Ubuntu</h1> 
+<p>Adapted from <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04"> Digital Ocean Guide</a>.</p> 
+
+<br>
+<h2 id="step-1-—-installing-docker">Step 1 — Installing Docker</h2>
+
+<p>The Docker installation package available in the official Ubuntu 16.04 repository may not be the latest version. To get the latest and greatest version, install Docker from the official Docker repository. This section shows you how to do just that.</p>
+<br>
+<p>First, add the GPG key for the official Docker repository to the system:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</li></ul></code></pre>
+<p>Add the Docker repository to APT sources:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+</li></ul></code></pre>
+<p>Next, update the package database with the Docker packages from the newly added repo:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">sudo apt-get update
+</li></ul></code></pre>
+<p>Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">apt-cache policy docker-ce
+</li></ul></code></pre>
+<p>You should see output similar to the follow:</p>
+<div class="code-label " title="Output of apt-cache policy docker-ce">Output of apt-cache policy docker-ce</div><pre class="code-pre "><code langs="">docker-ce:
+  Installed: (none)
+  Candidate: 17.03.1~ce-0~ubuntu-xenial
+  Version table:
+     17.03.1~ce-0~ubuntu-xenial 500
+        500 https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+     17.03.0~ce-0~ubuntu-xenial 500
+        500 https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+
+</code></pre>
+<p>Notice that <code>docker-ce</code> is not installed, but the candidate for installation is from the Docker repository for Ubuntu 16.04. The <code>docker-ce</code> version number might be different.</p>
+
+<p>Finally, install Docker:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">sudo apt-get install -y docker-ce
+</li></ul></code></pre>
+<p>Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">sudo systemctl status docker
+</li></ul></code></pre>
+<p>The output should be similar to the following, showing that the service is active and running:</p>
+<pre class="code-pre "><code langs=""><div class="secondary-code-label " title="Output">Output</div>● docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+   Active: <span class="highlight">active (running)</span> since Sun 2016-05-01 06:53:52 CDT; 1 weeks 3 days ago
+     Docs: https://docs.docker.com
+ Main PID: 749 (docker)
+</code></pre>
+<p>Installing Docker now gives you not just the Docker service (daemon) but also the <code>docker</code> command line utility, or the Docker client. We'll explore how to use the <code>docker</code> command later in this tutorial.</p>
+
+<br>
+<h2 id="step-2-—-executing-the-docker-command-without-sudo-optional">Step 2 — Executing the Docker Command Without Sudo (Optional)</h2>
+
+<p>By default, running the <code>docker</code> command requires root privileges — that is, you have to prefix the command with <code>sudo</code>. It can also be run by a user in the <strong>docker</strong> group, which is automatically created during the installation of Docker. If you attempt to run the <code>docker</code> command without prefixing it with <code>sudo</code> or without being in the docker group, you'll get an output like this:</p>
+<pre class="code-pre "><code langs=""><div class="secondary-code-label " title="Output">Output</div>docker: Cannot connect to the Docker daemon. Is the docker daemon running on this host?.
+See 'docker run --help'.
+</code></pre>
+<p>If you want to avoid typing <code>sudo</code> whenever you run the <code>docker</code> command, add your username to the <code>docker</code> group:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">sudo usermod -aG docker ${USER}
+</li></ul></code></pre>
+<p>To apply the new group membership, log out of the server and back in.</p>
+
+
+<!-- END: content container -->
+</div>    
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "redisclient",
+  "version": "1.0.0",
+  "description": "interface redis from node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "abel@mit.edu",
+  "license": "MIT",
+  "dependencies": {
+    "redis": "^2.8.0"
+  }
+}
