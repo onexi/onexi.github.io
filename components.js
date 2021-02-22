@@ -5,16 +5,24 @@ class Submodule extends HTMLElement {
     super();
 
     // attribute content 
-    const title       = this.getAttribute('title');
-    const video       = this.getAttribute('video');
-    const videoUrl    = this.getAttribute('videoUrl');
-    const camtasia    = this.getAttribute('camtasia');    
-    const camtasiaUrl = this.getAttribute('camtasiaUrl');
-    const exercise    = this.getAttribute('exercise');
-    const exerciseUrl = this.getAttribute('exerciseUrl');
-    const test        = this.getAttribute('test');
-    const testUrl     = this.getAttribute('testUrl');
+    const title        = this.getAttribute('title');
+    const reference    = this.getAttribute('reference');
+    const referenceIcn = this.getAttribute('referenceIcn');
+    const referenceUrl = this.getAttribute('referenceUrl');
+    const video        = this.getAttribute('video');
+    const videoUrl     = this.getAttribute('videoUrl');
+    const camtasia     = this.getAttribute('camtasia');    
+    const camtasiaUrl  = this.getAttribute('camtasiaUrl');
+    const exercise     = this.getAttribute('exercise');
+    const exerciseUrl  = this.getAttribute('exerciseUrl');
+    const test         = this.getAttribute('test');
+    const testUrl      = this.getAttribute('testUrl');
 
+    let referenceStr = '';
+    if(reference){
+      let icn = (referenceIcn) ? referenceIcn : 'fa-file-alt';
+      referenceStr = `<a href="${referenceUrl}"><i class="fas ${icn}"></i> ${reference}</a><br />`;
+    }
     let videoStr = '';
     if(video){
       videoStr = `<a href="${videoUrl}"><i class="fas fa-video"></i> ${video}</a><br />`;
@@ -35,6 +43,7 @@ class Submodule extends HTMLElement {
     this.innerHTML = `
         <h5>${title}</h5>
         <p>
+          ${referenceStr}
           ${videoStr}
           ${camtasiaStr}
           ${exerciseStr}
