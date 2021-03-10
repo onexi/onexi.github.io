@@ -6,6 +6,8 @@ class Submodule extends HTMLElement {
 
     // attribute content 
     const title        = this.getAttribute('title');
+    const lecture      = this.getAttribute('lecture');
+    const lectureUrl   = this.getAttribute('lectureUrl');
     const reference    = this.getAttribute('reference');
     const referenceIcn = this.getAttribute('referenceIcn');
     const referenceUrl = this.getAttribute('referenceUrl');
@@ -18,6 +20,11 @@ class Submodule extends HTMLElement {
     const test         = this.getAttribute('test');
     const testUrl      = this.getAttribute('testUrl');
 
+
+    let lectureStr = '';
+    if(lecture){
+      lectureStr = `<a href="${lectureUrl}"> <i class="fa fa-file-pdf-o"></i> ${lecture}</a><br />`;
+    }
     let referenceStr = '';
     if(reference){
       let icn = (referenceIcn) ? referenceIcn : 'fa-file-alt';
@@ -43,6 +50,7 @@ class Submodule extends HTMLElement {
     this.innerHTML = `
         <h5>${title}</h5>
         <p>
+          ${lectureStr}
           ${referenceStr}
           ${videoStr}
           ${camtasiaStr}
