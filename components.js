@@ -23,7 +23,7 @@ class Submodule extends HTMLElement {
 
     let lectureStr = '';
     if(lecture){
-      lectureStr = `<a href="${lectureUrl}"> <i class="fa fa-file-pdf-o"></i> ${lecture}</a><br />`;
+      lectureStr = `<a href="${lectureUrl}"> <i class="fa fa-database"></i> ${lecture}</a><br />`;
     }
     let referenceStr = '';
     if(reference){
