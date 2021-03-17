@@ -23,7 +23,7 @@ class Submodule extends HTMLElement {
 
     let lectureStr = '';
     if(lecture){
-      lectureStr = `<a href="${lectureUrl}"> <i class="fa fa-database"></i> ${lecture}</a><br />`;
+      lectureStr = `<a href="${lectureUrl}"> <i class="fa fa-slideshare"></i> ${lecture}</a><br />`;
     }
     let referenceStr = '';
     if(reference){
@@ -32,15 +32,15 @@ class Submodule extends HTMLElement {
     }
     let videoStr = '';
     if(video){
-      videoStr = `<a href="${videoUrl}"><i class="fas fa-video"></i> ${video}</a><br />`;
+      videoStr = `<a href="${videoUrl}"><i class="fa fa-video-camera"></i> ${video}</a><br />`;
     }
     let camtasiaStr = '';
     if(camtasia){
-      camtasiaStr = `<a href="${camtasiaUrl}"><i class="fab fa-cuttlefish"></i> ${camtasia}</a><br />`;
+      camtasiaStr = `<a href="${camtasiaUrl}"><i class="fa fa-chevron-circle-left"></i> ${camtasia}</a><br />`;
     }
     let exerciseStr = '';
     if(exercise){
-      exerciseStr = `<a href="${exerciseUrl}"> <i class="fas fa-tools"></i> ${exercise}</a><br />`;
+      exerciseStr = `<a href="${exerciseUrl}"> <i class="fa fa-file-code-o"></i> ${exercise}</a><br />`;
     }
     let testStr = '';
     if(test){
