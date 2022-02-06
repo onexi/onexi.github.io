@@ -8,6 +8,8 @@ class Submodule extends HTMLElement {
     const title        = this.getAttribute('title');
     const lecture      = this.getAttribute('lecture');
     const lectureUrl   = this.getAttribute('lectureUrl');
+    const link         = this.getAttribute('link');    
+    const linkUrl      = this.getAttribute('linkUrl');    
     const reference    = this.getAttribute('reference');
     const referenceIcn = this.getAttribute('referenceIcn');
     const referenceUrl = this.getAttribute('referenceUrl');
@@ -50,6 +52,10 @@ class Submodule extends HTMLElement {
     if(zip){
       zipStr = `<a href="${zipUrl}"> <i class="fa fa-file-archive-o"></i> ${zip}</a><br />`;
     }
+    let linkStr = '';
+    if(link){
+      linkStr = `<a href="${linkUrl}"> <i class="fa fa-link"></i> ${link}</a><br />`;
+    }
 
     
     this.innerHTML = `
@@ -60,6 +66,7 @@ class Submodule extends HTMLElement {
           ${camtasiaStr}
           ${exerciseStr}
           ${zipStr}
+          ${link}          
           ${referenceStr}
           ${testStr}
         </p>
