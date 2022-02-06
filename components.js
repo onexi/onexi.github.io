@@ -20,7 +20,7 @@ class Submodule extends HTMLElement {
     const test         = this.getAttribute('test');
     const testUrl      = this.getAttribute('testUrl');
     const zip          = this.getAttribute('zip');
-    const zipUrl       = this.getAttribute('ziptUrl');
+    const zipUrl       = this.getAttribute('zipUrl');
 
     let lectureStr = '';
     if(lecture){
