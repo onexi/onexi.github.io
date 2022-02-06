@@ -60,7 +60,8 @@ class Submodule extends HTMLElement {
           ${videoStr}
           ${camtasiaStr}
           ${exerciseStr}
-          ${testStr}          
+          ${testStr}
+          ${zipStr}
         </p>
     `;    
 
