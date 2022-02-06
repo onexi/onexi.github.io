@@ -56,12 +56,12 @@ class Submodule extends HTMLElement {
         <h5>${title}</h5>
         <p>
           ${lectureStr}
-          ${referenceStr}
           ${videoStr}
           ${camtasiaStr}
           ${exerciseStr}
-          ${testStr}
           ${zipStr}
+          ${referenceStr}
+          ${testStr}
         </p>
     `;    
 
