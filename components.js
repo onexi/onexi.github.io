@@ -66,7 +66,7 @@ class Submodule extends HTMLElement {
           ${camtasiaStr}
           ${exerciseStr}
           ${zipStr}
-          ${link}          
+          ${linkStr}          
           ${referenceStr}
           ${testStr}
         </p>
