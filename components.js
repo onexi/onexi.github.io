@@ -19,7 +19,8 @@ class Submodule extends HTMLElement {
     const exerciseUrl  = this.getAttribute('exerciseUrl');
     const test         = this.getAttribute('test');
     const testUrl      = this.getAttribute('testUrl');
-
+    const zip          = this.getAttribute('zip');
+    const zipUrl       = this.getAttribute('ziptUrl');
 
     let lectureStr = '';
     if(lecture){
@@ -27,8 +28,7 @@ class Submodule extends HTMLElement {
     }
     let referenceStr = '';
     if(reference){
-      let icn = (referenceIcn) ? referenceIcn : 'fa-file-alt';
-      referenceStr = `<a href="${referenceUrl}"><i class="fas ${icn}"></i> ${reference}</a><br />`;
+      referenceStr = `<a href="${referenceUrl}"><i class="fa-file-text"></i> ${reference}</a><br />`;
     }
     let videoStr = '';
     if(video){
@@ -46,7 +46,12 @@ class Submodule extends HTMLElement {
     if(test){
       testStr = `<a href="${testUrl}"> <i class="fas fa-vial"></i> ${test}</a><br/>`;
     }
+    let zipStr = '';
+    if(zip){
+      zipStr = `<a href="${zipUrl}"> <i class="fa fa-file-archive-o"></i> ${zip}</a><br />`;
+    }
 
+    
     this.innerHTML = `
         <h5>${title}</h5>
         <p>
