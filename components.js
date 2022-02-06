@@ -28,7 +28,7 @@ class Submodule extends HTMLElement {
     }
     let referenceStr = '';
     if(reference){
-      referenceStr = `<a href="${referenceUrl}"><i class="fa-file-text"></i> ${reference}</a><br />`;
+      referenceStr = `<a href="${referenceUrl}"><i class="fa fa-file"></i> ${reference}</a><br />`;
     }
     let videoStr = '';
     if(video){
