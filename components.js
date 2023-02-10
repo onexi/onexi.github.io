@@ -41,11 +41,16 @@ class Module extends HTMLElement {
     super();
 
     // attribute content 
-    const title = this.getAttribute('title');
+    let title = this.getAttribute('title');
+    let background = this.getAttribute('background');
+
+    if (!background) {
+        background = 'text-bg-secondary'
+    }
 
     this.innerHTML = `
         <div class="card">
-          <h5 class="card-header text-bg-secondary">${title}</h5>
+          <h5 class="card-header ${background}">${title}</h5>
 
             <div class="card-body">
               ${this.innerHTML}
