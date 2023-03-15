@@ -79,6 +79,6 @@
         margin-left: -36px;
         margin-top: -36px;
         position: absolute;
-        background: url("assets/img/play.png") no-repeat;
+        background: url("../img/play.png") no-repeat;
         cursor: pointer;
     }
