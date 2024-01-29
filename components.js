@@ -3,7 +3,7 @@ class Submodule extends HTMLElement {
   constructor() {
     // Always call super first in constructor
     super();
-
+    
     // attribute content 
     let title  = this.getAttribute('title');
     let url    = this.getAttribute('url');    
