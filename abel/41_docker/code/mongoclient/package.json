@@ -9,6 +9,6 @@
   "author": "abel@mit.edu",
   "license": "MIT",
   "dependencies": {
-    "mongodb": "^2.2.31"
+    "mongodb": "^3.6.1"
   }
 }
