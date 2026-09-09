@@ -3,7 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>1.125 – Fall 2026 | FAQ / Syllabus</title>
+  <title>Agentic Computing | FAQ / Syllabus</title>
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
   <style>
     :root {
       --bg: #ffffff;
@@ -46,43 +52,14 @@
     }
 
     .navbar {
-      background: var(--nav);
-      color: #fff;
-      min-height: 48px;
+      font-family: var(--bs-body-font-family);
+      line-height: 1.5;
     }
 
-    .navbar-inner {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 18px;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .brand {
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 0.86rem;
-    }
-
-    .nav-links a {
-      color: var(--nav-muted);
-    }
-
-    .nav-links a:hover {
-      color: #fff;
-      text-decoration: none;
-    }
+    .navbar a:hover { text-decoration: none; }
+    .navbar .navbar-brand:hover { color: var(--bs-navbar-brand-hover-color); }
+    .navbar .navbar-nav { margin: 0; padding-left: 0; }
+    .navbar .nav-item { margin: 0; }
 
     .hero {
       background:
@@ -205,18 +182,6 @@
     }
 
     @media (max-width: 700px) {
-      .navbar-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 4px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
-
       main {
         padding-top: 22px;
       }
@@ -248,19 +213,44 @@
 </head>
 <body>
 
-  <nav class="navbar" aria-label="Course navigation">
-    <div class="navbar-inner">
-      <a class="brand" href="#">Agentic Computing</a>
-      <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Lectures</a>
-        <a href="#">Assignments</a>
-        <a href="#">Projects</a>
-        <a href="#">Videos</a>
-        <a href="#">About</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Course navigation">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Agentic Computing</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="lectures.html">Lectures</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="homeworks.html">Assignments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="videos.html">Videos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <header class="hero">
     <div class="hero-inner">
@@ -269,7 +259,7 @@
   </header>
 
   <main>
-    <h1 class="page-title">1.125 – Fall 2026</h1>
+    <h1 class="page-title">Agentic Computing</h1>
     <div class="course-strip">FAQ / Syllabus</div>
 
     <section class="faq-card">
@@ -303,7 +293,7 @@
     </section>
 
     <section class="faq-card">
-      <h2>3. When and where are 1.125 office hours?</h2>
+      <h2>3. When and where are office hours?</h2>
       <div class="faq-body">
         <p>There are no dedicated office hours. You can request office hours on demand by emailing John Williams or Abel Sanchez.</p>
       </div>
@@ -376,8 +366,13 @@
   </main>
 
   <footer class="footer">
-    1.125 · Fall 2026
+    Agentic Computing
   </footer>
 
+  <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
 </body>
 </html>
