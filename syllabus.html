@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1.125 – Fall 2026 | FAQ / Syllabus</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #212529;
+      --muted: #6c757d;
+      --border: #8b9298;
+      --panel: #f8f9fa;
+      --section: #6c757d;
+      --primary: #0d6efd;
+      --nav: #212529;
+      --nav-muted: #aeb4ba;
+      --container: 1080px;
+      --radius: 5px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+        "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .navbar {
+      background: var(--nav);
+      color: #fff;
+      min-height: 48px;
+    }
+
+    .navbar-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 18px;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+    }
+
+    .nav-links a {
+      color: var(--nav-muted);
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at 20% 30%, rgba(13,110,253,.36), transparent 30%),
+        radial-gradient(circle at 72% 18%, rgba(255,255,255,.14), transparent 24%),
+        linear-gradient(110deg, #050608 0%, #15202b 44%, #16191d 100%);
+      color: #fff;
+      border-bottom: 1px solid #343a40;
+    }
+
+    .hero-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 28px 18px 32px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    main {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 30px 18px 56px;
+    }
+
+    .page-title {
+      font-size: clamp(1.8rem, 3vw, 2.45rem);
+      line-height: 1.2;
+      margin: 0 0 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .course-strip {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 7px 14px;
+      border-radius: var(--radius);
+      margin: 0 0 22px;
+      font-weight: 600;
+    }
+
+    .faq-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 0 0 18px;
+      background: #fff;
+    }
+
+    .faq-card h2 {
+      margin: 0;
+      padding: 8px 13px;
+      background: var(--section);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .faq-body {
+      padding: 14px 16px 16px;
+    }
+
+    .faq-body p {
+      margin: 0;
+    }
+
+    .faq-body p + p,
+    .faq-body table + p,
+    .faq-body p + table {
+      margin-top: 12px;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      font-size: 0.96rem;
+    }
+
+    th, td {
+      padding: 9px 11px;
+      border: 1px solid #adb5bd;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--panel);
+      font-weight: 600;
+    }
+
+    td:last-child.numeric,
+    th:last-child.numeric {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .note {
+      color: var(--muted);
+    }
+
+    .footer {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 18px 30px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 700px) {
+      .navbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      main {
+        padding-top: 22px;
+      }
+
+      .faq-body {
+        padding: 12px;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }
+
+    @media print {
+      .navbar, .hero, .footer {
+        display: none;
+      }
+
+      main {
+        max-width: none;
+        padding: 0;
+      }
+
+      .faq-card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Course navigation">
+    <div class="navbar-inner">
+      <a class="brand" href="#">Agentic Computing</a>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Lectures</a>
+        <a href="#">Assignments</a>
+        <a href="#">Projects</a>
+        <a href="#">Videos</a>
+        <a href="#">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Syllabus</h1>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title">1.125 – Fall 2026</h1>
+    <div class="course-strip">FAQ / Syllabus</div>
+
+    <section class="faq-card">
+      <h2>1. Who teaches this class?</h2>
+      <div class="faq-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Instructor</th><th>Email</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Williams</td>
+                <td><a href="mailto:jw@mit.edu">jw@mit.edu</a></td>
+              </tr>
+              <tr>
+                <td>Abel Sanchez</td>
+                <td><a href="mailto:able@mit.edu">able@mit.edu</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>2. Who are the teaching assistants?</h2>
+      <div class="faq-body">
+        <p>There are no teaching assistants for this class.</p>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>3. When and where are 1.125 office hours?</h2>
+      <div class="faq-body">
+        <p>There are no dedicated office hours. You can request office hours on demand by emailing John Williams or Abel Sanchez.</p>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>4. When does the lecture meet?</h2>
+      <div class="faq-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Days</th><th>Hours</th><th>Location</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Tuesday</td><td>9:00–10:30 am</td><td>1-390</td></tr>
+              <tr><td>Thursday</td><td>9:00–10:30 am</td><td>1-390</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>5. When do recitations meet?</h2>
+      <div class="faq-body">
+        <p>There are no separate recitations.</p>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>6. Do I need a laptop?</h2>
+      <div class="faq-body">
+        <p>Yes. A laptop is required for this class.</p>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>7. Can I use ChatGPT? Can I use Anthropic?</h2>
+      <div class="faq-body">
+        <p>Yes. We encourage you to use AI.</p>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>8. What is the grading policy?</h2>
+      <div class="faq-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Component</th><th class="numeric">% of Grade</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Homework sets</td><td class="numeric">30%</td></tr>
+              <tr><td>Active learning exercises in class</td><td class="numeric">20%</td></tr>
+              <tr><td>Final project deliverable 1</td><td class="numeric">25%</td></tr>
+              <tr><td>Final project deliverable 2</td><td class="numeric">25%</td></tr>
+              <tr><td>Exams (no exams)</td><td class="numeric">0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>9. Is there a final exam?</h2>
+      <div class="faq-body">
+        <p>No.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    1.125 · Fall 2026
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Term Project | Agentic Computing</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #23272b;
+      --muted: #5f666d;
+      --border: #8b939a;
+      --panel: #6c757d;
+      --panel-dark: #343a40;
+      --nav: #24282d;
+      --accent: #0d6efd;
+      --accent-dark: #0a58ca;
+      --soft: #f8f9fa;
+      --warning-bg: #fff8e6;
+      --warning-border: #e0b34c;
+      --success-bg: #eef8f1;
+      --success-border: #77b987;
+      --radius: 5px;
+      --content: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+    .navbar {
+      background: var(--nav);
+      color: #fff;
+      border-bottom: 1px solid #15181b;
+    }
+
+    .navbar-inner {
+      max-width: var(--content);
+      margin: 0 auto;
+      min-height: 48px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-links a { color: #b9bec4; }
+    .nav-links a:hover { color: #fff; text-decoration: none; }
+
+    .hero {
+      background: linear-gradient(110deg, #0d1117 0%, #121a22 55%, #202d38 100%);
+      color: #fff;
+      border-bottom: 1px solid #1f252b;
+    }
+
+    .hero-inner {
+      max-width: var(--content);
+      margin: 0 auto;
+      padding: 34px 16px 36px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1.2;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    main {
+      max-width: var(--content);
+      margin: 0 auto;
+      padding: 34px 16px 64px;
+    }
+
+    .page-title {
+      margin: 0 0 22px;
+      font-size: 31px;
+      line-height: 1.2;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .section-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 0 0 22px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .section-card > h2,
+    .deliverable > h3 {
+      margin: 0;
+      color: #fff;
+      background: var(--panel);
+      font-size: 16px;
+      line-height: 1.3;
+      font-weight: 650;
+      padding: 9px 13px;
+    }
+
+    .section-body {
+      padding: 16px 16px 17px;
+    }
+
+    .section-body > :first-child { margin-top: 0; }
+    .section-body > :last-child { margin-bottom: 0; }
+
+    p { margin: 0 0 13px; }
+
+    ul {
+      margin: 7px 0 14px;
+      padding-left: 24px;
+    }
+
+    li { margin: 4px 0; }
+
+    .lead {
+      font-size: 17px;
+      color: #30363b;
+    }
+
+    .deliverables-intro {
+      margin-bottom: 16px;
+    }
+
+    .deliverable {
+      border: 1px solid #a8afb5;
+      border-radius: var(--radius);
+      margin: 0 0 16px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .deliverable > h3 {
+      background: var(--panel-dark);
+      font-size: 15.5px;
+    }
+
+    .deliverable-body {
+      padding: 15px 16px 16px;
+    }
+
+    .deliverable-body > :first-child { margin-top: 0; }
+    .deliverable-body > :last-child { margin-bottom: 0; }
+
+    .callout {
+      border-left: 4px solid var(--warning-border);
+      background: var(--warning-bg);
+      padding: 11px 13px;
+      margin: 14px 0 0;
+    }
+
+    .callout.success {
+      border-left-color: var(--success-border);
+      background: var(--success-bg);
+    }
+
+    .evaluation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .criterion {
+      border: 1px solid #c8cdd2;
+      border-radius: var(--radius);
+      padding: 13px 14px;
+      background: var(--soft);
+    }
+
+    .criterion h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      line-height: 1.3;
+    }
+
+    .criterion p { margin: 0; font-size: 14.5px; }
+
+    .footer {
+      border-top: 1px solid #d6dadd;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 34px;
+      padding-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .navbar-inner { align-items: flex-start; flex-direction: column; gap: 6px; padding-top: 9px; padding-bottom: 10px; }
+      .nav-links { gap: 13px; }
+      .hero-inner { padding-top: 27px; padding-bottom: 29px; }
+      .hero h1, .page-title { font-size: 27px; }
+      main { padding-top: 27px; }
+      .evaluation-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .navbar { display: none; }
+      .hero { background: none; color: #000; border: 0; }
+      .hero-inner { padding: 0 0 20px; }
+      main { max-width: none; padding: 0; }
+      .page-title { display: none; }
+      .section-card, .deliverable, .criterion { break-inside: avoid; }
+      .section-card > h2, .deliverable > h3 { color: #000; background: #e9ecef; }
+      body { font-size: 11pt; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="brand">Agentic Computing</div>
+      <nav class="nav-links" aria-label="Course navigation">
+        <a href="index.html">Home</a>
+        <a href="lectures.html">Lectures</a>
+        <a href="assignments.html">Assignments</a>
+        <a href="projects.html">Projects</a>
+        <a href="videos.html">Videos</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Term Project</h1>
+    </div>
+  </section>
+
+  <main>
+    <h1 class="page-title">Term Project</h1>
+
+    <section class="section-card" id="overview">
+      <h2>Overview</h2>
+      <div class="section-body">
+        <p class="lead">The term project is an opportunity to apply the ideas, methods, and tools from the course to a problem that you find worthwhile.</p>
+        <p>You may work individually or as a team. Collaboration is encouraged, including discussing designs, approaches, algorithms, debugging strategies, and implementation choices with others. You may also use external code, libraries, data, images, text, models, AI tools, and other resources.</p>
+        <p>You are responsible for understanding the system you submit. Any external material must be clearly cited so that it is evident what you created, what you reused, and where reused material came from.</p>
+        <p>If you work as a team, each member is expected to make a substantive contribution and to understand the overall project.</p>
+      </div>
+    </section>
+
+    <section class="section-card" id="choosing-a-project">
+      <h2>Choosing a Project</h2>
+      <div class="section-body">
+        <p>Choose a project that is ambitious enough to demonstrate meaningful work, but scoped so that it can be completed well within the available time.</p>
+        <p>The project does not need to use a particular technology, architecture, programming language, or interface. You may use any tools or libraries that are appropriate for the problem.</p>
+        <p>If you choose technologies that are unfamiliar to you, learning them is part of the project. The instructors can provide guidance, but you are responsible for acquiring the technical knowledge necessary to complete your work.</p>
+        <p>The quality of the final project should reflect sustained effort, sound judgment, and careful execution.</p>
+      </div>
+    </section>
+
+    <section class="section-card" id="deliverables">
+      <h2>Deliverables</h2>
+      <div class="section-body">
+        <p class="deliverables-intro">The project has three deliverables. Each is intended to reduce project risk by forcing important decisions early enough to act on feedback.</p>
+
+        <article class="deliverable" id="proposal">
+          <h3>Deliverable 1: Idea Proposal</h3>
+          <div class="deliverable-body">
+            <p>Submit a concise proposal describing the project you intend to pursue.</p>
+            <p><strong>Include:</strong></p>
+            <ul>
+              <li>The problem or opportunity you want to address.</li>
+              <li>The user, audience, or context for the project.</li>
+              <li>What you intend to build.</li>
+              <li>The major capabilities you expect the project to include.</li>
+              <li>Any important technologies, data sources, models, libraries, or external systems you currently expect to use.</li>
+              <li>Team members, if applicable.</li>
+            </ul>
+            <p>The proposal is not a contract. Projects often change as you learn more.</p>
+            <p>The purpose of this deliverable is to determine whether the idea is appropriate in scope and direction. The instructors will review the proposal and provide feedback, including approval or recommendations for revision.</p>
+            <div class="callout success"><strong>Before proceeding:</strong> Do not invest heavily in an idea before receiving this feedback.</div>
+          </div>
+        </article>
+
+        <article class="deliverable" id="midpoint">
+          <h3>Deliverable 2: Midpoint Check-In</h3>
+          <div class="deliverable-body">
+            <p>By the midpoint, the exploratory phase should largely be over. You should have converged on a solid version of the project and made substantive progress toward implementing it.</p>
+            <p>Submit a working project repository and a concise demonstration or presentation of your progress.</p>
+            <p><strong>At this stage, we expect to see:</strong></p>
+            <ul>
+              <li>A clearly defined final project direction.</li>
+              <li>Evidence that the major technical uncertainties have been investigated.</li>
+              <li>Meaningful implementation progress on the core of the project.</li>
+              <li>Evidence that the principal technologies required for the project are viable and that you can use them effectively.</li>
+              <li>A realistic plan for what remains before the final submission.</li>
+            </ul>
+            <p>The project does not need to be complete, polished, or fully functional at the midpoint. It does need to be far enough along that completion is credible.</p>
+            <div class="callout"><strong>Project risk:</strong> If you are still deciding what to build, learning foundational technologies, or have made little implementation progress, you are at significant risk of running out of time. At that point, you should reduce scope or otherwise revise the project accordingly.</div>
+          </div>
+        </article>
+
+        <article class="deliverable" id="final-project">
+          <h3>Deliverable 3: Final Project</h3>
+          <div class="deliverable-body">
+            <p>The final deliverable is the completed and polished version of the work presented at the midpoint.</p>
+            <p>The emphasis between the midpoint and final submission should be on completion, refinement, testing, usability, documentation, and presentation rather than a major change in direction.</p>
+            <p><strong>Submit:</strong></p>
+            <ul>
+              <li>The completed project.</li>
+              <li>A GitHub repository containing the source code and all files required to build and run the project.</li>
+              <li>A README that explains:
+                <ul>
+                  <li>What the project does.</li>
+                  <li>How to install and run it.</li>
+                  <li>Important architectural or implementation choices.</li>
+                  <li>Any external libraries, code, data, models, or other resources used.</li>
+                </ul>
+              </li>
+              <li>A concise final demonstration or presentation highlighting the most important, distinctive, and technically interesting aspects of the project.</li>
+            </ul>
+            <p>Do not attempt to demonstrate every feature. Focus on the parts that best communicate what you built, why it matters, and the quality of the work.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card" id="evaluation">
+      <h2>Evaluation</h2>
+      <div class="section-body">
+        <p>Projects will be evaluated as a whole. Important dimensions include:</p>
+        <div class="evaluation-grid">
+          <div class="criterion">
+            <h3>Scope, Complexity, and Sophistication</h3>
+            <p>The project should address a nontrivial problem and demonstrate an appropriate level of technical and conceptual sophistication. More complexity is not automatically better. Good scope and architectural judgment matter.</p>
+          </div>
+          <div class="criterion">
+            <h3>Design and Technical Quality</h3>
+            <p>The system should demonstrate thoughtful design, appropriate abstractions, sensible technology choices, and sound implementation.</p>
+          </div>
+          <div class="criterion">
+            <h3>Functionality and Reliability</h3>
+            <p>The core capabilities should work. The project should be tested sufficiently to support the claims you make about it.</p>
+          </div>
+          <div class="criterion">
+            <h3>User Experience</h3>
+            <p>Where the project has an end-user interface or workflow, it should be coherent and reasonably polished. For projects without a conventional user interface, this criterion will be considered in the context of the system being built.</p>
+          </div>
+          <div class="criterion">
+            <h3>Documentation and Reproducibility</h3>
+            <p>Another technically capable person should be able to understand what you built and determine how to run or evaluate it.</p>
+          </div>
+          <div class="criterion">
+            <h3>Presentation</h3>
+            <p>The final presentation or demonstration should communicate the project clearly and efficiently, emphasizing its most important and distinctive aspects.</p>
+          </div>
+          <div class="criterion">
+            <h3>Effort and Craftsmanship</h3>
+            <p>The final result should reflect sustained effort and care. Students are responsible for managing their time and project scope so that the submitted work reaches an appropriate level of completeness and quality.</p>
+          </div>
+        </div>
+        <p style="margin-top:16px;"><strong>Exceptional projects may receive additional recognition.</strong></p>
+      </div>
+    </section>
+
+    <div class="footer">Agentic Computing · Term Project</div>
+  </main>
+</body>
+</html>
